@@ -1,11 +1,34 @@
 import { useState, useEffect } from 'react';
-import HeroBackgroundFX from './HeroBackgroundFX';
-import HeroImageLayer from './HeroImageLayer';
-import HeroBadge from './HeroBadge';
-import HeroTitle from './HeroTitle';
-import HeroDescription from './HeroDescription';
-import HeroButtons from './HeroButtons';
-import HeroMetrics from './HeroMetrics';
+import { chica } from '../../assets';
+import { MdLockOpen, MdTerminal, MdArrowForward } from 'react-icons/md';
+import type { IconType } from 'react-icons';
+import HeroMobileView from './HeroMobileView';
+import HeroDesktopView from './HeroDesktopView';
+
+const descriptionBase = 'text-on-surface-variant mb-10 leading-relaxed opacity-80';
+
+const TITLE = {
+  first: 'HYBRID',
+  highlightOnMobile: 'INTELLIGENCE',
+  separator: '&',
+  highlightOnDesktop: 'CREATIVE PRODUCTION',
+};
+
+const buttonBase = 'font-label-md tracking-widest transition-all active:scale-95';
+const mobileButtonClass = `${buttonBase} rounded-none uppercase flex items-center justify-center gap-3 py-6`;
+const desktopButtonClass = `${buttonBase} font-bold`;
+
+type ButtonDefinition = {
+  label: string;
+  mobileIcon: IconType;
+  desktopIcon: IconType | null;
+  primary: boolean;
+};
+
+const buttons: ButtonDefinition[] = [
+  { label: 'Authenticate Access', mobileIcon: MdLockOpen, desktopIcon: MdArrowForward, primary: true },
+  { label: 'View Protocols', mobileIcon: MdTerminal, desktopIcon: null, primary: false },
+];
 
 export default function Hero ()  {
   const [latency, setLatency] = useState(3);
@@ -17,21 +40,30 @@ export default function Hero ()  {
     return () => clearInterval(interval);
   }, []);
 
+  const metrics = [
+    { mobile: { label: 'LATENCY', value: `0${latency}ms` }, desktop: { label: 'NETWORK LATENCY', value: '0.0004 MS' } },
+    { mobile: { label: 'UPTIME', value: '99.9%' }, desktop: { label: 'UPTIME RECORD', value: '99.999%' } },
+    { mobile: { label: 'NODES', value: '1,402' }, desktop: { label: 'ACTIVE NODES', value: '14,204' } },
+  ];
+
   return (
-    <main className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between overflow-hidden bg-void-black text-on-surface font-body-md selection:bg-blood-red selection:text-stark-white">
-
-      <HeroBackgroundFX />
-      <HeroImageLayer />
-
-      <section className="relative z-10 w-full lg:w-1/2 lg:order-1 lg:h-full flex flex-col justify-center px-margin-mobile lg:px-margin-desktop text-center lg:text-left mt-auto lg:mt-0 pb-24 lg:pb-0 pt-12 lg:pt-0">
-
-        <HeroBadge />
-        <HeroTitle />
-        <HeroDescription />
-        <HeroButtons />
-        <HeroMetrics latency={latency} />
-
-      </section>
+    <main className="relative min-h-screen bg-void-black text-on-surface font-body-md selection:bg-blood-red selection:text-stark-white">
+      <HeroMobileView
+        chica={chica}
+        TITLE={TITLE}
+        descriptionBase={descriptionBase}
+        buttons={buttons}
+        metrics={metrics}
+        mobileButtonClass={mobileButtonClass}
+      />
+      <HeroDesktopView
+        chica={chica}
+        TITLE={TITLE}
+        descriptionBase={descriptionBase}
+        buttons={buttons}
+        metrics={metrics}
+        desktopButtonClass={desktopButtonClass}
+      />
     </main>
   );
 }

@@ -1,59 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-surface-container-low: #1b1b1b;
-  --color-on-surface-variant: #e3beb8;
-  --color-tertiary-fixed: #dfe0ff;
-  --color-on-primary-fixed: #410000;
-  --color-surface-dim: #131313;
-  --color-inverse-primary: #b52619;
-  --color-surface-container-lowest: #0e0e0e;
-  --color-surface-bright: #393939;
-  --color-on-tertiary-fixed-variant: #0d2ccc;
-  --color-outline-variant: #5a403c;
-  --color-surface-border: #333333;
-  --color-secondary: #c8c6c5;
-  --color-on-tertiary-fixed: #000d60;
-  --color-background: #131313;
-  --color-surface-variant: #353535;
-  --color-on-tertiary-container: #9ea9ff;
-  --color-error-container: #93000a;
-  --color-on-secondary-fixed: #1c1b1b;
-  --color-on-error-container: #ffdad6;
-  --color-surface: #131313;
-  --color-stark-white: #FFFFFF;
-  --color-error: #ffb4ab;
-  --color-on-secondary-container: #b7b5b4;
-  --color-tertiary-container: #0025c8;
-  --color-on-background: #e2e2e2;
-  --color-on-primary-fixed-variant: #920703;
-  --color-carbon-gray: #1A1A1A;
-  --color-surface-container-highest: #353535;
-  --color-on-secondary-fixed-variant: #474746;
-  --color-surface-tint: #ffb4a8;
-  --color-inverse-on-surface: #303030;
-  --color-primary-fixed: #ffdad4;
-  --color-on-tertiary: #001a98;
-  --color-tertiary: #bcc3ff;
-  --color-primary-fixed-dim: #ffb4a8;
-  --color-on-error: #690005;
-  --color-on-primary: #690000;
+  /* Colors — solo los que usan Hero y AboutMe */
   --color-void-black: #000000;
-  --color-secondary-container: #474746;
-  --color-surface-container: #1f1f1f;
-  --color-inverse-surface: #e2e2e2;
-  --color-tertiary-fixed-dim: #bcc3ff;
-  --color-surface-container-high: #2a2a2a;
-  --color-secondary-fixed-dim: #c8c6c5;
+  --color-stark-white: #FFFFFF;
   --color-blood-red: #8B0000;
-  --color-secondary-fixed: #e5e2e1;
-  --color-outline: #aa8984;
-  --color-on-surface: #e2e2e2;
-  --color-on-secondary: #313030;
   --color-primary: #ffb4a8;
-  --color-on-primary-container: #ff907f;
-  --color-primary-container: #8b0000;
+  --color-on-surface: #e2e2e2;
+  --color-on-surface-variant: #e3beb8;
+  --color-surface-border: #333333;
+  --color-carbon-gray: #1A1A1A;
+  --color-surface-container-low: #1b1b1b;
 
   /* Border Radius */
   --radius-default: 0.125rem;
@@ -77,44 +34,12 @@
   --font-label-sm: "JetBrains Mono", monospace;
   --font-body-md: "Geist", sans-serif;
 
-  /* Font Sizes & Line Heights (Via CSS variables for Tailwind v4 mapping) */
-  --text-display-lg-mobile: 36px;
-  --text-display-lg-mobile--line-height: 44px;
-  --text-display-lg-mobile--letter-spacing: -0.02em;
-  --text-display-lg-mobile--font-weight: 700;
-
-  --text-label-md: 14px;
-  --text-label-md--line-height: 20px;
-  --text-label-md--letter-spacing: 0.05em;
-  --text-label-md--font-weight: 500;
-
-  --text-headline-md: 24px;
-  --text-headline-md--line-height: 32px;
-  --text-headline-md--font-weight: 600;
-
-  --text-display-lg: 48px;
-  --text-display-lg--line-height: 56px;
-  --text-display-lg--letter-spacing: -0.02em;
-  --text-display-lg--font-weight: 700;
-
-  --text-body-lg: 18px;
-  --text-body-lg--line-height: 28px;
-  --text-body-lg--font-weight: 400;
-
-  --text-label-sm: 12px;
-  --text-label-sm--line-height: 16px;
-  --text-label-sm--letter-spacing: 0.08em;
-  --text-label-sm--font-weight: 500;
-
-  --text-body-md: 16px;
-  --text-body-md--line-height: 24px;
-  --text-body-md--font-weight: 400;
 }
 
 .technical-grid {
     background-image: 
-        linear-gradient(to right, #1a1a1a 1px, transparent 1px),
-        linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+        linear-gradient(to right, #0d0d0d 1px, transparent 1px),
+        linear-gradient(to bottom, #0d0d0d 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
@@ -129,7 +54,7 @@
 }
 
 .crimson-gradient-overlay {
-    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(19,19,19,1) 85%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,1) 85%);
 }
 
 @keyframes pulse-red {
@@ -155,4 +80,71 @@
 @keyframes scan {
     0% { top: 0; }
     100% { top: 100%; }
+}
+
+.grid-bg {
+    background-image: 
+        linear-gradient(to right, #1f1f1f 1px, transparent 1px),
+        linear-gradient(to bottom, #1f1f1f 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.glitch-effect:hover {
+    text-shadow: 2px 0 #8B0000, -2px 0 #ffb4a8;
+}
+
+.crimson-border-gradient {
+    border: 1px solid transparent;
+    border-image: linear-gradient(to bottom right, #8B0000, #333333) 1;
+}
+
+@keyframes pulse-crimson {
+    0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7); }
+    50% { transform: scale(1.05); opacity: 0.9; box-shadow: 0 0 20px 5px rgba(139, 0, 0, 0.4); }
+}
+
+.animate-pulse-custom {
+    animation: pulse-crimson 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.display-title {
+  font-size: clamp(2.25rem, 10vw, 3.5rem);
+}
+
+.mask-fade-up {
+  mask-image: linear-gradient(to top, transparent 5%, black 45%);
+  -webkit-mask-image: linear-gradient(to top, transparent 5%, black 45%);
+}
+
+.animate-bounce-slow {
+  animation-duration: 5s;
+}
+
+.scanline-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(139, 0, 0, 0.05) 50%, transparent);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
+
+.active-scanline {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8B0000, transparent);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: active-scan 3s ease-in-out infinite;
+}
+
+@keyframes active-scan {
+    0%   { top: 0; opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
 }

@@ -1,2 +1,3 @@
 import chica from "./chica.png";
-export { chica };
+import yo from "./yo.png";
+export { chica, yo };
