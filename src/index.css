@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   WASAKABE — Design System
+   Paleta simplificada de Material 3 (modo oscuro)
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ─── Core ─── */
+  --color-void-black: #000000;
+  --color-stark-white: #FFFFFF;
+  --color-background: #131313;
+
+  /* ─── Primary · Rojo (brand) ─── */
+  --color-primary: #ffb4a8;
+  --color-primary-container: #8b0000;
+  --color-on-primary: #690000;
+  --color-on-primary-container: #ff907f;
+
+  /* ─── Secondary · Gris neutro ─── */
+  --color-secondary: #c8c6c5;
+  --color-secondary-container: #474746;
+  --color-on-secondary: #313030;
+
+  /* ─── Tertiary · Azul acento ─── */
+  --color-tertiary: #bcc3ff;
+  --color-tertiary-container: #0025c8;
+  --color-on-tertiary-container: #9ea9ff;
+
+  /* ─── Surface · Capas de fondo ─── */
+  --color-surface: #131313;
+  --color-surface-lowest: #0e0e0e;
+  --color-surface-low: #1b1b1b;
+  --color-surface-mid: #1f1f1f;
+  --color-surface-high: #2a2a2a;
+  --color-surface-highest: #353535;
+  --color-surface-border: #333333;
+  --color-on-surface: #e2e2e2;
+  --color-on-surface-variant: #e3beb8;
+
+  /* ─── Error ─── */
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+
+  /* ─── Outline ─── */
+  --color-outline: #aa8984;
+  --color-outline-variant: #5a403c;
+
+  /* ─── Aliases ─── */
+  --color-blood-red: var(--color-primary-container);
+  --color-carbon-gray: #1A1A1A;
+
+  /* ─── Typography ─── */
+  --font-sans: "Sora", "Geist", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Sora", sans-serif;
+  --font-body: "Geist", sans-serif;
+}
