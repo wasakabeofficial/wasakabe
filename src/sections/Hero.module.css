@@ -1,0 +1,337 @@
+/* ═══════════════════════════════════════════════
+   Hero Section — Pure CSS (CSS Module)
+   ═══════════════════════════════════════════════ */
+
+/* ─── Base ─── */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-void-black, #000000);
+  color: var(--color-on-surface, #e2e2e2);
+  font-family: var(--font-body, "Geist", sans-serif);
+}
+
+/* ─── Backgrounds ─── */
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+    linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, #000000, transparent 40%, #000000);
+}
+
+/* ─── Container ─── */
+
+.container {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    padding: 0 64px;
+  }
+}
+
+/* ─── Content (left) ─── */
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 0;
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    width: 50%;
+    padding: 48px 0;
+    order: 1;
+  }
+}
+
+/* ─── Protocol Badge ─── */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  margin-bottom: 32px;
+  background-color: color-mix(in srgb, var(--color-primary-container, #8b0000) 10%, transparent);
+  border-left: 2px solid var(--color-primary-container, #8b0000);
+  width: fit-content;
+}
+
+.badgeIcon {
+  font-size: 14px;
+  color: var(--color-primary, #ffb4a8);
+}
+
+.badgeText {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary, #ffb4a8);
+}
+
+/* ─── Title ─── */
+
+.title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: clamp(2.25rem, 8vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-stark-white, #ffffff);
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 48px;
+  }
+}
+
+.titleHighlight {
+  color: var(--color-primary, #ffb4a8);
+  font-weight: 800;
+}
+
+/* ─── Description ─── */
+
+.description {
+  font-family: var(--font-body, "Geist", sans-serif);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--color-on-surface-variant, #e3beb8);
+  max-width: 576px;
+  margin-bottom: 40px;
+  opacity: 0.8;
+}
+
+/* ─── Buttons ─── */
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary-container, #8b0000);
+  color: var(--color-stark-white, #ffffff);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary-container, #8b0000) 40%, transparent);
+}
+
+.buttonPrimary:hover {
+  background-color: #660000;
+}
+
+.buttonSecondary {
+  border: 1px solid var(--color-surface-border, #333333);
+  background-color: var(--color-carbon-gray, #1a1a1a);
+  color: var(--color-on-surface, #e2e2e2);
+}
+
+.buttonSecondary:hover {
+  border-color: var(--color-primary, #ffb4a8);
+}
+
+.buttonIcon {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.buttonPrimary:hover .buttonIcon {
+  transform: translateX(4px);
+}
+
+/* ─── HUD Metrics ─── */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 640px) {
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.metricItem {
+  border-left: 2px solid var(--color-primary-container, #8b0000);
+  padding-left: 12px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-primary-container, #8b0000) 10%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+.metricLabel {
+  display: block;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-on-surface-variant, #e3beb8);
+  opacity: 0.6;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.metricValue {
+  display: block;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-stark-white, #ffffff);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Image Area (right) ─── */
+
+.imageArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .imageArea {
+    width: 50%;
+    height: 100%;
+    justify-content: flex-end;
+    order: 2;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 1024px) {
+  .imageWrapper {
+    max-width: none;
+    aspect-ratio: auto;
+    height: 85vh;
+  }
+}
+
+.imageGlow {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-primary-container, #8b0000) 20%, transparent);
+  border-radius: 50%;
+  filter: blur(100px);
+  transform: scale(0.75);
+  z-index: -1;
+  transition: transform 1s ease;
+}
+
+.imageWrapper:hover .imageGlow {
+  transform: scale(0.9);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 0 30px color-mix(in srgb, var(--color-primary-container, #8b0000) 30%, transparent));
+  transition: transform 0.7s ease;
+}
+
+.imageWrapper:hover .image {
+  transform: scale(1.02);
+}
+
+/* ─── Floating Badges ─── */
+
+.floatingBadges {
+  position: absolute;
+  top: 25%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  animation: float 5s ease-in-out infinite;
+}
+
+.floatingBadge {
+  background-color: color-mix(in srgb, var(--color-carbon-gray, #1a1a1a) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary-container, #8b0000) 40%, transparent);
+  padding: 4px 12px;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary, #ffb4a8);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
