@@ -13,6 +13,7 @@ const iconMap: Record<string, IconType> = {
 export default function Hero() {
   const {
     badge,
+    title,
     description,
     descriptionMobile,
     buttons,
@@ -23,6 +24,19 @@ export default function Hero() {
     badges,
   } = heroContent;
 
+  /* Desktop: float jitter */
+  const [latency, setLatency] = useState(metrics[0].value);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const base = 0.0004;
+      const jitter = Math.random() * 0.00005 - 0.000025;
+      setLatency((base + jitter).toFixed(4) + ' MS');
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  /* Mobile: integer ms */
   const [latencyMs, setLatencyMs] = useState(2);
 
   useEffect(() => {
@@ -33,13 +47,14 @@ export default function Hero() {
   }, []);
 
   const displayMetrics = metrics.map((m, i) =>
-    i === 0 ? { ...m, value: `0${latencyMs}ms` } : m,
+    i === 0 ? { ...m, value: latency } : m,
   );
 
   return (
     <section className={styles.hero}>
       {/* ---- Shared backgrounds ---- */}
       <div className={styles.gridOverlay} aria-hidden="true" />
+      <div className={styles.vignette} aria-hidden="true" />
       <div className={styles.scanline} aria-hidden="true" />
 
       {/* ---- Mobile: image as background ---- */}
@@ -54,14 +69,14 @@ export default function Hero() {
       </div>
 
       <div className={styles.container}>
-        {/* ---- Desktop: side image ---- */}
-        <div className={styles.desktopImageArea}>
+        {/* ---- Desktop: right image ---- */}
+        <div className={styles.imageArea}>
           <div className={styles.imageWrapper}>
             <div className={styles.imageGlow} aria-hidden="true" />
             <img
               alt={imageAlt}
               src={chica}
-              className={styles.desktopImage}
+              className={styles.image}
               loading="eager"
             />
             <div className={styles.floatingBadges} aria-hidden="true">
@@ -76,28 +91,50 @@ export default function Hero() {
 
         {/* ---- Content ---- */}
         <div className={styles.content}>
-          {/* Status pulse — mobile only */}
+          {/* Status pulse – mobile only */}
           <div className={styles.statusRow}>
             <span className={styles.statusDot} />
           </div>
 
-          {/* Protocol badge — desktop only */}
+          {/* Protocol badge */}
           <div className={styles.badge}>
             <MdSecurity className={styles.badgeIcon} aria-hidden="true" />
             <span className={styles.badgeText}>{badge.text}</span>
           </div>
 
-          {/* Title — both variants */}
-          <h1 className={`${styles.title}`}>
+          {/* Title – desktop variant */}
+          <h1 className={styles.titleDesktop}>
+            {title.prefix} {title.separator}
+            <br />
+            <span className={styles.titleHighlight}>{title.highlight}</span>
+          </h1>
+
+          {/* Title – mobile variant */}
+          <h1 className={styles.titleMobile}>
             HYBRID{' '}
-            <span className={styles.highlightMobile}>{'INTELLIGENCE'}</span>
-            {' & '}
-            <span className={styles.highlightDesktop}>{'CREATIVE PRODUCTION'}</span>
+            <span className={styles.highlightMobile}>INTELLIGENCE</span>
+            {' & CREATIVE PRODUCTION'}
           </h1>
 
           {/* Descriptions */}
+          <p className={styles.desc}>{description}</p>
           <p className={styles.descMobile}>{descriptionMobile}</p>
-          <p className={styles.descDesktop}>{description}</p>
+
+          {/* ---- Desktop buttons ---- */}
+          <div className={styles.buttons}>
+            {buttons.map((btn) => (
+              <button
+                key={btn.label}
+                type="button"
+                className={`${styles.button} ${btn.primary ? styles.buttonPrimary : styles.buttonSecondary}`}
+              >
+                {btn.label}
+                {btn.primary && (
+                  <MdArrowForward className={styles.buttonIcon} aria-hidden="true" />
+                )}
+              </button>
+            ))}
+          </div>
 
           {/* ---- Mobile buttons ---- */}
           <div className={styles.buttonsMobile}>
@@ -107,28 +144,22 @@ export default function Hero() {
                 <button
                   key={btn.label}
                   type="button"
-                  className={`${styles.btn} ${btn.primary ? styles.btnPrimary : styles.btnOutline}`}
+                  className={`${styles.buttonMb} ${btn.primary ? styles.btnPrimaryMb : styles.btnOutlineMb}`}
                 >
-                  {Icon && <Icon className={styles.btnIcon} />}
+                  {Icon && <Icon className={styles.btnIconMb} />}
                   {btn.label}
                 </button>
               );
             })}
           </div>
 
-          {/* ---- Desktop buttons ---- */}
-          <div className={styles.buttonsDesktop}>
-            {buttons.map((btn) => (
-              <button
-                key={btn.label}
-                type="button"
-                className={`${styles.btn} ${btn.primary ? styles.btnPrimaryDt : styles.btnOutlineDt}`}
-              >
-                {btn.label}
-                {btn.primary && (
-                  <MdArrowForward className={styles.btnArrowIcon} aria-hidden="true" />
-                )}
-              </button>
+          {/* ---- Desktop metrics ---- */}
+          <div className={styles.metrics}>
+            {displayMetrics.map((metric) => (
+              <div key={metric.label} className={styles.metricItem}>
+                <span className={styles.metricLabel}>{metric.label}</span>
+                <span className={styles.metricValue}>{metric.value}</span>
+              </div>
             ))}
           </div>
 
@@ -144,16 +175,6 @@ export default function Hero() {
                 <span className={styles.metricValueMb}>
                   {m.label === 'LATENCY' ? `0${latencyMs}ms` : m.value}
                 </span>
-              </div>
-            ))}
-          </div>
-
-          {/* ---- Desktop metrics ---- */}
-          <div className={styles.metricsDesktop}>
-            {displayMetrics.map((m) => (
-              <div key={m.label} className={styles.metricItemDt}>
-                <span className={styles.metricLabelDt}>{m.label}</span>
-                <span className={styles.metricValueDt}>{m.value}</span>
               </div>
             ))}
           </div>
