@@ -5,6 +5,7 @@ export interface Metric {
 
 export interface ButtonConfig {
   label: string;
+  icon?: string;
   primary: boolean;
 }
 
@@ -14,6 +15,7 @@ export interface BadgeConfig {
 }
 
 export interface HeroContent {
+  /* Desktop */
   badge: { icon: string; text: string };
   title: { prefix: string; separator: string; highlight: string };
   description: string;
@@ -21,9 +23,14 @@ export interface HeroContent {
   metrics: Metric[];
   imageAlt: string;
   badges: BadgeConfig[];
+  /* Mobile */
+  descriptionMobile: string;
+  buttonsMobile: ButtonConfig[];
+  metricsMobile: Metric[];
 }
 
 export const heroContent: HeroContent = {
+  /* ─── Desktop ─── */
   badge: {
     icon: 'security',
     text: 'CRIMSON PROTOCOL ACTIVE',
@@ -48,5 +55,18 @@ export const heroContent: HeroContent = {
   badges: [
     { label: 'BIO_ID', value: '99x-A' },
     { label: 'AUTH_LEVEL', value: 'OMEGA' },
+  ],
+
+  /* ─── Mobile ─── */
+  descriptionMobile:
+    'Architecting the next generation of digital assets through neural engineering and aggressive visual precision.',
+  buttonsMobile: [
+    { label: 'Authenticate Access', icon: 'lock_open', primary: true },
+    { label: 'View Protocols', icon: 'terminal', primary: false },
+  ],
+  metricsMobile: [
+    { label: 'LATENCY', value: '02ms' },
+    { label: 'UPTIME', value: '99.9%' },
+    { label: 'NODES', value: '1,402' },
   ],
 };
