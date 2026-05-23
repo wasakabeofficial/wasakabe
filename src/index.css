@@ -12,16 +12,10 @@
   --color-carbon-gray: #1A1A1A;
   --color-surface-container-low: #1b1b1b;
 
-  /* Border Radius */
-  --radius-default: 0.125rem;
-  --radius-lg: 0.25rem;
-  --radius-xl: 0.5rem;
-  --radius-full: 0.75rem;
-
   /* Spacing */
   --spacing-margin-mobile: 16px;
-  --spacing-gutter: 24px;
   --spacing-max-width: 1440px;
+  --spacing-gutter: 24px;
   --spacing-margin-desktop: 64px;
   --spacing-base: 8px;
 
@@ -33,6 +27,15 @@
   --font-body-lg: "Geist", sans-serif;
   --font-label-sm: "JetBrains Mono", monospace;
   --font-body-md: "Geist", sans-serif;
+
+  /* Text Sizes */
+  --text-display-lg: 48px;
+  --text-display-lg-mobile: 36px;
+  --text-headline-md: 24px;
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-label-md: 14px;
+  --text-label-sm: 12px;
 
 }
 
@@ -80,22 +83,6 @@
 @keyframes scan {
     0% { top: 0; }
     100% { top: 100%; }
-}
-
-.grid-bg {
-    background-image: 
-        linear-gradient(to right, #1f1f1f 1px, transparent 1px),
-        linear-gradient(to bottom, #1f1f1f 1px, transparent 1px);
-    background-size: 40px 40px;
-}
-
-.glitch-effect:hover {
-    text-shadow: 2px 0 #8B0000, -2px 0 #ffb4a8;
-}
-
-.crimson-border-gradient {
-    border: 1px solid transparent;
-    border-image: linear-gradient(to bottom right, #8B0000, #333333) 1;
 }
 
 @keyframes pulse-crimson {
@@ -147,4 +134,19 @@
     10%  { opacity: 1; }
     90%  { opacity: 1; }
     100% { top: 100%; opacity: 0; }
+}
+
+.card-scanline {
+    background: linear-gradient(to bottom, transparent 50%, rgba(139, 0, 0, 0.05) 50%);
+    background-size: 100% 4px;
+}
+
+@keyframes waveform-bounce {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+}
+
+.waveform-bar {
+    animation: waveform-bounce 1.2s ease-in-out infinite;
+    transform-origin: bottom;
 }
