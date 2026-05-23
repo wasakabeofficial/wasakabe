@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @theme {
   --color-void-black: #000000;
   --color-stark-white: #FFFFFF;
@@ -42,4 +48,7 @@
   --font-mono: "JetBrains Mono", monospace;
   --font-display: "Sora", sans-serif;
   --font-body: "Geist", sans-serif;
+}
+*{
+    box-sizing: border-box;
 }
