@@ -7,6 +7,7 @@
   background-color: var(--color-void-black, #000);
   color: var(--color-on-surface, #e2e2e2);
   font-family: var(--font-sans, "Geist", sans-serif);
+  perspective: 1000px;
 }
 
 .HeroGrid {
@@ -26,7 +27,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(to top, #000, transparent 40%, #000);
+  background: linear-gradient(to top, #000000, transparent 40%, #2b0c0c);
 }
 
 .HeroScanline {
@@ -52,6 +53,10 @@
   height: 100%;
   justify-content: flex-end;
   align-items: flex-end;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+  position: relative;
 }
 
 .HeroImageGlow {
@@ -59,35 +64,47 @@
   inset: 0;
   background-color: color-mix(
     in srgb,
-    var(--color-primary-container, #8b0000) 20%,
+    var(--color-primary-container, #140a0a) 20%,
     transparent
   );
   border-radius: 50%;
-  filter: blur(100px);
-  transform: scale(0.75);
+  filter: blur(200px);
+  transform: translateZ(-30px) scale(0.75);
   z-index: -1;
-  transition: transform 1s ease;
 }
 
-.HeroImageWrap:hover .HeroImageGlow {
-  transform: scale(0.9);
+.HeroImageDepth {
+  transform-style: preserve-3d;
+  transform: translateZ(30px);
 }
 
 .HeroImage {
   width: 100%;
-  height: 85vh;
-  max-width: 600px;
-  object-fit: contain;
+  height: 100vh;
+  max-width: 500px;
+  object-fit: cover;
   object-position: bottom;
   filter: drop-shadow(
     0 0 30px
       color-mix(
         in srgb,
-        var(--color-primary-container, #8b0000) 30%,
-        transparent
+        var(--color-primary-container, #8b0000) 40%,
+        rgb(0, 0, 0)
       )
   );
-  transition: transform 0.7s ease;
+  transition: transform 0.3s ease;
+  mask-image:
+    linear-gradient(to bottom, black 0%, black 85%, transparent 100%),
+    linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .HeroImageWrap:hover .HeroImage {
@@ -96,45 +113,6 @@
 
 .HeroImageOverlay {
   display: none;
-}
-
-.HeroBadges {
-  position: absolute;
-  top: 25%;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: flex-end;
-  animation: HeroFloat 5s ease-in-out infinite;
-}
-
-.HeroBadgeFloat {
-  background-color: color-mix(
-    in srgb,
-    var(--color-carbon-gray, #1a1a1a) 80%,
-    transparent
-  );
-  border: 1px solid
-    color-mix(in srgb, var(--color-primary-container, #8b0000) 40%, transparent);
-  padding: 4px 12px;
-  font-family: var(--font-mono, "JetBrains Mono", monospace);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-primary, #ffb4a8);
-  backdrop-filter: blur(4px);
-}
-
-@keyframes HeroFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .HeroContent {
@@ -172,7 +150,7 @@
 
 .HeroBadgeText {
   font-family: var(--font-mono, "JetBrains Mono", monospace);
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -181,7 +159,7 @@
 
 .HeroTitle {
   font-family: var(--font-display, "Sora", sans-serif);
-  font-size: 48px;
+  font-size: 5rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -200,7 +178,7 @@
 }
 
 .HeroDescription {
-  font-size: 18px;
+  font-size: 1rem;
   line-height: 1.75;
   color: var(--color-on-surface-variant, #e3beb8);
   max-width: 576px;
@@ -272,44 +250,6 @@
   transform: translateX(4px);
 }
 
-.HeroMetrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
-.HeroMetric {
-  border-left: 2px solid var(--color-primary-container, #8b0000);
-  padding-left: 12px;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-primary-container, #8b0000) 10%, transparent)
-      0%,
-    transparent 100%
-  );
-}
-
-.HeroMetricLabel {
-  display: block;
-  font-family: var(--font-mono, "JetBrains Mono", monospace);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--color-on-surface-variant, #e3beb8);
-  opacity: 0.6;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-}
-
-.HeroMetricValue {
-  display: block;
-  font-family: var(--font-mono, "JetBrains Mono", monospace);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--color-stark-white, #fff);
-  font-variant-numeric: tabular-nums;
-}
-
 .HeroMobile {
   display: none;
 }
@@ -318,13 +258,9 @@
   display: inline;
 }
 
-.HeroFooter {
-  display: none;
-}
-
 @media (max-width: 1023px) {
   .Hero {
-    background-color: var(--color-background, #131313);
+    background-color: var(--color-background, #000000);
   }
 
   .HeroGrid {
@@ -335,12 +271,10 @@
   }
 
   .HeroScanline,
-  .HeroPulse,
-  .HeroFooter {
+  .HeroPulse {
     display: block;
   }
 
-  .HeroImageGlow,
   .HeroBadges,
   .HeroBadge {
     display: none;
@@ -352,37 +286,6 @@
 
   .HeroDesktop {
     display: none;
-  }
-
-  .HeroMetrics {
-    gap: 0;
-    border-top: 1px solid var(--color-surface-border, #333);
-    padding-top: 40px;
-  }
-
-  .HeroMetric {
-    border-left: none;
-    padding-left: 0;
-    background: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .HeroMetric:nth-child(2) {
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .HeroMetric .HeroMetricLabel {
-    color: var(--color-primary-container, #8b0000);
-    opacity: 1;
-    text-align: center;
-  }
-
-  .HeroMetric .HeroMetricValue {
-    font-weight: 500;
-    text-align: center;
   }
 
   .HeroScanline {
@@ -412,20 +315,27 @@
     z-index: -1;
     width: 100%;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     pointer-events: none;
     overflow: hidden;
+  }
+
+  .HeroImageDepth {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
   }
 
   .HeroImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: center 30%;
     filter: none;
-    mask-image: linear-gradient(to top, transparent 5%, black 45%);
-    -webkit-mask-image: linear-gradient(to top, transparent 5%, black 45%);
   }
 
   .HeroImageWrap:hover .HeroImage {
@@ -438,10 +348,15 @@
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(19, 19, 19, 1) 85%
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(19, 19, 19, 0.719) 50%,
+      rgb(0, 0, 0) 90%
     );
     pointer-events: none;
+  }
+
+  .HeroImageGlow {
+    display: none;
   }
 
   .HeroLayout {
@@ -529,19 +444,5 @@
   .HeroButtonIconAlt {
     display: inline;
     font-size: 20px;
-  }
-
-  .HeroFooter {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    padding: 24px 16px;
-    border-top: 1px solid var(--color-surface-border, #333);
-  }
-
-  .HeroFooterInner {
-    max-width: 1440px;
-    margin: 0 auto;
-    opacity: 0.4;
   }
 }
