@@ -1,5 +1,6 @@
-import { chica } from "../../assets";
+import { chica } from "../../../assets";
 import "./Hero.css";
+
 
 export default function Hero() {
   return (
