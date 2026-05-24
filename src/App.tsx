@@ -1,3 +1,5 @@
+import Hero from "./presentation/sections/Hero";
+
 export default function App() {
-  return <div></div>;
+  return <Hero />;
 }
