@@ -4,6 +4,7 @@ import About from "./presentation/sections/About/About";
 import Services from "./presentation/sections/Services/Services";
 import Experience from "./presentation/sections/Experience/Experience";
 import Canal from "./presentation/sections/Canal/Canal";
+import Contact from "./presentation/sections/Contact/Contact";
 import Footer from "./presentation/sections/Footer/Footer";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <Services />
       <Experience />
       <Canal />
+      <Contact />
       <Footer />
     </>
   );
