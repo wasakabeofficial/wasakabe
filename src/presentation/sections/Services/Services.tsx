@@ -1,9 +1,4 @@
-import {
-  MdCode,
-  MdAutoAwesome,
-  MdVideocam,
-  MdSchool,
-} from "react-icons/md";
+import { MdCode, MdAutoAwesome, MdVideocam, MdSchool } from "react-icons/md";
 import "./Services.css";
 
 const services = [
@@ -39,7 +34,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="services">
+    <section className="services" id="services">
       <div className="services-layout">
         <div className="services-header">
           <span className="services-eyebrow">SERVICIOS</span>
@@ -47,15 +42,20 @@ export default function Services() {
             QUÉ PUEDO <span className="services-title-gold">HACER POR TI</span>
           </h2>
           <p className="services-sub">
-            Cuatro áreas donde combino ingeniería de alto nivel con
-            producción creativa para entregar resultados medibles.
+            Cuatro áreas donde combino ingeniería de alto nivel con producción
+            creativa para entregar resultados medibles.
           </p>
         </div>
 
         <div className="services-grid">
           {services.map((s) => (
-            <article key={s.id} className={`services-card services-card--${s.accent}`}>
-              <span className="services-card-num" aria-hidden="true">{s.id}</span>
+            <article
+              key={s.id}
+              className={`services-card services-card--${s.accent}`}
+            >
+              <span className="services-card-num" aria-hidden="true">
+                {s.id}
+              </span>
 
               <div className="services-card-top">
                 <span className="services-card-icon">
@@ -68,9 +68,7 @@ export default function Services() {
 
               <p className="services-card-desc">{s.desc}</p>
 
-              <span className="services-card-cta">
-                Saber más →
-              </span>
+              <span className="services-card-cta">Saber más →</span>
             </article>
           ))}
         </div>

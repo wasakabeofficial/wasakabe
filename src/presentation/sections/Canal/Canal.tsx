@@ -53,7 +53,7 @@ const channels = [
 
 export default function Canal() {
   return (
-    <section className="canal">
+    <section id="canal" className="canal">
       <div className="canal-layout">
         <div className="canal-header">
           <span className="canal-eyebrow">CANAL & COMUNIDAD</span>

@@ -6,6 +6,7 @@
   overflow: hidden;
   background-color: var(--color-bg-page);
   color: var(--color-cream-300);
+  padding-top: 64px;
 }
 
 .hero-grid {

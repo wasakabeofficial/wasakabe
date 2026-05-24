@@ -53,7 +53,7 @@ const experience = [
 
 export default function Experience() {
   return (
-    <section className="experience">
+    <section className="experience" id="experience">
       <div className="experience-layout">
         <div className="experience-header">
           <span className="experience-eyebrow">TRAYECTORIA</span>
