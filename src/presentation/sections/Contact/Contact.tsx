@@ -1,6 +1,14 @@
 import { type FormEvent, useState } from "react";
-import { MdSend, MdCheckCircle, MdError } from "react-icons/md";
+import {
+  MdSend,
+  MdCheckCircle,
+  MdError,
+  MdHourglassEmpty,
+  MdWarning,
+  MdEmail,
+} from "react-icons/md";
 import { supabase } from "../../../lib/supabase";
+import { validateEmail } from "../../../lib/emailValidation";
 import "./Contact.css";
 
 const subjects = [
@@ -16,19 +24,56 @@ type FormStatus = "idle" | "sending" | "done" | "error";
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [emailWarning, setEmailWarning] = useState<string | null>(null);
+  const [verifying, setVerifying] = useState(false);
   const [subject, setSubject] = useState(subjects[0]);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("wasakabeofficial@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleEmailBlur = async () => {
+    if (!email) {
+      setEmailError(null);
+      setEmailWarning(null);
+      return;
+    }
+
+    setVerifying(true);
+    const { valid, reason, warning } = await validateEmail(email);
+    setEmailError(valid ? null : reason);
+    setEmailWarning(warning);
+    setVerifying(false);
+  };
 
   const reset = () => {
     setName("");
     setEmail("");
+    setEmailError(null);
+    setEmailWarning(null);
+    setVerifying(false);
     setSubject(subjects[0]);
     setMessage("");
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    setVerifying(true);
+    const { valid, reason } = await validateEmail(email);
+    setVerifying(false);
+
+    if (!valid) {
+      setEmailError(reason);
+      return;
+    }
+
     setStatus("sending");
 
     const { error } = await supabase
@@ -86,15 +131,34 @@ export default function Contact() {
               <label htmlFor="contact-email" className="contact-label">
                 Correo electrónico
               </label>
-              <input
-                id="contact-email"
-                className="contact-input"
-                type="email"
-                required
-                placeholder="tu@correo.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <div className="contact-input-wrap">
+                <input
+                  id="contact-email"
+                  className={`contact-input ${emailError ? "contact-input--err" : emailWarning ? "contact-input--warn" : ""}`}
+                  type="email"
+                  required
+                  placeholder="tu@correo.com"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (emailError) setEmailError(null);
+                    if (emailWarning) setEmailWarning(null);
+                  }}
+                  onBlur={handleEmailBlur}
+                />
+                {verifying && (
+                  <MdHourglassEmpty className="contact-spinner" aria-label="Verificando correo..." />
+                )}
+              </div>
+              {emailError && (
+                <span className="contact-field-err">{emailError}</span>
+              )}
+              {emailWarning && !emailError && (
+                <span className="contact-field-warn">
+                  <MdWarning aria-hidden="true" />
+                  {emailWarning}
+                </span>
+              )}
             </div>
 
             <div className="contact-field">
@@ -131,10 +195,27 @@ export default function Contact() {
             </div>
           </div>
 
+          <p className="contact-dest">
+            ¿Prefieres un contacto más directo? Escríbeme directamente a{" "}
+            <button
+              type="button"
+              className="contact-dest-btn"
+              onClick={handleCopyEmail}
+              aria-label="Copiar correo electrónico"
+            >
+              <MdEmail aria-hidden="true" />
+            </button>
+            {copied && (
+              <span className="contact-dest-copied">
+                wasakabeofficial@gmail.com
+              </span>
+            )}
+          </p>
+
           <button
             type="submit"
             className="contact-btn"
-            disabled={status === "sending"}
+            disabled={status === "sending" || verifying}
           >
             {status === "sending" ? (
               "ENVIANDO…"

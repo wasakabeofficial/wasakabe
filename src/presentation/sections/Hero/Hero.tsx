@@ -41,7 +41,7 @@ export default function Hero() {
 
           <div className="hero-stats">
             <div className="hero-stat">
-              <span className="hero-stat-num">5</span>
+              <span className="hero-stat-num">5+</span>
               <span className="hero-stat-label">Proyectos</span>
             </div>
             <div className="hero-stat-divider" aria-hidden="true" />

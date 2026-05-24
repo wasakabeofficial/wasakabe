@@ -59,6 +59,23 @@ export default function About() {
             importa.
           </p>
 
+          <p className="about-text">
+            <span className="about-credential">
+              Ingeniero en Desarrollo y Gestión de Software titulado de la{" "}
+              <a
+                href="https://www.uthh.edu.mx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="about-link"
+              >
+                UTHH
+              </a>
+              <span className="about-credential-sep" aria-hidden="true" />
+              Creador de la marca personal{" "}
+              <span className="about-brand">WasakaBe</span>
+            </span>
+          </p>
+
           <div className="about-divider" aria-hidden="true" />
 
           <div className="about-badges">

@@ -83,6 +83,132 @@
   outline: none;
 }
 
+.contact-input--err {
+  border-color: #ff4b4b;
+}
+
+.contact-input--err:focus {
+  border-color: #ff4b4b;
+  box-shadow: 0 0 0 1px #ff4b4b;
+}
+
+.contact-input--warn {
+  border-color: var(--color-gold-400);
+}
+
+.contact-input--warn:focus {
+  border-color: var(--color-gold-400);
+  box-shadow: 0 0 0 1px var(--color-gold-400);
+}
+
+.contact-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.contact-input-wrap .contact-input {
+  padding-right: 44px;
+}
+
+.contact-spinner {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--color-gold-400);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.contact-field-err {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #ff4b4b;
+  line-height: 1.4;
+}
+
+.contact-field-warn {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-gold-400);
+  line-height: 1.4;
+}
+
+.contact-field-warn svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 0.875rem;
+}
+
+.contact-dest {
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-steel-500);
+  line-height: 1.6;
+}
+
+.contact-dest-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-card);
+  color: var(--color-gold-400);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-dest-btn:hover {
+  border-color: var(--color-gold-400);
+  background-color: rgba(200, 164, 110, 0.1);
+}
+
+.contact-dest-btn:active {
+  transform: scale(0.95);
+}
+
+.contact-dest-copied {
+  margin-left: 8px;
+  color: var(--color-gold-400);
+  font-weight: 600;
+  animation: fadeInOut 2.5s ease;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .contact-input::placeholder {
   color: var(--color-steel-500);
   opacity: 0.6;

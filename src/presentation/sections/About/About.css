@@ -171,6 +171,41 @@
   margin: 28px 0 24px;
 }
 
+.about-credential {
+  display: block;
+  padding: 12px 16px;
+  margin-top: 4px;
+  border-left: 2px solid var(--color-gold-400);
+  background-color: rgba(200, 164, 110, 0.04);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-cream-300);
+}
+
+.about-link {
+  color: var(--color-gold-400);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.about-link:hover {
+  color: #d4b07a;
+  text-decoration: underline;
+}
+
+.about-credential-sep {
+  display: block;
+  height: 6px;
+}
+
+.about-brand {
+  color: var(--color-gold-400);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 .about-badges {
   display: flex;
   flex-wrap: wrap;
