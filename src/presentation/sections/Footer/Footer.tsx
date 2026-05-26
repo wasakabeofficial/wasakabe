@@ -1,25 +1,20 @@
+import { useI18n } from "../../i18n/I18nContext";
 import "./Footer.css";
 
-const navLinks = [
-  { label: "Inicio", href: "#" },
-  { label: "Servicios", href: "#services" },
-  { label: "Experiencia", href: "#experience" },
-  { label: "Contacto", href: "#contact" },
-];
-
 export default function Footer() {
+  const { t } = useI18n();
+  const f = t.footer;
+
   return (
     <footer className="footer">
       <div className="footer-layout">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="footer-tagline">
-              Ingeniería · IA · Creatividad
-            </span>
+            <span className="footer-tagline">{f.tagline}</span>
           </div>
 
           <nav className="footer-nav" aria-label="Footer navigation">
-            {navLinks.map((link) => (
+            {f.links.map((link) => (
               <a key={link.label} href={link.href} className="footer-link">
                 {link.label}
               </a>
@@ -31,12 +26,9 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span className="footer-copy">
-            &copy; {new Date().getFullYear()} Wasaka Be. Todos los derechos
-            reservados.
+            {f.copyright.replace("{year}", String(new Date().getFullYear()))}
           </span>
-          <span className="footer-legal">
-            Ing. Alan de Jesús Martínez Hernández
-          </span>
+          <span className="footer-legal">{f.legal}</span>
         </div>
       </div>
     </footer>

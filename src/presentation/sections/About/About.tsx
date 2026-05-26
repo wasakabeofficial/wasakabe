@@ -1,19 +1,16 @@
+import { useI18n } from "../../i18n/I18nContext";
 import { yo } from "../../../assets";
 import "./About.css";
 
-const badges = [
-  { label: "AI Agents", type: "tech" },
-  { label: "Fullstack", type: "tech" },
-  { label: "DevOps", type: "tech" },
-  { label: "LLMs", type: "tech" },
-  { label: "Mobile", type: "tech" },
-  { label: "Film", type: "creative" },
-  { label: "Beatmaker", type: "creative" },
-  { label: "Photography", type: "creative" },
-  { label: "Direction", type: "creative" },
-];
-
 export default function About() {
+  const { t } = useI18n();
+  const about = t.about;
+
+  const badges = [
+    ...about.badgesTech.map((label) => ({ label, type: "tech" as const })),
+    ...about.badgesCreative.map((label) => ({ label, type: "creative" as const })),
+  ];
+
   return (
     <section className="about">
       <div className="about-layout">
@@ -32,59 +29,45 @@ export default function About() {
         <div className="about-body">
           <div className="about-accent-bar" aria-hidden="true" />
 
-          <span className="about-eyebrow">SOBRE MÍ</span>
+          <span className="about-eyebrow">{about.eyebrow}</span>
 
           <h2 className="about-heading">
-            ARQUITECTURA
+            {about.headingStart}
             <br />
-            <span className="about-heading-gold">DETRÁS</span> DEL CÓDIGO
+            <span className="about-heading-gold">{about.headingGold}</span> {about.headingEnd}
           </h2>
 
-          <p className="about-pull">
-            &ldquo;El mejor software no solo funciona, también se siente
-            bien.&rdquo;
-          </p>
+          <p className="about-pull">{about.pullQuote}</p>
 
-          <p className="about-text">
-            Arquitecto de software e ingeniero multidisciplinario con
-            experiencia en IA, full-stack y DevOps. Mi enfoque combina
-            pensamiento sistémico con sensibilidad creativa.
-          </p>
-
-          <p className="about-text">
-            Detrás de cada línea de código hay una decisión de diseño. Ya sea
-            construyendo agentes de IA en Neuropoint.ai, desarrollando
-            aplicaciones móviles en XTI Like Capital, o produciendo piezas
-            audiovisuales y música, aplico el mismo principio: la arquitectura
-            importa.
-          </p>
+          <p className="about-text">{about.text1}</p>
+          <p className="about-text">{about.text2}</p>
 
           <p className="about-text">
             <span className="about-credential">
-              Ingeniero en Desarrollo y Gestión de Software titulado de la{" "}
+              {about.text3Start}
               <a
                 href="https://www.uthh.edu.mx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="about-link"
               >
-                UTHH
+                {about.text3Link}
               </a>
               <span className="about-credential-sep" aria-hidden="true" />
-              Creador de la marca personal{" "}
-              <span className="about-brand">WasakaBe</span>
+              {about.text3End}
+              <span className="about-brand">{about.brand}</span>
             </span>
           </p>
 
           <div className="about-divider" aria-hidden="true" />
 
           <div className="about-badges">
-            {badges.map((b) => (
+            {badges.map((badge) => (
               <span
-                key={b.label}
-                className={`about-badge about-badge--${b.type}`}
+                key={badge.label}
+                className={`about-badge about-badge--${badge.type}`}
               >
-                {b.label}
+                {badge.label}
               </span>
             ))}
           </div>

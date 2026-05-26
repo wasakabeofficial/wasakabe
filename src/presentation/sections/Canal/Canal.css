@@ -1,53 +1,9 @@
 .canal {
-  padding: 120px 0;
   background-color: var(--color-bg-section);
 }
 
 .canal-layout {
-  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 80px;
-}
-
-.canal-header {
-  max-width: 640px;
-  margin-bottom: 64px;
-}
-
-.canal-eyebrow {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: var(--color-gold-400);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.canal-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: var(--color-cream-100);
-  margin-bottom: 20px;
-}
-
-.canal-title-gold {
-  color: var(--color-gold-400);
-  font-weight: 800;
-}
-
-.canal-sub {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--color-cream-300);
-  opacity: 0.8;
-  max-width: 520px;
 }
 
 .canal-grid {
@@ -57,8 +13,6 @@
 }
 
 .canal-card {
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
   padding: 36px 28px;
   display: flex;
   flex-direction: column;
@@ -251,14 +205,6 @@
 }
 
 @media (max-width: 1023px) {
-  .canal {
-    padding: 80px 0;
-  }
-
-  .canal-layout {
-    padding: 0 24px;
-  }
-
   .canal-header {
     text-align: center;
     margin-left: auto;
@@ -276,20 +222,8 @@
 }
 
 @media (max-width: 640px) {
-  .canal {
-    padding: 64px 0;
-  }
-
   .canal-grid {
     grid-template-columns: 1fr;
-  }
-
-  .canal-card {
-    padding: 28px 20px;
-  }
-
-  .canal-title {
-    font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
   .canal-card {

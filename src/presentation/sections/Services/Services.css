@@ -1,54 +1,10 @@
 .services {
-  padding: 120px 0;
   background-color: var(--color-bg-page);
   position: relative;
 }
 
 .services-layout {
-  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 80px;
-}
-
-.services-header {
-  max-width: 640px;
-  margin-bottom: 64px;
-}
-
-.services-eyebrow {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: var(--color-gold-400);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.services-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: var(--color-cream-100);
-  margin-bottom: 20px;
-}
-
-.services-title-gold {
-  color: var(--color-gold-400);
-  font-weight: 800;
-}
-
-.services-sub {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--color-cream-300);
-  opacity: 0.8;
-  max-width: 520px;
 }
 
 .services-grid {
@@ -58,8 +14,6 @@
 }
 
 .services-card {
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
   padding: 40px 36px;
   position: relative;
   overflow: hidden;
@@ -193,14 +147,6 @@
 }
 
 @media (max-width: 1023px) {
-  .services {
-    padding: 80px 0;
-  }
-
-  .services-layout {
-    padding: 0 24px;
-  }
-
   .services-header {
     text-align: center;
     margin-left: auto;
@@ -224,14 +170,6 @@
 }
 
 @media (max-width: 640px) {
-  .services {
-    padding: 64px 0;
-  }
-
-  .services-title {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-  }
-
   .services-card {
     padding: 32px 24px;
   }

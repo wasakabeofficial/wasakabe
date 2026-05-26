@@ -115,17 +115,6 @@
   opacity: 0.6;
 }
 
-.about-eyebrow {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: var(--color-gold-400);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
 .about-heading {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.5vw, 3.25rem);
@@ -135,11 +124,6 @@
   text-transform: uppercase;
   color: var(--color-cream-100);
   margin-bottom: 28px;
-}
-
-.about-heading-gold {
-  color: var(--color-gold-400);
-  font-weight: 800;
 }
 
 .about-pull {
@@ -244,13 +228,8 @@
 /* ═══ Responsive ═══ */
 
 @media (max-width: 1023px) {
-  .about {
-    padding: 80px 0;
-  }
-
   .about-layout {
     flex-direction: column;
-    padding: 0 24px;
     gap: 56px;
   }
 
@@ -302,10 +281,6 @@
 }
 
 @media (max-width: 640px) {
-  .about {
-    padding: 64px 0;
-  }
-
   .about-media {
     max-width: 280px;
     padding-top: 16px;
@@ -324,10 +299,6 @@
 
   .about-img {
     height: 320px;
-  }
-
-  .about-heading {
-    font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
   .about-pull {

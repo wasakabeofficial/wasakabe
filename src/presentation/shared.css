@@ -1,0 +1,178 @@
+/* ==========================================================
+   shared.css — Patrones de diseño compartidos
+   Importado una sola vez en main.tsx
+   Evita duplicación en los CSS de cada sección
+   ========================================================== */
+
+/* ─── Layout container (secciones de contenido) ─── */
+.services-layout,
+.experience-layout,
+.canal-layout,
+.contact-layout,
+.footer-layout {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ─── Padding raíz de sección ─── */
+.services,
+.experience,
+.canal,
+.contact {
+  padding: 120px 0;
+}
+
+/* ─── Eyebrow (idéntico en 5 archivos) ─── */
+.about-eyebrow,
+.services-eyebrow,
+.experience-eyebrow,
+.canal-eyebrow,
+.contact-eyebrow {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--color-gold-400);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ─── Section title ─── */
+.services-title,
+.experience-title,
+.canal-title,
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-cream-100);
+  margin-bottom: 20px;
+}
+
+/* ─── Title gold accent (idéntico en 6 archivos) ─── */
+.hero-title-gold,
+.about-heading-gold,
+.services-title-gold,
+.experience-title-gold,
+.canal-title-gold,
+.contact-title-gold {
+  color: var(--color-gold-400);
+  font-weight: 800;
+}
+
+/* ─── Section header wrapper ─── */
+.services-header,
+.experience-header,
+.canal-header,
+.contact-header {
+  max-width: 640px;
+  margin-bottom: 64px;
+}
+
+/* ─── Section subtitle/desc ─── */
+.services-sub,
+.experience-sub,
+.canal-sub,
+.contact-sub {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-cream-300);
+  opacity: 0.8;
+  max-width: 520px;
+}
+
+/* ─── Card base ─── */
+.services-card,
+.experience-card,
+.canal-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+
+/* ─── Nav lists (flex + gap idéntico) ─── */
+.navbar-nav,
+.footer-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ─── Underline hover en links (Navbar + Footer) ─── */
+.navbar-link::after,
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-gold-400);
+  transition: width 0.2s ease;
+}
+
+.footer-link::after {
+  bottom: -2px;
+}
+
+/* ─── Links hover (Navbar + Footer) ─── */
+.navbar-link:hover,
+.footer-link:hover {
+  color: var(--color-gold-400);
+}
+
+.navbar-link:hover::after,
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================
+   Media Queries Compartidas
+   ========================================================== */
+
+@media (max-width: 1023px) {
+  /* ── Layout padding unificado ── */
+  .hero-layout,
+  .about-layout,
+  .services-layout,
+  .experience-layout,
+  .canal-layout,
+  .contact-layout,
+  .navbar-layout,
+  .footer-layout {
+    padding: 0 24px;
+  }
+
+  /* ── Padding raíz reducido ── */
+  .about,
+  .services,
+  .experience,
+  .canal,
+  .contact {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  /* ── Padding raíz reducido ── */
+  .about,
+  .services,
+  .experience,
+  .canal,
+  .contact {
+    padding: 64px 0;
+  }
+
+  /* ── Title size reducido ── */
+  .about-heading,
+  .services-title,
+  .experience-title,
+  .canal-title,
+  .contact-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}

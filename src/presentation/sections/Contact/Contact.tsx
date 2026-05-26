@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, useCallback } from "react";
 import {
   MdSend,
   MdCheckCircle,
@@ -7,30 +7,59 @@ import {
   MdWarning,
   MdEmail,
 } from "react-icons/md";
-import { supabase } from "../../../lib/supabase";
-import { validateEmail } from "../../../lib/emailValidation";
+import { useContactForm } from "../../hooks/useContactForm";
+import { useI18n } from "../../i18n/I18nContext";
+import type { EmailErrorCode } from "../../../core";
 import "./Contact.css";
 
-const subjects = [
-  "Proyecto de software",
-  "Consultoría en IA",
-  "Colaboración creativa",
-  "Mentoría",
-  "Otro",
-];
-
-type FormStatus = "idle" | "sending" | "done" | "error";
+/** Mapea un código de error de email a su traducción */
+function translateEmailError(
+  raw: string | null,
+  errors: Record<EmailErrorCode, string>,
+): string | null {
+  if (!raw) return null;
+  const key = raw as EmailErrorCode;
+  return key in errors ? errors[key] : raw;
+}
 
 export default function Contact() {
+  const { t, lang } = useI18n();
+  const ct = t.contact;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState<string | null>(null);
-  const [emailWarning, setEmailWarning] = useState<string | null>(null);
-  const [verifying, setVerifying] = useState(false);
-  const [subject, setSubject] = useState(subjects[0]);
+  const [subject, setSubject] = useState(ct.subjects[0] ?? "");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<FormStatus>("idle");
   const [copied, setCopied] = useState(false);
+
+  const {
+    status,
+    emailError,
+    emailWarning,
+    verifying,
+    setEmailError,
+    setEmailWarning,
+
+    validateEmail,
+    submit,
+    reset: resetForm,
+  } = useContactForm();
+
+  const handleEmailBlur = useCallback(
+    () => validateEmail(email),
+    [email, validateEmail],
+  );
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const ok = await submit({ name, email, subject, message });
+    if (ok) {
+      setName("");
+      setEmail("");
+      setSubject(ct.subjects[0]);
+      setMessage("");
+      resetForm();
+    }
+  };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("wasakabeofficial@gmail.com");
@@ -38,90 +67,31 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleEmailBlur = async () => {
-    if (!email) {
-      setEmailError(null);
-      setEmailWarning(null);
-      return;
-    }
-
-    setVerifying(true);
-    const { valid, reason, warning } = await validateEmail(email);
-    setEmailError(valid ? null : reason);
-    setEmailWarning(warning);
-    setVerifying(false);
-  };
-
-  const reset = () => {
-    setName("");
-    setEmail("");
-    setEmailError(null);
-    setEmailWarning(null);
-    setVerifying(false);
-    setSubject(subjects[0]);
-    setMessage("");
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    setVerifying(true);
-    const { valid, reason } = await validateEmail(email);
-    setVerifying(false);
-
-    if (!valid) {
-      setEmailError(reason);
-      return;
-    }
-
-    setStatus("sending");
-
-    const { error } = await supabase
-      .from("formulario_contactos_wasakabe")
-      .insert({
-        name,
-        email,
-        subject,
-        messages: message,
-      });
-
-    if (error) {
-      console.error("Supabase error:", error);
-      setStatus("error");
-      return;
-    }
-
-    setStatus("done");
-    reset();
-    setTimeout(() => setStatus("idle"), 5000);
-  };
+  const displayEmailError = translateEmailError(emailError, ct.emailErrors);
 
   return (
     <section id="contact" className="contact">
       <div className="contact-layout">
         <div className="contact-header">
-          <span className="contact-eyebrow">CONTACTO</span>
+          <span className="contact-eyebrow">{ct.eyebrow}</span>
           <h2 className="contact-title">
-            ¿TIENES UN <span className="contact-title-gold">PROYECTO?</span>
+            {ct.titleStart} <span className="contact-title-gold">{ct.titleGold}</span>
           </h2>
-          <p className="contact-sub">
-            Estoy abierto a colaboraciones, consultorías y nuevos retos.
-            Cuéntame sobre tu proyecto y te responderé a la brevedad.
-          </p>
+          <p className="contact-sub">{ct.sub}</p>
         </div>
 
-        <form className="contact-form" onSubmit={handleSubmit} noValidate>
+        <form className="contact-form" key={lang} onSubmit={handleSubmit} noValidate>
           <div className="contact-fields">
             <div className="contact-field">
               <label htmlFor="contact-name" className="contact-label">
-                Nombre
+                {ct.formLabels.name}
               </label>
               <input
                 id="contact-name"
                 className="contact-input"
                 type="text"
                 required
-                placeholder="Tu nombre"
+                placeholder={ct.placeholders.name}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -129,31 +99,34 @@ export default function Contact() {
 
             <div className="contact-field">
               <label htmlFor="contact-email" className="contact-label">
-                Correo electrónico
+                {ct.formLabels.email}
               </label>
               <div className="contact-input-wrap">
                 <input
                   id="contact-email"
-                  className={`contact-input ${emailError ? "contact-input--err" : emailWarning ? "contact-input--warn" : ""}`}
+                  className={`contact-input ${displayEmailError ? "contact-input--err" : emailWarning ? "contact-input--warn" : ""}`}
                   type="email"
                   required
-                  placeholder="tu@correo.com"
+                  placeholder={ct.placeholders.email}
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    if (emailError) setEmailError(null);
-                    if (emailWarning) setEmailWarning(null);
+                    setEmailError(null);
+                    setEmailWarning(null);
                   }}
                   onBlur={handleEmailBlur}
                 />
                 {verifying && (
-                  <MdHourglassEmpty className="contact-spinner" aria-label="Verificando correo..." />
+                  <MdHourglassEmpty
+                    className="contact-spinner"
+                    aria-label={t.common.loading}
+                  />
                 )}
               </div>
-              {emailError && (
-                <span className="contact-field-err">{emailError}</span>
+              {displayEmailError && (
+                <span className="contact-field-err">{displayEmailError}</span>
               )}
-              {emailWarning && !emailError && (
+              {emailWarning && !displayEmailError && (
                 <span className="contact-field-warn">
                   <MdWarning aria-hidden="true" />
                   {emailWarning}
@@ -163,7 +136,7 @@ export default function Contact() {
 
             <div className="contact-field">
               <label htmlFor="contact-subject" className="contact-label">
-                Asunto
+                {ct.formLabels.subject}
               </label>
               <select
                 id="contact-subject"
@@ -171,9 +144,9 @@ export default function Contact() {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               >
-                {subjects.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
+                {ct.subjects.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
                   </option>
                 ))}
               </select>
@@ -181,14 +154,14 @@ export default function Contact() {
 
             <div className="contact-field contact-field--full">
               <label htmlFor="contact-message" className="contact-label">
-                Mensaje
+                {ct.formLabels.message}
               </label>
               <textarea
                 id="contact-message"
                 className="contact-input contact-textarea"
                 required
                 rows={5}
-                placeholder="Cuéntame sobre tu proyecto..."
+                placeholder={ct.placeholders.message}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
@@ -196,12 +169,12 @@ export default function Contact() {
           </div>
 
           <p className="contact-dest">
-            ¿Prefieres un contacto más directo? Escríbeme directamente a{" "}
+            {ct.directText}{" "}
             <button
               type="button"
               className="contact-dest-btn"
               onClick={handleCopyEmail}
-              aria-label="Copiar correo electrónico"
+              aria-label="Copy email"
             >
               <MdEmail aria-hidden="true" />
             </button>
@@ -218,10 +191,10 @@ export default function Contact() {
             disabled={status === "sending" || verifying}
           >
             {status === "sending" ? (
-              "ENVIANDO…"
+              ct.btnSending
             ) : (
               <>
-                ENVIAR MENSAJE
+                {ct.btnSend}
                 <MdSend className="contact-btn-icon" aria-hidden="true" />
               </>
             )}
@@ -230,14 +203,14 @@ export default function Contact() {
           {status === "done" && (
             <div className="contact-feedback contact-feedback--ok">
               <MdCheckCircle aria-hidden="true" />
-              Mensaje enviado con éxito. Te responderé pronto.
+              {ct.feedbackOk}
             </div>
           )}
 
           {status === "error" && (
             <div className="contact-feedback contact-feedback--err">
               <MdError aria-hidden="true" />
-              Hubo un error al enviar. Intenta de nuevo más tarde.
+              {ct.feedbackErr}
             </div>
           )}
         </form>

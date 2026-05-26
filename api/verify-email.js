@@ -22,11 +22,9 @@ function validarFormato(email) {
   const trimmed = email.trim();
   if (!trimmed) return "El correo no puede estar vacío.";
   if (trimmed.length > 254) return "El correo es demasiado largo.";
-  if (!emailRegex.test(trimmed))
-    return "El formato del correo no es válido.";
+  if (!emailRegex.test(trimmed)) return "El formato del correo no es válido.";
   const domain = trimmed.slice(trimmed.lastIndexOf("@") + 1).toLowerCase();
-  if (!domain.includes("."))
-    return "El dominio debe tener un TLD válido.";
+  if (!domain.includes(".")) return "El dominio debe tener un TLD válido.";
   const tld = domain.split(".").pop();
   if (tld.length < 2 || tld.length > 63)
     return "El TLD del correo no es válido.";
@@ -36,9 +34,16 @@ function validarFormato(email) {
 async function resolverMX(domain) {
   try {
     const records = await dns.resolveMx(domain);
-    return { records: records.sort((a, b) => a.priority - b.priority), error: null };
+    return {
+      records: records.sort((a, b) => a.priority - b.priority),
+      error: null,
+    };
   } catch (err) {
-    if (err.code === "ENOTFOUND" || err.code === "ENODATA" || err.code === "NXDOMAIN") {
+    if (
+      err.code === "ENOTFOUND" ||
+      err.code === "ENODATA" ||
+      err.code === "NXDOMAIN"
+    ) {
       return { records: [], error: "nxdomain" };
     }
     return { records: [], error: "dns_error" };
@@ -119,14 +124,18 @@ async function verifyEmail(email) {
     return { exists: false, confidence: "high", reason: errorFormato };
   }
 
-  const domain = email.trim().slice(email.trim().lastIndexOf("@") + 1).toLowerCase();
+  const domain = email
+    .trim()
+    .slice(email.trim().lastIndexOf("@") + 1)
+    .toLowerCase();
   const mxResult = await resolverMX(domain);
 
   if (mxResult.error === "dns_error") {
     return {
       exists: null,
       confidence: "low",
-      reason: "No se pudo consultar el dominio en este momento. Intenta de nuevo.",
+      reason:
+        "No se pudo consultar el dominio en este momento. Intenta de nuevo.",
       mxRecords: [],
     };
   }
@@ -135,7 +144,8 @@ async function verifyEmail(email) {
     return {
       exists: false,
       confidence: "high",
-      reason: "El dominio del correo no existe o no tiene servidores de correo configurados.",
+      reason:
+        "El dominio del correo no existe o no tiene servidores de correo configurados.",
       mxRecords: [],
     };
   }
@@ -197,7 +207,10 @@ export default async function handler(req, res) {
   res.status(200).json(result);
 }
 
-if (process.argv[1] && process.argv[1].replace(/\\/g, "/").endsWith("api/verify-email.js")) {
+if (
+  process.argv[1] &&
+  process.argv[1].replace(/\\/g, "/").endsWith("api/verify-email.js")
+) {
   const http = await import("node:http");
 
   const server = http.createServer(async (req, res) => {
@@ -235,6 +248,8 @@ if (process.argv[1] && process.argv[1].replace(/\\/g, "/").endsWith("api/verify-
 
   const PORT = process.env.PORT || 3001;
   server.listen(PORT, () => {
-    console.log(`🚀 Email verification API running on http://localhost:${PORT}`);
+    console.log(
+      `🚀 Email verification API running on http://localhost:${PORT}`,
+    );
   });
 }
