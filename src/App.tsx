@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./presentation/components/layout/Navbar";
 import Hero from "./presentation/sections/Hero/Hero";
 import About from "./presentation/sections/About/About";
@@ -18,6 +19,7 @@ export default function App() {
       <Canal />
       <Contact />
       <Footer />
+      <Analytics />
     </>
   );
 }
