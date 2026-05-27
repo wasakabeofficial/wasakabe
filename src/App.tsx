@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from "./presentation/components/layout/Navbar";
 import Hero from "./presentation/sections/Hero/Hero";
 import About from "./presentation/sections/About/About";
@@ -18,6 +19,7 @@ export default function App() {
       <>
         <TerminosPage />
         <Analytics />
+        <SpeedInsights />
       </>
     );
   }
@@ -27,6 +29,7 @@ export default function App() {
       <>
         <PrivacidadPage />
         <Analytics />
+        <SpeedInsights />
       </>
     );
   }
@@ -42,6 +45,7 @@ export default function App() {
       <Contact />
       <Footer />
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
