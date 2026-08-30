@@ -3,151 +3,241 @@
 }
 
 .canal-layout {
-  max-width: 1200px;
+  max-width: 1100px;
 }
 
-.canal-grid {
+/* ═══════════════════════════════════════════
+   TV retro + control remoto
+   ═══════════════════════════════════════════ */
+.canal-tv {
+  --tv-accent: #2f5fa8;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr 220px;
+  gap: 32px;
+  align-items: start;
 }
 
-.canal-card {
-  padding: 36px 28px;
+/* ─── El televisor ─── */
+.tv-set {
   display: flex;
   flex-direction: column;
-  transition: transform 0.45s var(--ease-premium), border-color 0.45s var(--ease-premium), box-shadow 0.45s var(--ease-premium);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
 }
 
-.canal-card::before {
+.tv-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 22px;
+  padding: 14px;
+  background: linear-gradient(155deg, #ffffff 0%, #e4e7ef 55%, #d3d7e2 100%);
+  border: 2px solid var(--tv-accent);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+    0 30px 60px -20px rgba(18, 21, 31, 0.28);
+  overflow: hidden;
+  display: flex;
+  transition: border-color 0.5s var(--ease-soft);
+}
+
+.tv-screen::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  inset: 14px;
+  border-radius: 10px;
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--tv-accent) 8%, var(--color-bg-card)) 0%,
+    var(--color-bg-section) 100%
+  );
+  box-shadow: 0 0 40px -10px var(--tv-accent) inset;
+  z-index: 0;
+  transition: background 0.5s var(--ease-soft);
 }
 
-.canal-card:hover {
-  transform: translateY(-4px);
-}
-
-.canal-card--gold::before {
-  background: linear-gradient(to right, var(--color-gold-400), transparent);
-}
-
-.canal-card--gold:hover {
-  border-color: var(--color-gold-400);
-  box-shadow: var(--shadow-card-hover), 0 0 0 1px rgba(47, 95, 168, 0.2);
-}
-
-.canal-card--crimson::before {
-  background: linear-gradient(to right, var(--color-crim-400), transparent);
-}
-
-.canal-card--crimson:hover {
-  border-color: var(--color-crim-400);
-  box-shadow: var(--shadow-card-hover), 0 0 0 1px rgba(30, 63, 115, 0.2);
-}
-
-.canal-card:hover::before {
-  opacity: 1;
-}
-
-.canal-card-corner-link {
+.tv-screen-vignette {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background: rgba(18, 21, 31, 0.03);
-  color: var(--color-steel-500);
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s var(--ease-soft);
+  inset: 14px;
   z-index: 2;
+  border-radius: 10px;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(18, 21, 31, 0.1) 100%
+  );
 }
 
-.canal-card:hover .canal-card-corner-link {
-  transform: translate(2px, -2px);
+.tv-scanlines {
+  position: absolute;
+  inset: 14px;
+  z-index: 2;
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0.5;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(18, 21, 31, 0.035) 0px,
+    rgba(18, 21, 31, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  animation: tv-scan-drift 9s linear infinite;
 }
 
-.canal-card--gold:hover .canal-card-corner-link {
-  border-color: var(--color-gold-400);
-  color: var(--color-gold-400);
+@keyframes tv-scan-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 120px;
+  }
 }
 
-.canal-card--crimson:hover .canal-card-corner-link {
-  border-color: var(--color-crim-400);
-  color: var(--color-crim-400);
-}
-
-.canal-card-top {
+.tv-hud {
+  position: absolute;
+  inset: 14px 14px auto 14px;
+  z-index: 3;
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  justify-content: space-between;
+  padding: 14px 18px;
+  pointer-events: none;
 }
 
-.canal-card-icon {
-  font-size: 1.75rem;
-  line-height: 1;
-  color: var(--color-cream-300);
-  transition: color 0.3s var(--ease-soft);
+.tv-hud-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-cream-100);
+  opacity: 0.8;
 }
 
-.canal-card--gold:hover .canal-card-icon {
-  color: var(--color-gold-400);
+.tv-hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ff5f57;
+  box-shadow: 0 0 8px #ff5f57;
+  animation: tv-blink 1.6s ease-in-out infinite;
 }
 
-.canal-card--crimson:hover .canal-card-icon {
-  color: var(--color-crim-400);
+@keyframes tv-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
-.canal-card-name {
+.tv-hud-channel {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--tv-accent);
+}
+
+.tv-content {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  padding: 56px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 440px;
+  animation: tv-flicker-in 0.5s steps(6, end);
+}
+
+@keyframes tv-flicker-in {
+  0% {
+    opacity: 0;
+    filter: brightness(2.4) contrast(1.6);
+    transform: translateY(3px) scaleY(1.03);
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+  70% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) contrast(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tv-content {
+    animation: none;
+  }
+
+  .tv-scanlines {
+    animation: none;
+  }
+
+  .tv-hud-dot {
+    animation: none;
+  }
+}
+
+.tv-content-icon {
+  font-size: 2.75rem;
+  color: var(--tv-accent);
+  filter: drop-shadow(0 0 16px rgba(47, 95, 168, 0.35));
+  margin-bottom: 14px;
+}
+
+.tv-content-name {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--color-cream-100);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  margin-bottom: 4px;
 }
 
-.canal-card-handle {
+.tv-content-handle {
   display: block;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  font-weight: 500;
   color: var(--color-steel-500);
   margin-bottom: 16px;
 }
 
-.canal-card-desc {
-  font-size: 0.875rem;
+.tv-content-desc {
+  font-size: 0.9375rem;
   line-height: 1.7;
   color: var(--color-cream-300);
-  opacity: 0.8;
-  margin-bottom: 24px;
-  flex: 1;
+  opacity: 0.85;
+  margin-bottom: 20px;
 }
 
-.canal-card-stats {
+.tv-content-stats {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
-.canal-card-stat {
+.tv-content-stat {
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   background-color: var(--color-bg-section);
@@ -160,43 +250,135 @@
   border: 1px solid var(--color-border);
 }
 
-.canal-card-btn {
+.tv-content-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1px solid var(--color-border);
-  transition: all 0.35s var(--ease-premium);
-  align-self: flex-start;
-  color: var(--color-cream-100);
-  background: transparent;
+  color: var(--color-bg-page);
+  background-color: var(--tv-accent);
+  transition: transform 0.25s var(--ease-soft);
 }
 
-.canal-card--gold .canal-card-btn {
+.tv-content-cta:hover {
+  transform: translateY(-2px);
+}
+
+.tv-stand {
+  width: 90px;
+  height: 16px;
+  margin-top: -2px;
+  background: linear-gradient(180deg, #d3d7e2 0%, #b8bdcc 100%);
+  border: 2px solid var(--tv-accent);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  transition: border-color 0.5s var(--ease-soft);
+}
+
+/* ─── Control remoto ─── */
+.tv-remote {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 16px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(165deg, var(--color-bg-card) 0%, var(--color-bg-section) 100%);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.tv-remote-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-steel-500);
+}
+
+.tv-remote-power {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gold-400);
+  box-shadow: 0 0 6px var(--color-gold-400);
+}
+
+.tv-remote-pad {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.tv-remote-btn {
+  --btn-accent: #2f5fa8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-page);
+  color: var(--color-steel-500);
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-soft);
+}
+
+.tv-remote-btn:hover {
+  border-color: var(--btn-accent);
+  color: var(--btn-accent);
+  transform: translateY(-2px);
+}
+
+.tv-remote-btn.is-active {
+  border-color: var(--btn-accent);
+  background-color: var(--color-bg-card);
+  color: var(--btn-accent);
+  box-shadow: 0 0 0 1px var(--btn-accent), 0 8px 20px -8px var(--btn-accent);
+}
+
+.tv-remote-btn-num {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tv-remote-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.tv-remote-nav-btn {
+  padding: 10px 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: none;
+  color: var(--color-cream-100);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tv-remote-nav-btn:hover {
   border-color: var(--color-gold-400);
   color: var(--color-gold-400);
-}
-
-.canal-card--gold:hover .canal-card-btn {
-  background-color: var(--color-gold-400);
-  color: var(--color-bg-page);
-}
-
-.canal-card--crimson .canal-card-btn {
-  border-color: var(--color-crim-400);
-  color: var(--color-crim-400);
-}
-
-.canal-card--crimson:hover .canal-card-btn {
-  background-color: var(--color-crim-400);
-  color: var(--color-bg-page);
 }
 
 @media (max-width: 1023px) {
@@ -211,22 +393,54 @@
     margin-right: auto;
   }
 
-  .canal-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .canal-grid {
+  .canal-tv {
     grid-template-columns: 1fr;
   }
 
-  .canal-card {
-    padding: 32px 24px;
+  .tv-remote {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .canal-card-btn {
+  .tv-remote-brand {
     width: 100%;
     justify-content: center;
+  }
+
+  .tv-remote-pad {
+    grid-template-columns: repeat(4, 1fr);
+    flex: 1;
+  }
+
+  .tv-remote-nav {
+    display: flex;
+    flex-direction: column;
+    width: 90px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tv-screen {
+    aspect-ratio: auto;
+  }
+
+  .tv-content {
+    padding: 48px 20px 24px;
+  }
+
+  .tv-content-name {
+    font-size: 1.125rem;
+  }
+
+  .tv-remote-pad {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .tv-remote-nav {
+    width: 100%;
+    flex-direction: row;
   }
 }
