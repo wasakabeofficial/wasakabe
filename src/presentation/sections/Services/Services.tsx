@@ -117,7 +117,12 @@ export default function Services() {
             <h3 className="services-panel-title">{active.title}</h3>
             <p className="services-panel-desc">{active.description}</p>
 
-            <a href="#contact" className="services-panel-cta">
+            <a
+              href={`/servicios/${active.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="services-panel-cta"
+            >
               {active.ctaLabel}
             </a>
           </div>

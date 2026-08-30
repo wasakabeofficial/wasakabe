@@ -12,6 +12,7 @@ export type {
 export type { IEmailValidationService } from "./ports/IEmailValidationService";
 export type { IAboutContentRepository } from "./ports/IAboutContentRepository";
 export type { IServicesContentRepository } from "./ports/IServicesContentRepository";
+export type { IServiceDetailContentRepository } from "./ports/IServiceDetailContentRepository";
 export type { IExperienceContentRepository } from "./ports/IExperienceContentRepository";
 export type { ICanalContentRepository } from "./ports/ICanalContentRepository";
 export type { IBlogContentRepository } from "./ports/IBlogContentRepository";
@@ -24,6 +25,9 @@ export type {
   ExperienceContent,
   ExperienceEntry,
   ServiceCard,
+  ServiceDetailContent,
+  ServiceDetailProcessStep,
+  ServiceDetailStackGroup,
   ServicesContent,
 } from "./value-objects/PortfolioContent";
 export type {

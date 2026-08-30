@@ -58,6 +58,18 @@ export interface TranslationSet {
       cta: string;
     }[];
   };
+  serviceDetail: {
+    back: string;
+    serviceLabel: string;
+    notFoundTitle: string;
+    notFoundDesc: string;
+    includesHeading: string;
+    stackHeading: string;
+    processHeading: string;
+    goalHeading: string;
+    ctaContact: string;
+    ctaAllServices: string;
+  };
   experience: {
     eyebrow: string;
     titleStart: string;
@@ -202,6 +214,18 @@ const es: TranslationSet = {
         cta: "Saber más →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← Volver a servicios",
+    serviceLabel: "Servicio",
+    notFoundTitle: "Servicio no encontrado",
+    notFoundDesc: "No encontramos el servicio que buscas. Vuelve al sitio principal para ver todos los servicios disponibles.",
+    includesHeading: "Qué incluye",
+    stackHeading: "Herramientas y stack",
+    processHeading: "Cómo trabajo",
+    goalHeading: "Objetivo",
+    ctaContact: "Hablemos de tu proyecto",
+    ctaAllServices: "Ver todos los servicios",
   },
   experience: {
     eyebrow: "TRAYECTORIA",
@@ -419,6 +443,18 @@ const en: TranslationSet = {
       },
     ],
   },
+  serviceDetail: {
+    back: "← Back to services",
+    serviceLabel: "Service",
+    notFoundTitle: "Service not found",
+    notFoundDesc: "We couldn't find the service you're looking for. Head back to the main site to see all available services.",
+    includesHeading: "What's included",
+    stackHeading: "Tools & stack",
+    processHeading: "How I work",
+    goalHeading: "Goal",
+    ctaContact: "Let's talk about your project",
+    ctaAllServices: "See all services",
+  },
   experience: {
     eyebrow: "EXPERIENCE",
     titleStart: "WHERE I'VE",
@@ -634,6 +670,18 @@ const zh: TranslationSet = {
         cta: "了解更多 →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← 返回服务",
+    serviceLabel: "服务",
+    notFoundTitle: "未找到服务",
+    notFoundDesc: "我们找不到您要查找的服务。请返回主站查看所有可用服务。",
+    includesHeading: "包含内容",
+    stackHeading: "工具与技术栈",
+    processHeading: "工作方式",
+    goalHeading: "目标",
+    ctaContact: "聊聊你的项目",
+    ctaAllServices: "查看所有服务",
   },
   experience: {
     eyebrow: "工作经历",
@@ -851,6 +899,18 @@ const ko: TranslationSet = {
       },
     ],
   },
+  serviceDetail: {
+    back: "← 서비스로 돌아가기",
+    serviceLabel: "서비스",
+    notFoundTitle: "서비스를 찾을 수 없습니다",
+    notFoundDesc: "찾으시는 서비스를 찾을 수 없습니다. 메인 사이트로 돌아가 이용 가능한 모든 서비스를 확인하세요.",
+    includesHeading: "포함 사항",
+    stackHeading: "도구 및 스택",
+    processHeading: "작업 방식",
+    goalHeading: "목표",
+    ctaContact: "프로젝트에 대해 이야기해요",
+    ctaAllServices: "모든 서비스 보기",
+  },
   experience: {
     eyebrow: "경력",
     titleStart: "제가",
@@ -1067,6 +1127,18 @@ const ru: TranslationSet = {
       },
     ],
   },
+  serviceDetail: {
+    back: "← Назад к услугам",
+    serviceLabel: "Услуга",
+    notFoundTitle: "Услуга не найдена",
+    notFoundDesc: "Мы не нашли услугу, которую вы ищете. Вернитесь на главный сайт, чтобы увидеть все доступные услуги.",
+    includesHeading: "Что входит",
+    stackHeading: "Инструменты и стек",
+    processHeading: "Как я работаю",
+    goalHeading: "Цель",
+    ctaContact: "Обсудим твой проект",
+    ctaAllServices: "Смотреть все услуги",
+  },
   experience: {
     eyebrow: "ОПЫТ",
     titleStart: "ГДЕ Я",
@@ -1282,6 +1354,18 @@ const ja: TranslationSet = {
         cta: "詳細を見る →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← サービス一覧に戻る",
+    serviceLabel: "サービス",
+    notFoundTitle: "サービスが見つかりません",
+    notFoundDesc: "お探しのサービスが見つかりませんでした。メインサイトに戻って、利用可能なすべてのサービスをご覧ください。",
+    includesHeading: "含まれる内容",
+    stackHeading: "ツールとスタック",
+    processHeading: "働き方",
+    goalHeading: "目標",
+    ctaContact: "プロジェクトについて話しましょう",
+    ctaAllServices: "すべてのサービスを見る",
   },
   experience: {
     eyebrow: "経歴",

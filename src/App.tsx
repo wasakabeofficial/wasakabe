@@ -11,6 +11,7 @@ import Contact from "./presentation/sections/Contact/Contact";
 import Footer from "./presentation/sections/Footer/Footer";
 import TerminosPage from "./presentation/pages/TerminosPage";
 import PrivacidadPage from "./presentation/pages/PrivacidadPage";
+import ServiceDetailPage from "./presentation/pages/ServiceDetailPage";
 
 export default function App() {
   const path = window.location.pathname;
@@ -29,6 +30,17 @@ export default function App() {
     return (
       <>
         <PrivacidadPage />
+        <Analytics />
+        <SpeedInsights />
+      </>
+    );
+  }
+
+  if (path.startsWith("/servicios/")) {
+    const slug = path.replace("/servicios/", "").replace(/\/$/, "");
+    return (
+      <>
+        <ServiceDetailPage slug={slug} />
         <Analytics />
         <SpeedInsights />
       </>

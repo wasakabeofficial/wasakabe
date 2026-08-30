@@ -32,6 +32,24 @@ export interface ServicesContent {
   cards: ServiceCard[];
 }
 
+export interface ServiceDetailProcessStep {
+  title: string;
+  description: string;
+}
+
+export interface ServiceDetailStackGroup {
+  category: string;
+  items: string[];
+}
+
+export interface ServiceDetailContent {
+  includes: string[];
+  process: ServiceDetailProcessStep[];
+  goal: string;
+  disciplines: string[];
+  stack: ServiceDetailStackGroup[];
+}
+
 export interface ExperienceEntry {
   slug: string;
   startDate: string;

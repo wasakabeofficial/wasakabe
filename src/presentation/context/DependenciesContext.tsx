@@ -13,6 +13,7 @@ import {
   GoogleDnsMxChecker,
   SupabaseAboutContentRepository,
   SupabaseServicesContentRepository,
+  SupabaseServiceDetailContentRepository,
   SupabaseExperienceContentRepository,
   SupabaseCanalContentRepository,
   SupabaseBlogContentRepository,
@@ -24,6 +25,7 @@ import type {
   IContactRepository,
   IEmailValidationService,
   IExperienceContentRepository,
+  IServiceDetailContentRepository,
   IServicesContentRepository,
 } from "../../core";
 
@@ -35,6 +37,7 @@ export interface Dependencies {
   emailValidationService: IEmailValidationService;
   aboutContentRepository: IAboutContentRepository;
   servicesContentRepository: IServicesContentRepository;
+  serviceDetailContentRepository: IServiceDetailContentRepository;
   experienceContentRepository: IExperienceContentRepository;
   canalContentRepository: ICanalContentRepository;
   blogContentRepository: IBlogContentRepository;
@@ -62,6 +65,7 @@ export function DependenciesProvider({ children }: { children: ReactNode }) {
       emailValidationService: verificationService,
       aboutContentRepository: new SupabaseAboutContentRepository(),
       servicesContentRepository: new SupabaseServicesContentRepository(),
+      serviceDetailContentRepository: new SupabaseServiceDetailContentRepository(),
       experienceContentRepository: new SupabaseExperienceContentRepository(),
       canalContentRepository: new SupabaseCanalContentRepository(),
       blogContentRepository: new SupabaseBlogContentRepository(),
