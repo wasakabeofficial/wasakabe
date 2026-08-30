@@ -1,23 +1,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-page: #0D0B0C;
-  --color-bg-section: #131012;
-  --color-bg-card: #1A1618;
-  --color-border: #2C2A2C;
-  --color-cream-100: #F0EAE0;
-  --color-cream-300: #B8AE9C;
-  --color-steel-500: #6E7278;
-  --color-gold-400: #C8A46E;
-  --color-gold-950: #2A1F0A;
-  --color-crim-400: #C8523A;
-  --color-crim-700: rgba(139, 26, 26, 0.25);
-  --color-crim-900: #2A0808;
-  --color-gold-bracket: rgba(200, 164, 110, 0.4);
+  /* Tema claro — azul sobre blanco, inspirado en josnic.cl */
+  --color-bg-page: #F6F7FB;
+  --color-bg-section: #EEF2F9;
+  --color-bg-card: #FFFFFF;
+  --color-border: #E1E4EC;
+  --color-cream-100: #12151F;
+  --color-cream-300: #5B6270;
+  --color-steel-500: #8890A0;
+  --color-gold-400: #2F5FA8;
+  --color-gold-950: #EAF0FA;
+  --color-crim-400: #1E3F73;
+  --color-crim-700: rgba(30, 63, 115, 0.12);
+  --color-crim-900: #E4EAF5;
+  --color-gold-bracket: rgba(47, 95, 168, 0.35);
   --font-sans: "Sora", "Geist", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --font-display: "Sora", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
   --font-body: "Geist", sans-serif;
+}
+
+:root {
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --shadow-card:
+    0 1px 2px rgba(18, 21, 31, 0.06),
+    0 24px 48px -28px rgba(18, 21, 31, 0.18);
+  --shadow-card-hover:
+    0 1px 2px rgba(18, 21, 31, 0.08),
+    0 32px 64px -28px rgba(18, 21, 31, 0.24);
 }
 
 *,
@@ -42,6 +61,10 @@ body {
   font-family: var(--font-body);
   background-color: var(--color-bg-page);
   color: var(--color-cream-300);
+  background-image:
+    linear-gradient(#E7EAF2 1px, transparent 1px),
+    linear-gradient(90deg, #E7EAF2 1px, transparent 1px);
+  background-size: 44px 44px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
