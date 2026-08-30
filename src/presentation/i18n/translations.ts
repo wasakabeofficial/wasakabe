@@ -2,16 +2,11 @@
    WASAKA BE — Traducciones completas (6 idiomas)
    ================================================================== */
 
-export type LanguageCode = "es" | "en" | "zh" | "ko" | "ru" | "ja";
+import type { LanguageCode } from "../../core";
+import { LANGUAGE_ORDER } from "../../core";
 
-export const LANGUAGE_ORDER: LanguageCode[] = [
-  "es",
-  "en",
-  "zh",
-  "ko",
-  "ru",
-  "ja",
-];
+export type { LanguageCode };
+export { LANGUAGE_ORDER };
 
 export interface TranslationSet {
   common: {

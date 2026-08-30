@@ -11,8 +11,21 @@ import {
   SupabaseContactRepository,
   BackendEmailVerifier,
   GoogleDnsMxChecker,
+  SupabaseAboutContentRepository,
+  SupabaseServicesContentRepository,
+  SupabaseExperienceContentRepository,
+  SupabaseCanalContentRepository,
+  SupabaseBlogContentRepository,
 } from "../../infrastructure";
-import type { IContactRepository, IEmailValidationService } from "../../core";
+import type {
+  IAboutContentRepository,
+  IBlogContentRepository,
+  ICanalContentRepository,
+  IContactRepository,
+  IEmailValidationService,
+  IExperienceContentRepository,
+  IServicesContentRepository,
+} from "../../core";
 
 /* ─── Tipos ─── */
 
@@ -20,6 +33,11 @@ export interface Dependencies {
   submitContactUseCase: SubmitContactUseCase;
   contactRepository: IContactRepository;
   emailValidationService: IEmailValidationService;
+  aboutContentRepository: IAboutContentRepository;
+  servicesContentRepository: IServicesContentRepository;
+  experienceContentRepository: IExperienceContentRepository;
+  canalContentRepository: ICanalContentRepository;
+  blogContentRepository: IBlogContentRepository;
 }
 
 const DependenciesContext = createContext<Dependencies | null>(null);
@@ -42,6 +60,11 @@ export function DependenciesProvider({ children }: { children: ReactNode }) {
       submitContactUseCase,
       contactRepository: repository,
       emailValidationService: verificationService,
+      aboutContentRepository: new SupabaseAboutContentRepository(),
+      servicesContentRepository: new SupabaseServicesContentRepository(),
+      experienceContentRepository: new SupabaseExperienceContentRepository(),
+      canalContentRepository: new SupabaseCanalContentRepository(),
+      blogContentRepository: new SupabaseBlogContentRepository(),
     };
   }, []);
 
