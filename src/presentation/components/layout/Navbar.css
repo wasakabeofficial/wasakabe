@@ -313,7 +313,7 @@
     z-index: 999;
   }
 
-  .navbar-nav--open {
+  .navbar-nav.navbar-nav--open {
     transform: translateX(0);
   }
 
@@ -345,6 +345,47 @@
     transform: translate(-50%, -50%);
     min-width: 240px;
     z-index: 1200;
+  }
+
+  /* El panel móvil siempre tiene fondo claro, sin importar si el
+     navbar está en estado --scrolled: forzamos colores de contraste
+     propios en vez de heredar los overrides de --scrolled (blancos). */
+  .navbar--scrolled .navbar-link {
+    color: var(--color-cream-300);
+  }
+
+  .navbar--scrolled .navbar-link::after {
+    background-color: var(--color-gold-400);
+  }
+
+  .navbar--scrolled .navbar-link:hover {
+    color: var(--color-gold-400);
+  }
+
+  .navbar--scrolled .navbar-lang--mobile .navbar-lang-btn {
+    background: rgba(18, 21, 31, 0.03);
+    border-color: var(--color-border);
+    color: var(--color-cream-300);
+  }
+
+  .navbar--scrolled .navbar-lang--mobile .navbar-lang-btn:hover {
+    border-color: var(--color-gold-400);
+    color: var(--color-gold-400);
+  }
+
+  .navbar--scrolled .navbar-lang--mobile .navbar-lang-icon,
+  .navbar--scrolled .navbar-lang--mobile .navbar-lang-code {
+    color: var(--color-steel-500);
+  }
+
+  .navbar--scrolled .navbar-lang--mobile .navbar-lang-btn:hover .navbar-lang-icon,
+  .navbar--scrolled .navbar-lang--mobile .navbar-lang-btn:hover .navbar-lang-code {
+    color: var(--color-gold-400);
+  }
+
+  .navbar--scrolled .navbar-cta--mobile {
+    color: var(--color-bg-page);
+    background-color: var(--color-gold-400);
   }
 
   .navbar-cta--desktop {
