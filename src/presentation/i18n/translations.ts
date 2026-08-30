@@ -28,6 +28,8 @@ export interface TranslationSet {
     btnSecondary: string;
     statProjects: string;
     statYears: string;
+    availableBadge: string;
+    scrollCue: string;
   };
   about: {
     eyebrow: string;
@@ -80,6 +82,13 @@ export interface TranslationSet {
       label: string;
     }[];
   };
+  blog: {
+    eyebrow: string;
+    titleStart: string;
+    titleGold: string;
+    sub: string;
+    empty: string;
+  };
   contact: {
     eyebrow: string;
     titleStart: string;
@@ -129,6 +138,7 @@ const es: TranslationSet = {
       { label: "Servicios", href: "#services" },
       { label: "Experiencia", href: "#experience" },
       { label: "Canal", href: "#canal" },
+      { label: "Blog", href: "#blog" },
     ],
     cta: "CONTACTO",
   },
@@ -143,6 +153,8 @@ const es: TranslationSet = {
     btnSecondary: "EXPLORAR TRABAJO",
     statProjects: "Proyectos",
     statYears: "Años",
+    availableBadge: "Disponible para nuevos proyectos",
+    scrollCue: "Descubre más",
   },
   about: {
     eyebrow: "SOBRE MÍ",
@@ -271,6 +283,13 @@ const es: TranslationSet = {
       },
     ],
   },
+  blog: {
+    eyebrow: "BLOG",
+    titleStart: "Ideas &",
+    titleGold: "reflexiones",
+    sub: "Notas sobre ingeniería de IA, arquitectura de software y producción creativa.",
+    empty: "Muy pronto — nuevas publicaciones en camino.",
+  },
   contact: {
     eyebrow: "CONTACTO",
     titleStart: "¿TIENES UN",
@@ -333,6 +352,7 @@ const en: TranslationSet = {
       { label: "Services", href: "#services" },
       { label: "Experience", href: "#experience" },
       { label: "Channel", href: "#canal" },
+      { label: "Blog", href: "#blog" },
     ],
     cta: "CONTACT",
   },
@@ -347,6 +367,8 @@ const en: TranslationSet = {
     btnSecondary: "EXPLORE WORK",
     statProjects: "Projects",
     statYears: "Years",
+    availableBadge: "Available for new projects",
+    scrollCue: "Discover more",
   },
   about: {
     eyebrow: "ABOUT ME",
@@ -475,6 +497,13 @@ const en: TranslationSet = {
       },
     ],
   },
+  blog: {
+    eyebrow: "BLOG",
+    titleStart: "Ideas &",
+    titleGold: "reflections",
+    sub: "Notes on AI engineering, software architecture and creative production.",
+    empty: "Coming soon — new posts on the way.",
+  },
   contact: {
     eyebrow: "CONTACT",
     titleStart: "HAVE A",
@@ -537,6 +566,7 @@ const zh: TranslationSet = {
       { label: "服务", href: "#services" },
       { label: "经验", href: "#experience" },
       { label: "频道", href: "#canal" },
+      { label: "博客", href: "#blog" },
     ],
     cta: "联系我",
   },
@@ -551,6 +581,8 @@ const zh: TranslationSet = {
     btnSecondary: "探索作品",
     statProjects: "项目",
     statYears: "年",
+    availableBadge: "可接新项目",
+    scrollCue: "了解更多",
   },
   about: {
     eyebrow: "关于我",
@@ -679,6 +711,13 @@ const zh: TranslationSet = {
       },
     ],
   },
+  blog: {
+    eyebrow: "博客",
+    titleStart: "想法与",
+    titleGold: "感悟",
+    sub: "关于AI工程、软件架构与创意制作的笔记。",
+    empty: "敬请期待——新文章即将上线。",
+  },
   contact: {
     eyebrow: "联系",
     titleStart: "有",
@@ -741,6 +780,7 @@ const ko: TranslationSet = {
       { label: "서비스", href: "#services" },
       { label: "경력", href: "#experience" },
       { label: "채널", href: "#canal" },
+      { label: "블로그", href: "#blog" },
     ],
     cta: "연락처",
   },
@@ -755,6 +795,8 @@ const ko: TranslationSet = {
     btnSecondary: "작업 살펴보기",
     statProjects: "프로젝트",
     statYears: "년",
+    availableBadge: "신규 프로젝트 가능",
+    scrollCue: "더 알아보기",
   },
   about: {
     eyebrow: "소개",
@@ -883,6 +925,13 @@ const ko: TranslationSet = {
       },
     ],
   },
+  blog: {
+    eyebrow: "블로그",
+    titleStart: "아이디어와",
+    titleGold: "생각",
+    sub: "AI 엔지니어링, 소프트웨어 아키텍처, 크리에이티브 제작에 관한 노트.",
+    empty: "곧 공개됩니다 — 새로운 글이 준비 중입니다.",
+  },
   contact: {
     eyebrow: "연락처",
     titleStart: "프로젝트가",
@@ -945,6 +994,7 @@ const ru: TranslationSet = {
       { label: "Услуги", href: "#services" },
       { label: "Опыт", href: "#experience" },
       { label: "Канал", href: "#canal" },
+      { label: "Блог", href: "#blog" },
     ],
     cta: "КОНТАКТЫ",
   },
@@ -959,6 +1009,8 @@ const ru: TranslationSet = {
     btnSecondary: "ИЗУЧИТЬ РАБОТЫ",
     statProjects: "Проектов",
     statYears: "Лет",
+    availableBadge: "Открыт для новых проектов",
+    scrollCue: "Узнать больше",
   },
   about: {
     eyebrow: "ОБО МНЕ",
@@ -1087,6 +1139,13 @@ const ru: TranslationSet = {
       },
     ],
   },
+  blog: {
+    eyebrow: "БЛОГ",
+    titleStart: "Идеи и",
+    titleGold: "размышления",
+    sub: "Заметки об инженерии ИИ, архитектуре ПО и креативном производстве.",
+    empty: "Скоро — новые публикации в пути.",
+  },
   contact: {
     eyebrow: "КОНТАКТЫ",
     titleStart: "ЕСТЬ",
@@ -1149,6 +1208,7 @@ const ja: TranslationSet = {
       { label: "サービス", href: "#services" },
       { label: "経験", href: "#experience" },
       { label: "チャンネル", href: "#canal" },
+      { label: "ブログ", href: "#blog" },
     ],
     cta: "お問い合わせ",
   },
@@ -1163,6 +1223,8 @@ const ja: TranslationSet = {
     btnSecondary: "作品を見る",
     statProjects: "プロジェクト",
     statYears: "年",
+    availableBadge: "新規案件受付中",
+    scrollCue: "もっと見る",
   },
   about: {
     eyebrow: "私について",
@@ -1290,6 +1352,13 @@ const ja: TranslationSet = {
         label: "接続",
       },
     ],
+  },
+  blog: {
+    eyebrow: "ブログ",
+    titleStart: "アイデアと",
+    titleGold: "考察",
+    sub: "AIエンジニアリング、ソフトウェアアーキテクチャ、クリエイティブ制作に関するノート。",
+    empty: "近日公開 — 新しい記事を準備中です。",
   },
   contact: {
     eyebrow: "お問い合わせ",

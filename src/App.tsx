@@ -1,22 +1,21 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from "./presentation/components/layout/Navbar";
+import QuickContactWidget from "./presentation/components/layout/QuickContactWidget";
 import Hero from "./presentation/sections/Hero/Hero";
 import About from "./presentation/sections/About/About";
 import Services from "./presentation/sections/Services/Services";
 import Experience from "./presentation/sections/Experience/Experience";
 import Canal from "./presentation/sections/Canal/Canal";
+import Blog from "./presentation/sections/Blog/Blog";
 import Contact from "./presentation/sections/Contact/Contact";
 import Footer from "./presentation/sections/Footer/Footer";
 import TerminosPage from "./presentation/pages/TerminosPage";
 import PrivacidadPage from "./presentation/pages/PrivacidadPage";
 
-
-
-
 export default function App() {
   const path = window.location.pathname;
-console.log("Current path:", path); // Log the current path for debugging
+
   if (path === "/terminos-y-condiciones") {
     return (
       <>
@@ -45,8 +44,10 @@ console.log("Current path:", path); // Log the current path for debugging
       <Services />
       <Experience />
       <Canal />
+      <Blog />
       <Contact />
       <Footer />
+      <QuickContactWidget />
       <Analytics />
       <SpeedInsights />
     </>
