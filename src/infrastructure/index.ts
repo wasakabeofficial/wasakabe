@@ -1,3 +1,8 @@
 export { SupabaseContactRepository } from "./repositories/SupabaseContactRepository";
 export { GoogleDnsMxChecker } from "./api/GoogleDnsMxChecker";
 export { BackendEmailVerifier } from "./api/BackendEmailVerifier";
+export { SupabaseAboutContentRepository } from "./api/SupabaseAboutContentRepository";
+export { SupabaseServicesContentRepository } from "./api/SupabaseServicesContentRepository";
+export { SupabaseExperienceContentRepository } from "./api/SupabaseExperienceContentRepository";
+export { SupabaseCanalContentRepository } from "./api/SupabaseCanalContentRepository";
+export { SupabaseBlogContentRepository } from "./api/SupabaseBlogContentRepository";
