@@ -4,7 +4,7 @@ import "./Hero.css";
 
 export default function Hero() {
   const { t } = useI18n();
-  const h = t.hero;
+  const hero = t.hero;
 
   return (
     <section className="hero">
@@ -15,37 +15,37 @@ export default function Hero() {
         <div className="hero-content">
           <div className="hero-badge">
             <span className="hero-badge-dot" aria-hidden="true" />
-            <span>{h.badge}</span>
+            <span>{hero.badge}</span>
           </div>
 
           <h1 className="hero-title">
-            {h.title} <span className="hero-title-gold">{h.titleGold}</span>
+            {hero.title} <span className="hero-title-gold">{hero.titleGold}</span>
             <br />
-            <span className="hero-title-white">{h.titleWhite}</span>{" "}
-            <span className="hero-title-gold">{h.titleGold2}</span>
+            <span className="hero-title-white">{hero.titleWhite}</span>{" "}
+            <span className="hero-title-gold">{hero.titleGold2}</span>
           </h1>
 
-          <p className="hero-desc">{h.desc}</p>
+          <p className="hero-desc">{hero.desc}</p>
 
           <div className="hero-actions">
             <a href="#contact" className="hero-btn hero-btn--primary">
-              {h.btnPrimary}
+              {hero.btnPrimary}
               <span className="hero-btn-arrow" aria-hidden="true">→</span>
             </a>
             <a href="#services" className="hero-btn hero-btn--secondary">
-              {h.btnSecondary}
+              {hero.btnSecondary}
             </a>
           </div>
 
           <div className="hero-stats">
             <div className="hero-stat">
               <span className="hero-stat-num">5+</span>
-              <span className="hero-stat-label">{h.statProjects}</span>
+              <span className="hero-stat-label">{hero.statProjects}</span>
             </div>
             <div className="hero-stat-divider" aria-hidden="true" />
             <div className="hero-stat">
               <span className="hero-stat-num">5+</span>
-              <span className="hero-stat-label">{h.statYears}</span>
+              <span className="hero-stat-label">{hero.statYears}</span>
             </div>
           </div>
         </div>

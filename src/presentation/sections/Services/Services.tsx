@@ -1,36 +1,38 @@
 import { MdCode, MdAutoAwesome, MdVideocam, MdSchool } from "react-icons/md";
-import { useI18n } from "../../i18n/I18nContext";
+import { useServicesContent } from "../../hooks/useServicesContent";
 import "./Services.css";
 
 const icons = [MdCode, MdAutoAwesome, MdVideocam, MdSchool];
 const accents = ["gold", "gold", "crimson", "crimson"] as const;
 
 export default function Services() {
-  const { t } = useI18n();
-  const s = t.services;
+  const { data: services, loading } = useServicesContent();
+
+  if (loading || !services) return null;
 
   return (
     <section className="services" id="services">
       <div className="services-layout">
         <div className="services-header">
-          <span className="services-eyebrow">{s.eyebrow}</span>
+          <span className="services-eyebrow">{services.eyebrow}</span>
           <h2 className="services-title">
-            {s.titleStart} <span className="services-title-gold">{s.titleGold}</span>
+            {services.titleStart}{" "}
+            <span className="services-title-gold">{services.titleGold}</span>
           </h2>
-          <p className="services-sub">{s.sub}</p>
+          <p className="services-sub">{services.sub}</p>
         </div>
 
         <div className="services-grid">
-          {s.cards.map((card, i) => {
-            const Icon = icons[i];
-            const accent = accents[i];
+          {services.cards.map((card, index) => {
+            const Icon = icons[index];
+            const accent = accents[index];
             return (
               <article
-                key={card.id}
+                key={card.slug}
                 className={`services-card services-card--${accent}`}
               >
                 <span className="services-card-num" aria-hidden="true">
-                  {card.id}
+                  {String(card.position).padStart(2, "0")}
                 </span>
 
                 <div className="services-card-top">
@@ -42,9 +44,9 @@ export default function Services() {
 
                 <div className="services-card-line" aria-hidden="true" />
 
-                <p className="services-card-desc">{card.desc}</p>
+                <p className="services-card-desc">{card.description}</p>
 
-                <span className="services-card-cta">{card.cta}</span>
+                <span className="services-card-cta">{card.ctaLabel}</span>
               </article>
             );
           })}

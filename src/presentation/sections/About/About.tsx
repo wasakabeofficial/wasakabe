@@ -1,10 +1,11 @@
-import { useI18n } from "../../i18n/I18nContext";
+import { useAboutContent } from "../../hooks/useAboutContent";
 import { yo } from "../../../assets";
 import "./About.css";
 
 export default function About() {
-  const { t } = useI18n();
-  const about = t.about;
+  const { data: about, loading } = useAboutContent();
+
+  if (loading || !about) return null;
 
   const badges = [
     ...about.badgesTech.map((label) => ({ label, type: "tech" as const })),
@@ -18,7 +19,7 @@ export default function About() {
           <div className="about-frame" aria-hidden="true" />
           <div className="about-frame-corner" aria-hidden="true" />
           <img
-            src={yo}
+            src={about.photoUrl ?? yo}
             alt="Alan de Jesús Martínez Hernández — Wasaka Be"
             className="about-img"
             loading="lazy"

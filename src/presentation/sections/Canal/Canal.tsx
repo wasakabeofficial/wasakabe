@@ -1,23 +1,25 @@
 import { FaYoutube, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { useI18n } from "../../i18n/I18nContext";
+import { useCanalContent } from "../../hooks/useCanalContent";
 import "./Canal.css";
 
-const youtubeId = import.meta.env.VITE_YOUTUBE_ID as string;
-const facebookPageId = import.meta.env.VITE_FACEBOOK_PAGE_ID as string;
+const iconByPlatform: Record<string, typeof FaYoutube> = {
+  youtube: FaYoutube,
+  facebook: FaFacebook,
+  instagram: FaInstagram,
+  linkedin: FaLinkedin,
+};
 
-const iconMap = [FaYoutube, FaFacebook, FaInstagram, FaLinkedin] as const;
-const colorMap = ["#FF0000", "#1877F2", "#E4405F", "#0A66C2"] as const;
-const nameMap = ["YouTube", "Facebook", "Instagram", "LinkedIn"] as const;
-const urlMap = [
-  `https://youtube.com/channel/${youtubeId}`,
-  `https://facebook.com/${facebookPageId}`,
-  `https://instagram.com/wasakabeofficial`,
-  "https://linkedin.com/company/wasakabeofficial",
-] as const;
+const nameByPlatform: Record<string, string> = {
+  youtube: "YouTube",
+  facebook: "Facebook",
+  instagram: "Instagram",
+  linkedin: "LinkedIn",
+};
 
 export default function Canal() {
-  const { t } = useI18n();
-  const canal = t.canal;
+  const { data: canal, loading } = useCanalContent();
+
+  if (loading || !canal) return null;
 
   return (
     <section id="canal" className="canal">
@@ -25,34 +27,33 @@ export default function Canal() {
         <div className="canal-header">
           <span className="canal-eyebrow">{canal.eyebrow}</span>
           <h2 className="canal-title">
-            {canal.titleStart} <span className="canal-title-gold">{canal.titleGold}</span>
+            {canal.titleStart}{" "}
+            <span className="canal-title-gold">{canal.titleGold}</span>
           </h2>
           <p className="canal-sub">{canal.sub}</p>
         </div>
 
         <div className="canal-grid">
-          {canal.channels.map((ch, i) => {
-            const Icon = iconMap[i];
-            const color = colorMap[i];
-            const name = nameMap[i];
-            const url = urlMap[i];
+          {canal.channels.map((channel) => {
+            const Icon = iconByPlatform[channel.platform];
+            const name = nameByPlatform[channel.platform] ?? channel.platform;
             return (
-              <article key={name} className="canal-card">
+              <article key={channel.platform} className="canal-card">
                 <div className="canal-card-top">
                   <Icon
                     className="canal-card-icon"
-                    style={{ color }}
+                    style={{ color: channel.colorHex ?? undefined }}
                     aria-hidden="true"
                   />
                   <span className="canal-card-name">{name}</span>
                 </div>
 
-                <span className="canal-card-handle">{ch.handle}</span>
+                <span className="canal-card-handle">{channel.handle}</span>
 
-                <p className="canal-card-desc">{ch.description}</p>
+                <p className="canal-card-desc">{channel.description}</p>
 
                 <div className="canal-card-stats">
-                  {ch.stats.map((stat) => (
+                  {channel.stats.map((stat) => (
                     <span key={stat} className="canal-card-stat">
                       {stat}
                     </span>
@@ -60,12 +61,12 @@ export default function Canal() {
                 </div>
 
                 <a
-                  href={url}
+                  href={channel.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="canal-card-btn"
                 >
-                  {ch.label} →
+                  {channel.label} →
                 </a>
               </article>
             );

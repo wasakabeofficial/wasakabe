@@ -3,18 +3,18 @@ import "./Footer.css";
 
 export default function Footer() {
   const { t } = useI18n();
-  const f = t.footer;
+  const footer = t.footer;
 
   return (
     <footer className="footer">
       <div className="footer-layout">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="footer-tagline">{f.tagline}</span>
+            <span className="footer-tagline">{footer.tagline}</span>
           </div>
 
           <nav className="footer-nav" aria-label="Footer navigation">
-            {f.links.map((link) => (
+            {footer.links.map((link) => (
               <a key={link.label} href={link.href} className="footer-link">
                 {link.label}
               </a>
@@ -26,9 +26,9 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span className="footer-copy">
-            {f.copyright.replace("{year}", String(new Date().getFullYear()))}
+            {footer.copyright.replace("{year}", String(new Date().getFullYear()))}
           </span>
-          <span className="footer-legal">{f.legal}</span>
+          <span className="footer-legal">{footer.legal}</span>
         </div>
       </div>
     </footer>
