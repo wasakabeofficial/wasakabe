@@ -9,29 +9,47 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   gap: 24px;
+}
+
+/* Bento asimétrico: 7/5 en la primera fila, 5/7 en la segunda */
+.services-grid > :nth-child(1) {
+  grid-column: span 7;
+}
+
+.services-grid > :nth-child(2) {
+  grid-column: span 5;
+}
+
+.services-grid > :nth-child(3) {
+  grid-column: span 5;
+}
+
+.services-grid > :nth-child(4) {
+  grid-column: span 7;
 }
 
 .services-card {
   padding: 40px 36px;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: transform 0.5s var(--ease-premium), border-color 0.5s var(--ease-premium), box-shadow 0.5s var(--ease-premium);
 }
 
 .services-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .services-card--gold:hover {
   border-color: var(--color-gold-400);
-  box-shadow: 0 8px 32px rgba(200, 164, 110, 0.08);
+  box-shadow: var(--shadow-card-hover), 0 0 0 1px rgba(47, 95, 168, 0.25);
 }
 
 .services-card--crimson:hover {
   border-color: var(--color-crim-400);
-  box-shadow: 0 8px 32px rgba(200, 82, 58, 0.08);
+  box-shadow: var(--shadow-card-hover), 0 0 0 1px rgba(30, 63, 115, 0.25);
 }
 
 .services-card-num {
@@ -72,22 +90,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
+  background: rgba(18, 21, 31, 0.03);
   font-size: 1.5rem;
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: all 0.4s var(--ease-soft);
 }
 
 .services-card--gold:hover .services-card-icon {
   border-color: var(--color-gold-400);
   color: var(--color-gold-400);
+  background: var(--color-gold-950);
+  transform: scale(1.06) rotate(-4deg);
 }
 
 .services-card--crimson:hover .services-card-icon {
   border-color: var(--color-crim-400);
   color: var(--color-crim-400);
+  background: var(--color-crim-900);
+  transform: scale(1.06) rotate(-4deg);
 }
 
 .services-card-title {

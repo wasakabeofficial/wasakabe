@@ -1,8 +1,12 @@
 import { useExperienceContent } from "../../hooks/useExperienceContent";
+import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
+import ExperienceItem from "./ExperienceItem";
 import "./Experience.css";
 
 export default function Experience() {
   const { data: experience, loading } = useExperienceContent();
+  const { elementRef: timelineRef, isVisible: isTimelineVisible } =
+    useRevealOnScroll<HTMLDivElement>();
 
   if (loading || !experience) return null;
 
@@ -20,50 +24,24 @@ export default function Experience() {
           <p className="experience-sub">{experience.sub}</p>
         </div>
 
-        <div className="experience-timeline">
+        <div
+          ref={timelineRef}
+          className={`experience-timeline ${isTimelineVisible ? "experience-timeline--visible" : ""}`}
+        >
           <div className="experience-line" aria-hidden="true" />
 
-          {experience.entries.map((entry, index) => {
-            return (
-              <article
-                key={entry.slug}
-                className={`experience-item ${index % 2 === 0 ? "experience-item--left" : "experience-item--right"}`}
-              >
-                <div className="experience-dot" aria-hidden="true" />
-
-                <div className="experience-card">
-                  <span className="experience-period">
-                    {entry.periodLabel}
-                  </span>
-                  <h3 className="experience-role">{entry.role}</h3>
-                  <span className="experience-company">{entry.company}</span>
-                  <span className="experience-location">
-                    <span className="experience-flag" aria-hidden="true">🇲🇽</span>
-                    {entry.location}
-                  </span>
-
-                  <ul className="experience-highlights">
-                    {entry.highlights.map((highlight, highlightIndex) => (
-                      <li
-                        key={highlightIndex}
-                        className="experience-highlight"
-                      >
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="experience-tags">
-                    {entry.tags.map((tag) => (
-                      <span key={tag} className="experience-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {experience.entries.map((entry, index) => (
+            <ExperienceItem
+              key={entry.slug}
+              side={index % 2 === 0 ? "left" : "right"}
+              periodLabel={entry.periodLabel}
+              role={entry.role}
+              company={entry.company}
+              location={entry.location}
+              highlights={entry.highlights}
+              tags={entry.tags}
+            />
+          ))}
         </div>
       </div>
     </section>

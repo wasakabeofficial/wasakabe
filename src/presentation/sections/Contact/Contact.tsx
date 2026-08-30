@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { useContactForm } from "../../hooks/useContactForm";
 import { useI18n } from "../../i18n/I18nContext";
+import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
 import type { EmailErrorCode } from "../../../core";
 import "./Contact.css";
 
@@ -25,6 +26,7 @@ function translateEmailError(
 export default function Contact() {
   const { t, lang } = useI18n();
   const ct = t.contact;
+  const { elementRef: revealRef, isVisible } = useRevealOnScroll<HTMLDivElement>();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState(ct.subjects[0] ?? "");
@@ -71,7 +73,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="contact">
-      <div className="contact-layout">
+      <div
+        ref={revealRef}
+        className={`contact-layout reveal ${isVisible ? "is-visible" : ""}`}
+      >
         <div className="contact-header">
           <span className="contact-eyebrow">{ct.eyebrow}</span>
           <h2 className="contact-title">

@@ -16,8 +16,22 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: var(--color-border);
-  transform: translateX(-50%);
+  background-color: var(--color-gold-400);
+  opacity: 0.35;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  transition: transform 1.4s var(--ease-premium);
+}
+
+.experience-timeline--visible .experience-line {
+  transform: translateX(-50%) scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-line {
+    transition: none;
+    transform: translateX(-50%) scaleY(1);
+  }
 }
 
 .experience-item {
@@ -57,24 +71,26 @@
 
 .experience-item:hover .experience-dot {
   background-color: var(--color-gold-400);
-  box-shadow: 0 0 12px rgba(200, 164, 110, 0.4);
+  box-shadow: 0 0 12px rgba(47, 95, 168, 0.4);
 }
 
 .experience-card {
   width: 100%;
   padding: 32px;
-  transition: all 0.3s ease;
+  transition: border-color 0.4s var(--ease-soft), transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft);
 }
 
 .experience-item:hover .experience-card {
   border-color: var(--color-gold-400);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover), 0 0 0 1px rgba(47, 95, 168, 0.2);
 }
 
 .experience-period {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 14px;
   margin-bottom: 16px;
+  border-radius: var(--radius-pill);
   background-color: var(--color-gold-950);
   color: var(--color-gold-400);
   font-family: var(--font-mono);
@@ -158,6 +174,7 @@
 
 .experience-tag {
   padding: 4px 12px;
+  border-radius: var(--radius-pill);
   background-color: var(--color-bg-section);
   color: var(--color-steel-500);
   font-family: var(--font-mono);

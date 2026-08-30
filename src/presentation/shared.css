@@ -8,6 +8,7 @@
 .services-layout,
 .experience-layout,
 .canal-layout,
+.blog-layout,
 .contact-layout,
 .footer-layout {
   width: 100%;
@@ -19,6 +20,7 @@
 .services,
 .experience,
 .canal,
+.blog,
 .contact {
   padding: 120px 0;
 }
@@ -28,6 +30,7 @@
 .services-eyebrow,
 .experience-eyebrow,
 .canal-eyebrow,
+.blog-eyebrow,
 .contact-eyebrow {
   display: inline-block;
   margin-bottom: 20px;
@@ -43,15 +46,25 @@
 .services-title,
 .experience-title,
 .canal-title,
+.blog-title,
 .contact-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.1rem, 3.5vw, 3.1rem);
+  font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--color-cream-100);
   margin-bottom: 20px;
+}
+
+.services-title::first-letter,
+.experience-title::first-letter,
+.canal-title::first-letter,
+.blog-title::first-letter,
+.contact-title::first-letter {
+  text-transform: uppercase;
 }
 
 /* ─── Title gold accent (idéntico en 6 archivos) ─── */
@@ -60,6 +73,7 @@
 .services-title-gold,
 .experience-title-gold,
 .canal-title-gold,
+.blog-title-gold,
 .contact-title-gold {
   color: var(--color-gold-400);
   font-weight: 800;
@@ -69,6 +83,7 @@
 .services-header,
 .experience-header,
 .canal-header,
+.blog-header,
 .contact-header {
   max-width: 640px;
   margin-bottom: 64px;
@@ -78,6 +93,7 @@
 .services-sub,
 .experience-sub,
 .canal-sub,
+.blog-sub,
 .contact-sub {
   font-size: 1rem;
   line-height: 1.7;
@@ -89,9 +105,69 @@
 /* ─── Card base ─── */
 .services-card,
 .experience-card,
-.canal-card {
-  background-color: var(--color-bg-card);
+.canal-card,
+.blog-card {
+  background: linear-gradient(165deg, var(--color-bg-card) 0%, var(--color-bg-section) 100%);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── Reveal-on-scroll (About/Services/Experience/Canal/Contact) ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.9s var(--ease-premium),
+    transform 0.9s var(--ease-premium);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--left {
+  transform: translateX(-40px);
+}
+
+.reveal--left.is-visible {
+  transform: translateX(0);
+}
+
+.reveal--right {
+  transform: translateX(40px);
+}
+
+.reveal--right.is-visible {
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--left,
+  .reveal--right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Por debajo de 1024px los layouts pasan a una sola columna: el
+   desplazamiento horizontal de reveal--left/right ya no tiene sentido
+   y puede empujar el contenido fuera del viewport, así que cae a un
+   reveal vertical simple. */
+@media (max-width: 1023px) {
+  .reveal--left,
+  .reveal--right {
+    transform: translateY(28px);
+  }
+
+  .reveal--left.is-visible,
+  .reveal--right.is-visible {
+    transform: translateY(0);
+  }
 }
 
 /* ─── Nav lists (flex + gap idéntico) ─── */
@@ -172,6 +248,7 @@
   .services-title,
   .experience-title,
   .canal-title,
+  .blog-title,
   .contact-title {
     font-size: clamp(1.5rem, 6vw, 2rem);
   }

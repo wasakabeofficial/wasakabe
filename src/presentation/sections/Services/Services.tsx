@@ -1,5 +1,6 @@
 import { MdCode, MdAutoAwesome, MdVideocam, MdSchool } from "react-icons/md";
 import { useServicesContent } from "../../hooks/useServicesContent";
+import ServiceCard from "./ServiceCard";
 import "./Services.css";
 
 const icons = [MdCode, MdAutoAwesome, MdVideocam, MdSchool];
@@ -23,33 +24,18 @@ export default function Services() {
         </div>
 
         <div className="services-grid">
-          {services.cards.map((card, index) => {
-            const Icon = icons[index];
-            const accent = accents[index];
-            return (
-              <article
-                key={card.slug}
-                className={`services-card services-card--${accent}`}
-              >
-                <span className="services-card-num" aria-hidden="true">
-                  {String(card.position).padStart(2, "0")}
-                </span>
-
-                <div className="services-card-top">
-                  <span className="services-card-icon">
-                    <Icon aria-hidden="true" />
-                  </span>
-                  <h3 className="services-card-title">{card.title}</h3>
-                </div>
-
-                <div className="services-card-line" aria-hidden="true" />
-
-                <p className="services-card-desc">{card.description}</p>
-
-                <span className="services-card-cta">{card.ctaLabel}</span>
-              </article>
-            );
-          })}
+          {services.cards.map((card, index) => (
+            <ServiceCard
+              key={card.slug}
+              position={card.position}
+              title={card.title}
+              description={card.description}
+              ctaLabel={card.ctaLabel}
+              icon={icons[index]}
+              accent={accents[index]}
+              revealDelayMs={index * 90}
+            />
+          ))}
         </div>
       </div>
     </section>

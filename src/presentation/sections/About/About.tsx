@@ -1,9 +1,15 @@
+import type { CSSProperties } from "react";
 import { useAboutContent } from "../../hooks/useAboutContent";
+import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
 import { yo } from "../../../assets";
 import "./About.css";
 
 export default function About() {
   const { data: about, loading } = useAboutContent();
+  const { elementRef: mediaRef, isVisible: isMediaVisible } =
+    useRevealOnScroll<HTMLDivElement>();
+  const { elementRef: bodyRef, isVisible: isBodyVisible } =
+    useRevealOnScroll<HTMLDivElement>();
 
   if (loading || !about) return null;
 
@@ -13,9 +19,12 @@ export default function About() {
   ];
 
   return (
-    <section className="about">
+    <section id="about" className="about">
       <div className="about-layout">
-        <div className="about-media">
+        <div
+          ref={mediaRef}
+          className={`about-media reveal reveal--left ${isMediaVisible ? "is-visible" : ""}`}
+        >
           <div className="about-frame" aria-hidden="true" />
           <div className="about-frame-corner" aria-hidden="true" />
           <img
@@ -27,7 +36,11 @@ export default function About() {
           <div className="about-img-glow" aria-hidden="true" />
         </div>
 
-        <div className="about-body">
+        <div
+          ref={bodyRef}
+          className={`about-body reveal reveal--right ${isBodyVisible ? "is-visible" : ""}`}
+          style={{ "--reveal-delay": "120ms" } as CSSProperties}
+        >
           <div className="about-accent-bar" aria-hidden="true" />
 
           <span className="about-eyebrow">{about.eyebrow}</span>

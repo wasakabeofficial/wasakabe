@@ -1,5 +1,6 @@
 import { FaYoutube, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { useCanalContent } from "../../hooks/useCanalContent";
+import CanalCard from "./CanalCard";
 import "./Canal.css";
 
 const iconByPlatform: Record<string, typeof FaYoutube> = {
@@ -15,6 +16,8 @@ const nameByPlatform: Record<string, string> = {
   instagram: "Instagram",
   linkedin: "LinkedIn",
 };
+
+const accents = ["gold", "crimson", "gold", "crimson"] as const;
 
 export default function Canal() {
   const { data: canal, loading } = useCanalContent();
@@ -34,43 +37,20 @@ export default function Canal() {
         </div>
 
         <div className="canal-grid">
-          {canal.channels.map((channel) => {
-            const Icon = iconByPlatform[channel.platform];
-            const name = nameByPlatform[channel.platform] ?? channel.platform;
-            return (
-              <article key={channel.platform} className="canal-card">
-                <div className="canal-card-top">
-                  <Icon
-                    className="canal-card-icon"
-                    style={{ color: channel.colorHex ?? undefined }}
-                    aria-hidden="true"
-                  />
-                  <span className="canal-card-name">{name}</span>
-                </div>
-
-                <span className="canal-card-handle">{channel.handle}</span>
-
-                <p className="canal-card-desc">{channel.description}</p>
-
-                <div className="canal-card-stats">
-                  {channel.stats.map((stat) => (
-                    <span key={stat} className="canal-card-stat">
-                      {stat}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={channel.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="canal-card-btn"
-                >
-                  {channel.label} →
-                </a>
-              </article>
-            );
-          })}
+          {canal.channels.map((channel, index) => (
+            <CanalCard
+              key={channel.platform}
+              name={nameByPlatform[channel.platform] ?? channel.platform}
+              icon={iconByPlatform[channel.platform]}
+              accent={accents[index]}
+              handle={channel.handle}
+              description={channel.description}
+              stats={channel.stats}
+              url={channel.url}
+              label={channel.label}
+              revealDelayMs={index * 90}
+            />
+          ))}
         </div>
       </div>
     </section>
