@@ -11,9 +11,12 @@ import Footer from "./presentation/sections/Footer/Footer";
 import TerminosPage from "./presentation/pages/TerminosPage";
 import PrivacidadPage from "./presentation/pages/PrivacidadPage";
 
+
+
+
 export default function App() {
   const path = window.location.pathname;
-
+console.log("Current path:", path); // Log the current path for debugging
   if (path === "/terminos-y-condiciones") {
     return (
       <>
