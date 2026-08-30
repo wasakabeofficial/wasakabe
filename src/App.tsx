@@ -1,7 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from "./presentation/components/layout/Navbar";
-import QuickContactWidget from "./presentation/components/layout/QuickContactWidget";
 import Hero from "./presentation/sections/Hero/Hero";
 import About from "./presentation/sections/About/About";
 import Services from "./presentation/sections/Services/Services";
@@ -40,14 +39,13 @@ export default function App() {
     <>
       <Navbar />
       <Hero />
-      <About />
       <Services />
+      <About />
       <Experience />
       <Canal />
       <Blog />
       <Contact />
       <Footer />
-      <QuickContactWidget />
       <Analytics />
       <SpeedInsights />
     </>
