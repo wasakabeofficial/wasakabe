@@ -1,8 +1,7 @@
 import type { CSSProperties } from "react";
-import { MdArrowDownward } from "react-icons/md";
 import { useI18n } from "../../i18n/I18nContext";
 import { useParallaxLayer } from "../../hooks/useParallaxLayer";
-import { chica } from "../../../assets";
+import HeroCubes from "./HeroCubes";
 import "./Hero.css";
 
 function riseDelay(delayMs: number): CSSProperties {
@@ -67,12 +66,9 @@ export default function Hero() {
           <div className="hero-bracket hero-bracket--tr" aria-hidden="true" />
           <div className="hero-bracket hero-bracket--bl" aria-hidden="true" />
           <div className="hero-bracket hero-bracket--br" aria-hidden="true" />
-          <img
-            src={chica}
-            alt="Hero character Wasaka Be"
-            className="hero-character-img"
-            loading="eager"
-          />
+          <div className="hero-cubes" aria-hidden="true">
+            <HeroCubes />
+          </div>
           <div className="hero-character-overlay" aria-hidden="true" />
 
           <div className="hero-float-badge hero-rise" style={riseDelay(420)}>
@@ -81,11 +77,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <a href="#about" className="hero-scroll-cue hero-rise" style={riseDelay(500)}>
-        <span>{hero.scrollCue}</span>
-        <MdArrowDownward aria-hidden="true" />
-      </a>
     </section>
   );
 }
