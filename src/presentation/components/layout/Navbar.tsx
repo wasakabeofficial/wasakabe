@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { MdMenu, MdClose, MdLanguage } from "react-icons/md";
 import { useI18n } from "../../i18n/I18nContext";
+import { useScrolled } from "../../hooks/useScrolled";
 import {
   LANGUAGE_ORDER,
   LANGUAGE_NAMES,
@@ -71,9 +72,10 @@ function LangSelector({
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useI18n();
+  const isScrolled = useScrolled(24);
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar-layout">
         <a href="#" className="navbar-logo">
           <span className="navbar-logo-wk">WK</span>

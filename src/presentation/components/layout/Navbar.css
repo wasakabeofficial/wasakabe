@@ -4,10 +4,79 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(13, 11, 12, 0.85);
+  background-color: rgba(246, 247, 251, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.4s var(--ease-soft),
+    border-color 0.4s var(--ease-soft),
+    box-shadow 0.4s var(--ease-soft);
+}
+
+.navbar--scrolled {
+  background-color: rgba(47, 95, 168, 0.94);
+  border-bottom-color: transparent;
+  box-shadow: 0 12px 32px rgba(18, 21, 31, 0.18);
+}
+
+.navbar--scrolled .navbar-logo-wk {
+  color: #ffffff;
+}
+
+.navbar--scrolled .navbar-logo-full {
+  color: var(--color-gold-950);
+}
+
+.navbar--scrolled .navbar-link {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.navbar--scrolled .navbar-link::after {
+  background-color: #ffffff;
+}
+
+.navbar--scrolled .navbar-link:hover {
+  color: #ffffff;
+}
+
+.navbar--scrolled .navbar-cta {
+  color: var(--color-gold-400);
+  background-color: #ffffff;
+}
+
+.navbar--scrolled .navbar-cta:hover {
+  box-shadow: 0 8px 20px -6px rgba(18, 21, 31, 0.28);
+}
+
+.navbar--scrolled .navbar-lang-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.navbar--scrolled .navbar-lang-btn:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.navbar--scrolled .navbar-lang-icon,
+.navbar--scrolled .navbar-lang-code {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.navbar--scrolled .navbar-lang-btn:hover .navbar-lang-icon,
+.navbar--scrolled .navbar-lang-btn:hover .navbar-lang-code {
+  color: #ffffff;
+}
+
+.navbar--scrolled .navbar-toggle {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.navbar--scrolled .navbar-toggle:hover {
+  border-color: #ffffff;
 }
 
 .navbar-layout {
@@ -19,6 +88,11 @@
   margin: 0 auto;
   padding: 0 80px;
   height: 64px;
+  transition: height 0.4s var(--ease-soft);
+}
+
+.navbar--scrolled .navbar-layout {
+  height: 56px;
 }
 
 .navbar-logo {
@@ -74,7 +148,8 @@
 .navbar-cta {
   display: inline-flex;
   align-items: center;
-  padding: 8px 20px;
+  padding: 9px 22px;
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
@@ -83,13 +158,13 @@
   text-decoration: none;
   color: var(--color-bg-page);
   background-color: var(--color-gold-400);
-  transition: all 0.2s ease;
+  transition: all 0.3s var(--ease-premium);
   flex-shrink: 0;
 }
 
 .navbar-cta:hover {
-  background-color: #d4b07a;
   transform: translateY(-1px);
+  box-shadow: 0 8px 20px -6px rgba(47, 95, 168, 0.35);
 }
 
 .navbar-cta--mobile {
@@ -116,14 +191,15 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: none;
+  border-radius: var(--radius-pill);
+  background: rgba(18, 21, 31, 0.03);
   border: 1px solid var(--color-border);
   color: var(--color-cream-300);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s var(--ease-soft);
   white-space: nowrap;
 }
 
@@ -156,11 +232,13 @@
 
 .navbar-lang-dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 8px);
   right: 0;
   min-width: 180px;
+  border-radius: var(--radius-md);
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card-hover);
   z-index: 1100;
   padding: 4px;
   display: flex;
@@ -174,6 +252,7 @@
   gap: 8px;
   width: 100%;
   padding: 10px 12px;
+  border-radius: var(--radius-sm);
   background: none;
   border: none;
   color: var(--color-cream-300);
@@ -185,12 +264,12 @@
 }
 
 .navbar-lang-option:hover {
-  background-color: rgba(200, 164, 110, 0.08);
+  background-color: rgba(47, 95, 168, 0.08);
   color: var(--color-cream-100);
 }
 
 .navbar-lang-option--active {
-  background-color: rgba(200, 164, 110, 0.12);
+  background-color: rgba(47, 95, 168, 0.12);
   color: var(--color-gold-400);
   font-weight: 600;
 }
@@ -205,6 +284,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
+  border-radius: var(--radius-sm);
   background: none;
   border: 1px solid var(--color-border);
   color: var(--color-cream-100);
