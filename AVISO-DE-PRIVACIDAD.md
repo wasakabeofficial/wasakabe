@@ -1,5 +1,10 @@
 # Aviso de Privacidad
 
+
+
+
+
+
 **Wasaka Be** — Titular: Ing. Alan de Jesús Martínez Hernández  
 Última actualización: 25 de mayo de 2026
 
