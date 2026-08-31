@@ -16,6 +16,11 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero">
+      <div className="hero-aurora" aria-hidden="true">
+        <span className="hero-aurora-blob hero-aurora-blob--a" />
+        <span className="hero-aurora-blob hero-aurora-blob--b" />
+        <span className="hero-aurora-blob hero-aurora-blob--c" />
+      </div>
       <div ref={gridRef} className="hero-grid" aria-hidden="true" />
       <div className="hero-vignette" aria-hidden="true" />
 
