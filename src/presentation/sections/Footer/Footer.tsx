@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="footer-layout">
         <div className="footer-top">
           <div className="footer-brand">
-            <a href="#" className="footer-logo">
+            <a href="/" className="footer-logo">
               <span className="footer-logo-wk">WK</span>
               <span className="footer-logo-full">WASAKABE</span>
             </a>

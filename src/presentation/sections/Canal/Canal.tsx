@@ -2,6 +2,7 @@ import { useState, type CSSProperties } from "react";
 import { MdPlayArrow } from "react-icons/md";
 import { useCanalContent } from "../../hooks/useCanalContent";
 import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
+import { useI18n } from "../../i18n/I18nContext";
 import { iconByPlatform, nameByPlatform } from "../../utils/socialPlatforms";
 import "./Canal.css";
 
@@ -18,15 +19,17 @@ function accentForIndex(index: number): string {
 
 export default function Canal() {
   const { data: canal, loading } = useCanalContent();
+  const { t } = useI18n();
   const { elementRef, isVisible } = useRevealOnScroll<HTMLDivElement>();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  if (loading || !canal) return null;
+  if (loading || !canal || canal.channels.length === 0) return null;
 
   const channels = canal.channels;
-  const active = channels[activeIndex];
+  const safeIndex = activeIndex < channels.length ? activeIndex : 0;
+  const active = channels[safeIndex];
   const Icon = iconByPlatform[active.platform];
-  const accent = accentForIndex(activeIndex);
+  const accent = accentForIndex(safeIndex);
 
   const goPrev = () =>
     setActiveIndex((i) => (i - 1 + channels.length) % channels.length);
@@ -57,10 +60,10 @@ export default function Canal() {
               <div className="tv-hud">
                 <span className="tv-hud-live">
                   <span className="tv-hud-dot" />
-                  EN VIVO
+                  {t.canal.liveLabel}
                 </span>
                 <span className="tv-hud-channel">
-                  CH {String(activeIndex + 1).padStart(2, "0")}
+                  CH {String(safeIndex + 1).padStart(2, "0")}
                 </span>
               </div>
 
@@ -109,9 +112,9 @@ export default function Canal() {
                     key={channel.platform}
                     type="button"
                     role="tab"
-                    aria-selected={index === activeIndex}
+                    aria-selected={index === safeIndex}
                     aria-label={nameByPlatform[channel.platform] ?? channel.platform}
-                    className={`tv-remote-btn ${index === activeIndex ? "is-active" : ""}`}
+                    className={`tv-remote-btn ${index === safeIndex ? "is-active" : ""}`}
                     style={{ "--btn-accent": accentForIndex(index) } as CSSProperties}
                     onClick={() => setActiveIndex(index)}
                   >
@@ -129,7 +132,7 @@ export default function Canal() {
                 type="button"
                 className="tv-remote-nav-btn"
                 onClick={goPrev}
-                aria-label="Canal anterior"
+                aria-label={t.canal.prevLabel}
               >
                 CH −
               </button>
@@ -137,7 +140,7 @@ export default function Canal() {
                 type="button"
                 className="tv-remote-nav-btn"
                 onClick={goNext}
-                aria-label="Canal siguiente"
+                aria-label={t.canal.nextLabel}
               >
                 CH +
               </button>

@@ -51,13 +51,18 @@ export function useParallaxLayer<Element extends HTMLElement>(speed: number) {
       { threshold: 0 },
     );
 
+    const handleResize = () => {
+      measureSectionTop();
+      requestOffsetUpdate();
+    };
+
     observer.observe(section);
-    window.addEventListener("resize", measureSectionTop);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", requestOffsetUpdate);
-      window.removeEventListener("resize", measureSectionTop);
+      window.removeEventListener("resize", handleResize);
     };
   }, [speed]);
 

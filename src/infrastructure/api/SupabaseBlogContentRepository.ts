@@ -13,7 +13,7 @@ interface BlogCategoryRow {
 }
 
 interface BlogPostCategoryLinkRow {
-  blog_categories: BlogCategoryRow;
+  blog_categories: BlogCategoryRow | null;
 }
 
 interface BlogPostSummaryRow {
@@ -36,10 +36,15 @@ interface BlogPostDetailRow extends BlogPostSummaryRow {
 function mapBlogCategoryLinks(
   categoryLinks: BlogPostCategoryLinkRow[],
 ): BlogCategory[] {
-  return categoryLinks.map((categoryLink) => ({
-    slug: categoryLink.blog_categories.slug,
-    name: categoryLink.blog_categories.blog_category_translations[0]?.name ?? "",
-  }));
+  return categoryLinks
+    .filter(
+      (categoryLink): categoryLink is { blog_categories: BlogCategoryRow } =>
+        categoryLink.blog_categories != null,
+    )
+    .map((categoryLink) => ({
+      slug: categoryLink.blog_categories.slug,
+      name: categoryLink.blog_categories.blog_category_translations[0]?.name ?? "",
+    }));
 }
 
 export class SupabaseBlogContentRepository implements IBlogContentRepository {

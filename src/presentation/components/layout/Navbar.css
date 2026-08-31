@@ -52,7 +52,7 @@
 .navbar--scrolled .navbar-lang-btn {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .navbar--scrolled .navbar-lang-btn:hover {
@@ -62,7 +62,7 @@
 
 .navbar--scrolled .navbar-lang-icon,
 .navbar--scrolled .navbar-lang-code {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .navbar--scrolled .navbar-lang-btn:hover .navbar-lang-icon,

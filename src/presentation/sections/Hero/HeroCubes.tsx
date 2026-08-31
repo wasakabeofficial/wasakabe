@@ -21,33 +21,49 @@ function wobble(lon: number, seed: number): number {
   return Math.sin((lon + seed) * 0.12) * 3 + Math.sin((lon + seed) * 0.31) * 1.4;
 }
 
-function isLand(lat: number, lon: number): boolean {
-  // Norteamérica
-  if (lon >= -168 && lon <= -52) {
-    if (lat >= 49 + wobble(lon, 10) && lat <= 71) return true;
-    if (lat >= 25 + wobble(lon, 20) && lat < 49 && lon >= -125 && lon <= -66) return true;
-    if (lat >= 14 + wobble(lon, 30) && lat < 25 && lon >= -105 && lon <= -84) return true;
-  }
-  // Sudamérica
-  if (lon >= -82 && lon <= -34) {
-    if (lat >= -4 && lat <= 13 + wobble(lon, 40) && lon >= -79 && lon <= -50) return true;
-    if (lat >= -20 && lat < -4 && lon >= -82 && lon <= -35) return true;
-    if (lat >= -56 && lat < -20 && lon >= -75 && lon <= -53 + wobble(lon, 50)) return true;
-  }
-  // África
-  if (lon >= -18 && lon <= 52) {
-    if (lat >= 0 && lat <= 37 + wobble(lon, 60)) return true;
-    if (lat >= -35 && lat < 0 && lon >= 10 && lon <= 42) return true;
-  }
-  // Eurasia
+function isNorthAmerica(lat: number, lon: number): boolean {
+  if (lon < -168 || lon > -52) return false;
+  if (lat >= 49 + wobble(lon, 10) && lat <= 71) return true;
+  if (lat >= 25 + wobble(lon, 20) && lat < 49 && lon >= -125 && lon <= -66) return true;
+  if (lat >= 14 + wobble(lon, 30) && lat < 25 && lon >= -105 && lon <= -84) return true;
+  return false;
+}
+
+function isSouthAmerica(lat: number, lon: number): boolean {
+  if (lon < -82 || lon > -34) return false;
+  if (lat >= -4 && lat <= 13 + wobble(lon, 40) && lon >= -79 && lon <= -50) return true;
+  if (lat >= -20 && lat < -4 && lon >= -82 && lon <= -35) return true;
+  if (lat >= -56 && lat < -20 && lon >= -75 && lon <= -53 + wobble(lon, 50)) return true;
+  return false;
+}
+
+function isAfrica(lat: number, lon: number): boolean {
+  if (lon < -18 || lon > 52) return false;
+  if (lat >= 0 && lat <= 37 + wobble(lon, 60)) return true;
+  if (lat >= -35 && lat < 0 && lon >= 10 && lon <= 42) return true;
+  return false;
+}
+
+function isEurasia(lat: number, lon: number): boolean {
   if (lat >= 36 && lat <= 75 && lon >= -11 && lon <= 40) return true;
   if (lat >= 5 && lat <= 78 && lon > 40 && lon <= 180) return true;
   if (lat >= 12 && lat <= 40 && lon > 35 && lon <= 60) return true;
   if (lat >= -10 && lat <= 20 && lon > 92 && lon <= 141) return true;
-  // Australia
-  if (lat >= -44 && lat <= -10 && lon >= 112 && lon <= 154) return true;
-
   return false;
+}
+
+function isAustralia(lat: number, lon: number): boolean {
+  return lat >= -44 && lat <= -10 && lon >= 112 && lon <= 154;
+}
+
+function isLand(lat: number, lon: number): boolean {
+  return (
+    isNorthAmerica(lat, lon) ||
+    isSouthAmerica(lat, lon) ||
+    isAfrica(lat, lon) ||
+    isEurasia(lat, lon) ||
+    isAustralia(lat, lon)
+  );
 }
 
 function latLonToPosition(lat: number, lon: number, radius: number): [number, number, number] {
