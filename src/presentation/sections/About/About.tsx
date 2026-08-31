@@ -1,11 +1,13 @@
 import { useRef, type CSSProperties, type MouseEvent } from "react";
 import { useAboutContent } from "../../hooks/useAboutContent";
 import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
+import { useI18n } from "../../i18n/I18nContext";
 import { yo } from "../../../assets";
 import "./About.css";
 
 export default function About() {
   const { data: about, loading } = useAboutContent();
+  const { t } = useI18n();
   const { elementRef: mediaRef, isVisible: isMediaVisible } =
     useRevealOnScroll<HTMLDivElement>();
   const { elementRef: bodyRef, isVisible: isBodyVisible } =
@@ -104,7 +106,7 @@ export default function About() {
 
           <div className="about-skills">
             <div className="about-skill-group">
-              <span className="about-skill-label">Técnico</span>
+              <span className="about-skill-label">{t.about.skillGroupTech}</span>
               <div className="about-badges">
                 {about.badgesTech.map((label) => (
                   <span key={label} className="about-badge about-badge--tech">
@@ -115,7 +117,7 @@ export default function About() {
             </div>
 
             <div className="about-skill-group">
-              <span className="about-skill-label">Creativo</span>
+              <span className="about-skill-label">{t.about.skillGroupCreative}</span>
               <div className="about-badges">
                 {about.badgesCreative.map((label) => (
                   <span key={label} className="about-badge about-badge--creative">

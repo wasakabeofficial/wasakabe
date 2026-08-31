@@ -45,6 +45,8 @@ export interface TranslationSet {
     brand: string;
     badgesTech: string[];
     badgesCreative: string[];
+    skillGroupTech: string;
+    skillGroupCreative: string;
   };
   services: {
     eyebrow: string;
@@ -87,6 +89,9 @@ export interface TranslationSet {
     titleStart: string;
     titleGold: string;
     sub: string;
+    liveLabel: string;
+    prevLabel: string;
+    nextLabel: string;
     channels: {
       handle: string;
       description: string;
@@ -182,6 +187,8 @@ const es: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI Agents", "Fullstack", "DevOps", "LLMs", "Mobile"],
     badgesCreative: ["Film", "Beatmaker", "Photography", "Direction"],
+    skillGroupTech: "Técnico",
+    skillGroupCreative: "Creativo",
   },
   services: {
     eyebrow: "SERVICIOS",
@@ -280,6 +287,9 @@ const es: TranslationSet = {
     titleStart: "MIRA MI",
     titleGold: "CONTENIDO",
     sub: "Sígueme en YouTube, Facebook, Instagram y LinkedIn para contenido semanal sobre IA, desarrollo, música y tecnología.",
+    liveLabel: "EN VIVO",
+    prevLabel: "Canal anterior",
+    nextLabel: "Canal siguiente",
     channels: [
       {
         handle: "Canal WasakaBe",
@@ -410,6 +420,8 @@ const en: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI Agents", "Fullstack", "DevOps", "LLMs", "Mobile"],
     badgesCreative: ["Film", "Beatmaker", "Photography", "Direction"],
+    skillGroupTech: "Technical",
+    skillGroupCreative: "Creative",
   },
   services: {
     eyebrow: "SERVICES",
@@ -508,6 +520,9 @@ const en: TranslationSet = {
     titleStart: "VIEW MY",
     titleGold: "CONTENT",
     sub: "Follow me on YouTube, Facebook, Instagram and LinkedIn for weekly content on AI, development, music and technology.",
+    liveLabel: "LIVE",
+    prevLabel: "Previous channel",
+    nextLabel: "Next channel",
     channels: [
       {
         handle: "WasakaBe Channel",
@@ -638,6 +653,8 @@ const zh: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI智能体", "全栈", "DevOps", "大语言模型", "移动开发"],
     badgesCreative: ["电影", "音乐制作", "摄影", "导演"],
+    skillGroupTech: "技术",
+    skillGroupCreative: "创意",
   },
   services: {
     eyebrow: "服务",
@@ -736,6 +753,9 @@ const zh: TranslationSet = {
     titleStart: "观看我的",
     titleGold: "内容",
     sub: "在YouTube、Facebook、Instagram和LinkedIn上关注我，获取关于AI、开发、音乐和技术的每周内容。",
+    liveLabel: "直播中",
+    prevLabel: "上一个频道",
+    nextLabel: "下一个频道",
     channels: [
       {
         handle: "WasakaBe频道",
@@ -866,6 +886,8 @@ const ko: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI 에이전트", "풀스택", "DevOps", "LLMs", "모바일"],
     badgesCreative: ["영화", "비트메이킹", "사진", "디렉션"],
+    skillGroupTech: "기술",
+    skillGroupCreative: "창작",
   },
   services: {
     eyebrow: "서비스",
@@ -964,6 +986,9 @@ const ko: TranslationSet = {
     titleStart: "내",
     titleGold: "콘텐츠 보기",
     sub: "YouTube, Facebook, Instagram 및 LinkedIn에서 AI, 개발, 음악 및 기술에 대한 주간 콘텐츠를 팔로우하세요.",
+    liveLabel: "라이브",
+    prevLabel: "이전 채널",
+    nextLabel: "다음 채널",
     channels: [
       {
         handle: "WasakaBe 채널",
@@ -1094,6 +1119,8 @@ const ru: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["ИИ-агенты", "Фулстак", "DevOps", "LLM", "Мобайл"],
     badgesCreative: ["Кино", "Битмейкер", "Фотография", "Режиссура"],
+    skillGroupTech: "Технические",
+    skillGroupCreative: "Творческие",
   },
   services: {
     eyebrow: "УСЛУГИ",
@@ -1192,6 +1219,9 @@ const ru: TranslationSet = {
     titleStart: "СМОТРИ МОЙ",
     titleGold: "КОНТЕНТ",
     sub: "Следи за мной на YouTube, Facebook, Instagram и LinkedIn для еженедельного контента об ИИ, разработке, музыке и технологиях.",
+    liveLabel: "В ЭФИРЕ",
+    prevLabel: "Предыдущий канал",
+    nextLabel: "Следующий канал",
     channels: [
       {
         handle: "Канал WasakaBe",
@@ -1322,6 +1352,8 @@ const ja: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AIエージェント", "フルスタック", "DevOps", "LLMs", "モバイル"],
     badgesCreative: ["映画", "ビートメイキング", "写真", "ディレクション"],
+    skillGroupTech: "技術",
+    skillGroupCreative: "クリエイティブ",
   },
   services: {
     eyebrow: "サービス",
@@ -1420,6 +1452,9 @@ const ja: TranslationSet = {
     titleStart: "私の",
     titleGold: "コンテンツを見る",
     sub: "YouTube、Facebook、Instagram、LinkedInで、AI、開発、音楽、テクノロジーに関する毎週のコンテンツをフォローしてください。",
+    liveLabel: "ライブ",
+    prevLabel: "前のチャンネル",
+    nextLabel: "次のチャンネル",
     channels: [
       {
         handle: "WasakaBe チャンネル",
