@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { MdCode, MdAutoAwesome, MdVideocam, MdSchool, MdCheck } from "react-icons/md";
 import { useServicesContent } from "../hooks/useServicesContent";
 import { useServiceDetailContent } from "../hooks/useServiceDetailContent";
@@ -17,6 +18,17 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
   const { data: services, loading } = useServicesContent();
   const { data: detail, loading: detailLoading } = useServiceDetailContent(slug);
 
+  const handleBackClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    // Si esta pestaña se abrió desde el sitio (el CTA "Saber más" abre en
+    // una pestaña nueva), la cerramos en vez de navegar dentro de ella.
+    // Si se abrió directamente (link compartido, marcador), navegamos
+    // normalmente de regreso a la sección de servicios.
+    if (window.opener) {
+      event.preventDefault();
+      window.close();
+    }
+  };
+
   if (loading) return null;
 
   const index = services?.cards.findIndex((card) => card.slug === slug) ?? -1;
@@ -26,7 +38,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
     return (
       <main className="service-page">
         <div className="service-page-layout">
-          <a href="/#services" className="service-page-back">{sd.back}</a>
+          <a href="/#services" className="service-page-back" onClick={handleBackClick}>{sd.back}</a>
           <h1 className="service-page-title">{sd.notFoundTitle}</h1>
           <p className="service-page-desc">{sd.notFoundDesc}</p>
         </div>
@@ -39,7 +51,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
   return (
     <main className="service-page">
       <div className="service-page-layout">
-        <a href="/#services" className="service-page-back">{sd.back}</a>
+        <a href="/#services" className="service-page-back" onClick={handleBackClick}>{sd.back}</a>
 
         <ServiceIllustration slug={slug} />
 
@@ -133,7 +145,11 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
             {sd.ctaContact}
             <span aria-hidden="true">→</span>
           </a>
-          <a href="/#services" className="service-page-secondary">
+          <a
+            href="/#services"
+            className="service-page-secondary"
+            onClick={handleBackClick}
+          >
             {sd.ctaAllServices}
           </a>
         </div>

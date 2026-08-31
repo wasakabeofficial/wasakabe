@@ -120,7 +120,6 @@ export default function Services() {
             <a
               href={`/servicios/${active.slug}`}
               target="_blank"
-              rel="noopener noreferrer"
               className="services-panel-cta"
             >
               {active.ctaLabel}

@@ -3,64 +3,12 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Object3D } from "three";
 import type { Group, InstancedMesh, Mesh } from "three";
 
-type ShapeKind = "box" | "octahedron" | "torus" | "icosahedron";
-
-interface ShapeConfig {
-  kind: ShapeKind;
-  position: [number, number, number];
-  size: number;
-  speed: number;
-  floatSpeed: number;
-  floatOffset: number;
-}
-
 function prefersReducedMotion(): boolean {
   return (
     typeof window !== "undefined" &&
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
   );
 }
-
-function ShapeGeometry({ kind, size }: { kind: ShapeKind; size: number }) {
-  switch (kind) {
-    case "octahedron":
-      return <octahedronGeometry args={[size, 0]} />;
-    case "torus":
-      return <torusGeometry args={[size, size * 0.32, 12, 32]} />;
-    case "icosahedron":
-      return <icosahedronGeometry args={[size, 0]} />;
-    default:
-      return <boxGeometry args={[size, size, size]} />;
-  }
-}
-
-function FloatingShape({ kind, position, size, speed, floatSpeed, floatOffset }: ShapeConfig) {
-  const meshRef = useRef<Mesh>(null);
-
-  useFrame((state) => {
-    const mesh = meshRef.current;
-    if (!mesh || prefersReducedMotion()) return;
-    const t = state.clock.getElapsedTime();
-    mesh.rotation.x = t * speed * 0.4;
-    mesh.rotation.y = t * speed * 0.6;
-    mesh.position.y = position[1] + Math.sin(t * floatSpeed + floatOffset) * 0.35;
-  });
-
-  return (
-    <mesh ref={meshRef} position={position}>
-      <ShapeGeometry kind={kind} size={size} />
-      <meshBasicMaterial color="#2f5fa8" wireframe />
-    </mesh>
-  );
-}
-
-const SHAPES: ShapeConfig[] = [
-  { kind: "box", position: [-2.6, -1.1, -1.5], size: 1, speed: 0.8, floatSpeed: 0.9, floatOffset: 1.4 },
-  { kind: "octahedron", position: [2.4, 1.5, -2], size: 0.85, speed: 1.1, floatSpeed: 0.7, floatOffset: 2.8 },
-  { kind: "torus", position: [2, -1.7, -1], size: 0.5, speed: 0.7, floatSpeed: 1.1, floatOffset: 4.2 },
-  { kind: "icosahedron", position: [-2.2, 1.7, -1.8], size: 0.6, speed: 0.9, floatSpeed: 0.8, floatOffset: 3.1 },
-  { kind: "box", position: [0.4, 2.1, -2.4], size: 0.4, speed: 1.3, floatSpeed: 1.3, floatOffset: 0.6 },
-];
 
 /* ─── Continentes (puntos sobre la esfera, sin texturas externas) ───
    La silueta de cada continente se aproxima con bandas de lat/lon;
@@ -193,14 +141,9 @@ function Scene() {
     group.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.15) * 0.25;
   });
 
-  const shapes = useMemo(() => SHAPES, []);
-
   return (
     <group ref={groupRef}>
       <Earth />
-      {shapes.map((shape, i) => (
-        <FloatingShape key={i} {...shape} />
-      ))}
     </group>
   );
 }
