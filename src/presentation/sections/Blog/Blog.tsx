@@ -1,6 +1,7 @@
 import { useI18n } from "../../i18n/I18nContext";
 import { useBlogContent } from "../../hooks/useBlogContent";
 import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
+import BlogPostCard from "./BlogPostCard";
 import "./Blog.css";
 
 export default function Blog() {
@@ -31,15 +32,7 @@ export default function Blog() {
         {posts.length > 0 && (
           <div className="blog-grid">
             {posts.map((post) => (
-              <article key={post.slug} className="blog-card">
-                {post.coverImageUrl && (
-                  <img src={post.coverImageUrl} alt="" className="blog-card-image" />
-                )}
-                <div className="blog-card-body">
-                  <h3 className="blog-card-title">{post.title}</h3>
-                  {post.excerpt && <p className="blog-card-excerpt">{post.excerpt}</p>}
-                </div>
-              </article>
+              <BlogPostCard key={post.slug} post={post} />
             ))}
           </div>
         )}

@@ -1,0 +1,71 @@
+.blog-cover-art {
+  width: 100%;
+  height: 100%;
+}
+
+.blog-cover-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bca-bg {
+  fill: var(--color-bg-section);
+}
+
+.bca-line {
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+}
+
+.bca-hex-core {
+  fill: var(--color-gold-400);
+}
+
+.bca-hex-satellite {
+  fill: var(--color-bg-card);
+  stroke: var(--color-gold-400);
+  stroke-width: 1.5;
+}
+
+.bca-bubble {
+  fill: var(--color-bg-card);
+  stroke: var(--color-gold-400);
+  stroke-width: 1.5;
+}
+
+.bca-dot {
+  fill: var(--color-gold-400);
+}
+
+.bca-node-a {
+  fill: var(--color-gold-400);
+}
+
+.bca-node-b {
+  fill: var(--color-crim-400);
+}
+
+.bca-wave rect {
+  fill: var(--color-gold-400);
+  opacity: 0.7;
+}
+
+.bca-glyph {
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 700;
+  fill: var(--color-crim-400);
+}
+
+.bca-quote {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  fill: var(--color-gold-400);
+  opacity: 0.5;
+}
+
+.bca-default-lines rect {
+  fill: var(--color-border);
+}

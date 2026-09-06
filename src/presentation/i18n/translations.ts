@@ -72,6 +72,12 @@ export interface TranslationSet {
     ctaContact: string;
     ctaAllServices: string;
   };
+  blogPost: {
+    back: string;
+    notFoundTitle: string;
+    notFoundDesc: string;
+    relatedHeading: string;
+  };
   experience: {
     eyebrow: string;
     titleStart: string;
@@ -234,6 +240,12 @@ const es: TranslationSet = {
     goalHeading: "Objetivo",
     ctaContact: "Hablemos de tu proyecto",
     ctaAllServices: "Ver todos los servicios",
+  },
+  blogPost: {
+    back: "← Volver al blog",
+    notFoundTitle: "Publicación no encontrada",
+    notFoundDesc: "No encontramos la publicación que buscas. Vuelve al blog para ver todas las publicaciones disponibles.",
+    relatedHeading: "Más publicaciones",
   },
   experience: {
     eyebrow: "TRAYECTORIA",
@@ -469,6 +481,12 @@ const en: TranslationSet = {
     ctaContact: "Let's talk about your project",
     ctaAllServices: "See all services",
   },
+  blogPost: {
+    back: "← Back to blog",
+    notFoundTitle: "Post not found",
+    notFoundDesc: "We couldn't find the post you're looking for. Head back to the blog to see all available posts.",
+    relatedHeading: "More posts",
+  },
   experience: {
     eyebrow: "EXPERIENCE",
     titleStart: "WHERE I'VE",
@@ -702,6 +720,12 @@ const zh: TranslationSet = {
     goalHeading: "目标",
     ctaContact: "聊聊你的项目",
     ctaAllServices: "查看所有服务",
+  },
+  blogPost: {
+    back: "← 返回博客",
+    notFoundTitle: "未找到文章",
+    notFoundDesc: "我们找不到您要查找的文章。请返回博客查看所有可用文章。",
+    relatedHeading: "更多文章",
   },
   experience: {
     eyebrow: "工作经历",
@@ -937,6 +961,12 @@ const ko: TranslationSet = {
     ctaContact: "프로젝트에 대해 이야기해요",
     ctaAllServices: "모든 서비스 보기",
   },
+  blogPost: {
+    back: "← 블로그로 돌아가기",
+    notFoundTitle: "게시물을 찾을 수 없습니다",
+    notFoundDesc: "찾으시는 게시물을 찾을 수 없습니다. 블로그로 돌아가 이용 가능한 모든 게시물을 확인하세요.",
+    relatedHeading: "다른 게시물",
+  },
   experience: {
     eyebrow: "경력",
     titleStart: "제가",
@@ -1171,6 +1201,12 @@ const ru: TranslationSet = {
     ctaContact: "Обсудим твой проект",
     ctaAllServices: "Смотреть все услуги",
   },
+  blogPost: {
+    back: "← Назад к блогу",
+    notFoundTitle: "Публикация не найдена",
+    notFoundDesc: "Мы не нашли публикацию, которую вы ищете. Вернитесь в блог, чтобы увидеть все доступные публикации.",
+    relatedHeading: "Другие публикации",
+  },
   experience: {
     eyebrow: "ОПЫТ",
     titleStart: "ГДЕ Я",
@@ -1404,6 +1440,12 @@ const ja: TranslationSet = {
     goalHeading: "目標",
     ctaContact: "プロジェクトについて話しましょう",
     ctaAllServices: "すべてのサービスを見る",
+  },
+  blogPost: {
+    back: "← ブログに戻る",
+    notFoundTitle: "投稿が見つかりません",
+    notFoundDesc: "お探しの投稿が見つかりませんでした。ブログに戻って、利用可能なすべての投稿をご覧ください。",
+    relatedHeading: "他の投稿",
   },
   experience: {
     eyebrow: "経歴",

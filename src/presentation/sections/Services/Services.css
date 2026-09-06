@@ -252,6 +252,7 @@
     flex-direction: row;
     overflow-x: auto;
     scrollbar-width: none;
+    mask-image: linear-gradient(to right, black calc(100% - 32px), transparent 100%);
   }
 
   .services-list::-webkit-scrollbar {

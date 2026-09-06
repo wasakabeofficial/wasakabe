@@ -1,12 +1,11 @@
 import type { MouseEvent } from "react";
-import { MdCode, MdAutoAwesome, MdVideocam, MdSchool, MdCheck } from "react-icons/md";
+import { MdCheck } from "react-icons/md";
 import { useServicesContent } from "../hooks/useServicesContent";
 import { useServiceDetailContent } from "../hooks/useServiceDetailContent";
 import { useI18n } from "../i18n/I18nContext";
 import ServiceIllustration from "./ServiceIllustration";
+import { SERVICE_ICONS, DEFAULT_SERVICE_ICON } from "./serviceIcons";
 import "./ServiceDetailPage.css";
-
-const ICONS = [MdCode, MdAutoAwesome, MdVideocam, MdSchool];
 
 interface ServiceDetailPageProps {
   slug: string;
@@ -46,7 +45,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
     );
   }
 
-  const Icon = ICONS[index % ICONS.length];
+  const Icon = SERVICE_ICONS[slug] ?? DEFAULT_SERVICE_ICON;
 
   return (
     <main className="service-page">

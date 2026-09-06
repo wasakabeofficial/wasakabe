@@ -112,7 +112,31 @@ export default function PrivacidadPage() {
         </section>
 
         <section className="legal-section">
-          <h2>6. Medidas de Seguridad</h2>
+          <h2>6. Confidencialidad en la Relación con Clientes de Servicios Profesionales</h2>
+          <p>
+            Además de los datos personales de los visitantes del Sitio, <strong>Wasaka Be</strong> puede
+            tener acceso a información confidencial de clientes en el marco de proyectos de ingeniería
+            de software, ciberseguridad, monitoreo de infraestructura (incluyendo herramientas como
+            <strong> Zabbix</strong> y similares), dirección creativa, producción audiovisual o mentoría.
+          </p>
+          <p>Dicha información se trata bajo estrictas medidas de confidencialidad:</p>
+          <ul>
+            <li>No se divulga el nombre, marca ni detalles del proyecto de un cliente sin su autorización expresa y por escrito.</li>
+            <li>
+              Si el cliente solicita, por las razones que considere pertinentes, que no se haga público
+              que trabajó con <strong>Wasaka Be</strong> (por ejemplo, en el portafolio, casos de estudio
+              o redes sociales), dicha solicitud será respetada en todo momento.
+            </li>
+            <li>
+              El acceso a sistemas, credenciales o plataformas de monitoreo del cliente (Zabbix u otras)
+              se limita estrictamente al personal necesario para la prestación del servicio contratado y
+              no se comparte con terceros.
+            </li>
+          </ul>
+        </section>
+
+        <section className="legal-section">
+          <h2>7. Medidas de Seguridad</h2>
           <p>
             <strong>Wasaka Be</strong> implementa medidas de seguridad administrativas, técnicas y físicas
             para proteger sus datos personales contra daño, pérdida, alteración, destrucción o uso no autorizado:
@@ -125,7 +149,7 @@ export default function PrivacidadPage() {
         </section>
 
         <section className="legal-section">
-          <h2>7. Cookies</h2>
+          <h2>8. Cookies</h2>
           <p>
             El Sitio utiliza <strong>cookies técnicas</strong> necesarias para el funcionamiento básico,
             así como <strong>cookies de analytics</strong> proporcionadas por Vercel Web Analytics.
@@ -138,7 +162,7 @@ export default function PrivacidadPage() {
         </section>
 
         <section className="legal-section">
-          <h2>8. Consentimiento</h2>
+          <h2>9. Consentimiento</h2>
           <p>
             Al proporcionar sus datos personales a través del formulario de contacto, usted otorga su
             consentimiento expreso para que dichos datos sean tratados conforme a este Aviso de Privacidad.
@@ -146,7 +170,7 @@ export default function PrivacidadPage() {
         </section>
 
         <section className="legal-section">
-          <h2>9. Cambios al Aviso de Privacidad</h2>
+          <h2>10. Cambios al Aviso de Privacidad</h2>
           <p>
             <strong>Wasaka Be</strong> se reserva el derecho de modificar el presente Aviso de Privacidad
             en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su
@@ -155,7 +179,7 @@ export default function PrivacidadPage() {
         </section>
 
         <section className="legal-section">
-          <h2>10. Legislación Aplicable</h2>
+          <h2>11. Legislación Aplicable</h2>
           <p>
             Este Aviso de Privacidad se rige por la <strong>Ley Federal de Protección de Datos Personales
             en Posesión de los Particulares (LFPDPPP)</strong> de los Estados Unidos Mexicanos y su Reglamento.
@@ -163,7 +187,7 @@ export default function PrivacidadPage() {
         </section>
 
         <section className="legal-section">
-          <h2>11. Contacto</h2>
+          <h2>12. Contacto</h2>
           <p>
             Para cualquier duda o aclaración relacionada con el tratamiento de sus datos personales:
             <br /><strong>wasakabeofficial@gmail.com</strong>

@@ -150,11 +150,55 @@ function MentorshipIllustration() {
   );
 }
 
+function CybersecurityIllustration() {
+  const hosts = [
+    { cx: 210, cy: 72, status: "si-dot-green" },
+    { cx: 268, cy: 96, status: "si-dot-amber" },
+    { cx: 250, cy: 140, status: "si-dot-green" },
+    { cx: 178, cy: 148, status: "si-dot-red" },
+  ] as const;
+  const scanRows = [
+    { width: 26, variant: "kw" },
+    { width: 26, variant: "fn" },
+    { width: 26, variant: "kw" },
+  ] as const;
+
+  return (
+    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="400" height="220" className="si-bg" />
+
+      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
+      <WindowChrome />
+
+      <g className="si-network">
+        {hosts.map((h, i) => (
+          <line key={i} x1="110" y1="100" x2={h.cx} y2={h.cy} className="si-outline" />
+        ))}
+        <circle cx="110" cy="100" r="20" className="si-code-kw" />
+        <path d="M103 100 L108 105 L118 92" className="si-check-mark" />
+        {hosts.map((h, i) => (
+          <circle key={i} cx={h.cx} cy={h.cy} r="9" className={h.status} />
+        ))}
+      </g>
+
+      <g className="si-scanrows">
+        {scanRows.map((row, i) => (
+          <g key={i} transform={`translate(40, ${152 + i * 14})`}>
+            <rect x="0" y="-4" width={row.width} height="8" rx="3" className={`si-code-${row.variant}`} />
+            <rect x="34" y="-4" width={80 - i * 12} height="8" rx="3" className="si-code-txt" />
+          </g>
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 const ILLUSTRATIONS: Record<string, () => ReactElement> = {
   "software-engineering": SoftwareIllustration,
   "creative-direction": CreativeIllustration,
   audiovisual: AudiovisualIllustration,
   mentorship: MentorshipIllustration,
+  cybersecurity: CybersecurityIllustration,
 };
 
 export default function ServiceIllustration({ slug }: { slug: string }) {

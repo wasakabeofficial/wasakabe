@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
-import { MdCode, MdAutoAwesome, MdVideocam, MdSchool } from "react-icons/md";
 import { useServicesContent } from "../../hooks/useServicesContent";
 import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
+import { SERVICE_ICONS, DEFAULT_SERVICE_ICON } from "../../pages/serviceIcons";
 import "./Services.css";
 
-const ICONS = [MdCode, MdAutoAwesome, MdVideocam, MdSchool];
 const ACCENTS = [
   "var(--color-gold-400)",
   "var(--color-crim-400)",
@@ -20,6 +19,8 @@ export default function Services() {
   const [cycleKey, setCycleKey] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const cardsLengthRef = useRef(0);
+  const tablistRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const cards = services?.cards ?? [];
 
@@ -49,10 +50,32 @@ export default function Services() {
     startAutoplay();
   };
 
+  // En mobile/tablet la lista de tabs es un carrusel horizontal (overflow-x:
+  // auto); sin esto, cuando el autoplay cambia de tab el usuario ve el panel
+  // nuevo pero la tab activa puede seguir fuera de la vista. Se ajusta solo
+  // el scrollLeft del propio carrusel (nunca scrollIntoView) para no arrastrar
+  // el scroll vertical de la página si el usuario ya se movió a otra sección.
+  useEffect(() => {
+    const list = tablistRef.current;
+    const tab = tabRefs.current[activeIndex];
+    if (!list || !tab) return;
+
+    const listRect = list.getBoundingClientRect();
+    const tabRect = tab.getBoundingClientRect();
+    const overflowLeft = listRect.left - tabRect.left;
+    const overflowRight = tabRect.right - listRect.right;
+
+    if (overflowLeft > 0) {
+      list.scrollBy({ left: -overflowLeft - 16, behavior: "smooth" });
+    } else if (overflowRight > 0) {
+      list.scrollBy({ left: overflowRight + 16, behavior: "smooth" });
+    }
+  }, [activeIndex]);
+
   if (loading || !services) return null;
 
   const active = cards[activeIndex];
-  const ActiveIcon = ICONS[activeIndex % ICONS.length];
+  const ActiveIcon = SERVICE_ICONS[active.slug] ?? DEFAULT_SERVICE_ICON;
   const accent = ACCENTS[activeIndex % ACCENTS.length];
 
   return (
@@ -72,13 +95,14 @@ export default function Services() {
           className={`services-spotlight reveal ${isVisible ? "is-visible" : ""}`}
           style={{ "--spot-accent": accent } as CSSProperties}
         >
-          <div className="services-list" role="tablist" aria-label={services.eyebrow}>
+          <div ref={tablistRef} className="services-list" role="tablist" aria-label={services.eyebrow}>
             {cards.map((card, index) => {
-              const CardIcon = ICONS[index % ICONS.length];
+              const CardIcon = SERVICE_ICONS[card.slug] ?? DEFAULT_SERVICE_ICON;
               const isActive = index === activeIndex;
               return (
                 <button
                   key={card.slug}
+                  ref={(el) => { tabRefs.current[index] = el; }}
                   type="button"
                   role="tab"
                   aria-selected={isActive}

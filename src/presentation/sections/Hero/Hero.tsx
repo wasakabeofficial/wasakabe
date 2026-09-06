@@ -1,8 +1,9 @@
-import type { CSSProperties } from "react";
+import { lazy, Suspense, type CSSProperties } from "react";
 import { useI18n } from "../../i18n/I18nContext";
 import { useParallaxLayer } from "../../hooks/useParallaxLayer";
-import HeroCubes from "./HeroCubes";
 import "./Hero.css";
+
+const HeroCubes = lazy(() => import("./HeroCubes"));
 
 function riseDelay(delayMs: number): CSSProperties {
   return { "--rise-delay": `${delayMs}ms` } as CSSProperties;
@@ -72,7 +73,9 @@ export default function Hero() {
           <div className="hero-bracket hero-bracket--bl" aria-hidden="true" />
           <div className="hero-bracket hero-bracket--br" aria-hidden="true" />
           <div className="hero-cubes" aria-hidden="true">
-            <HeroCubes />
+            <Suspense fallback={null}>
+              <HeroCubes />
+            </Suspense>
           </div>
           <div className="hero-character-overlay" aria-hidden="true" />
 

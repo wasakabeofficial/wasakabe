@@ -6,10 +6,11 @@ import type {
   LanguageCode,
 } from "../../core";
 import { supabase } from "./supabaseClient";
+import { languageFilter, pickTranslation } from "./languageFallback";
 
 interface BlogCategoryRow {
   slug: string;
-  blog_category_translations: { name: string }[];
+  blog_category_translations: { language_code: string; name: string }[];
 }
 
 interface BlogPostCategoryLinkRow {
@@ -20,12 +21,13 @@ interface BlogPostSummaryRow {
   slug: string;
   cover_image_url: string | null;
   published_at: string | null;
-  blog_post_translations: { title: string; excerpt: string | null }[];
+  blog_post_translations: { language_code: string; title: string; excerpt: string | null }[];
   blog_post_categories: BlogPostCategoryLinkRow[];
 }
 
 interface BlogPostDetailRow extends BlogPostSummaryRow {
   blog_post_translations: {
+    language_code: string;
     title: string;
     excerpt: string | null;
     content: string;
@@ -35,6 +37,7 @@ interface BlogPostDetailRow extends BlogPostSummaryRow {
 
 function mapBlogCategoryLinks(
   categoryLinks: BlogPostCategoryLinkRow[],
+  language: LanguageCode,
 ): BlogCategory[] {
   return categoryLinks
     .filter(
@@ -43,7 +46,7 @@ function mapBlogCategoryLinks(
     )
     .map((categoryLink) => ({
       slug: categoryLink.blog_categories.slug,
-      name: categoryLink.blog_categories.blog_category_translations[0]?.name ?? "",
+      name: pickTranslation(categoryLink.blog_categories.blog_category_translations, language)?.name ?? "",
     }));
 }
 
@@ -51,8 +54,8 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
   async getBlogCategories(language: LanguageCode): Promise<BlogCategory[]> {
     const { data, error } = await supabase
       .from("blog_categories")
-      .select("slug, blog_category_translations!inner(name)")
-      .eq("blog_category_translations.language_code", language)
+      .select("slug, blog_category_translations!inner(language_code, name)")
+      .in("blog_category_translations.language_code", languageFilter(language))
       .order("slug");
 
     if (error || !data) {
@@ -63,7 +66,7 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
 
     return categoryRows.map((categoryRow) => ({
       slug: categoryRow.slug,
-      name: categoryRow.blog_category_translations[0].name,
+      name: pickTranslation(categoryRow.blog_category_translations, language)?.name ?? "",
     }));
   }
 
@@ -73,13 +76,13 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
     const { data, error } = await supabase
       .from("blog_posts")
       .select(
-        "slug, cover_image_url, published_at, blog_post_translations!inner(title, excerpt), blog_post_categories(blog_categories(slug, blog_category_translations!inner(name)))",
+        "slug, cover_image_url, published_at, blog_post_translations!inner(language_code, title, excerpt), blog_post_categories(blog_categories(slug, blog_category_translations!inner(language_code, name)))",
       )
       .eq("status", "published")
-      .eq("blog_post_translations.language_code", language)
-      .eq(
+      .in("blog_post_translations.language_code", languageFilter(language))
+      .in(
         "blog_post_categories.blog_categories.blog_category_translations.language_code",
-        language,
+        languageFilter(language),
       )
       .order("published_at", { ascending: false });
 
@@ -89,16 +92,17 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
 
     const postRows = data as unknown as BlogPostSummaryRow[];
 
-    return postRows.map(
-      (postRow): BlogPostSummary => ({
+    return postRows.map((postRow): BlogPostSummary => {
+      const translation = pickTranslation(postRow.blog_post_translations, language);
+      return {
         slug: postRow.slug,
         coverImageUrl: postRow.cover_image_url,
         publishedAt: postRow.published_at,
-        title: postRow.blog_post_translations[0].title,
-        excerpt: postRow.blog_post_translations[0].excerpt,
-        categories: mapBlogCategoryLinks(postRow.blog_post_categories),
-      }),
-    );
+        title: translation?.title ?? "",
+        excerpt: translation?.excerpt ?? null,
+        categories: mapBlogCategoryLinks(postRow.blog_post_categories, language),
+      };
+    });
   }
 
   async getBlogPostBySlug(
@@ -108,14 +112,14 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
     const { data, error } = await supabase
       .from("blog_posts")
       .select(
-        "slug, cover_image_url, published_at, blog_post_translations!inner(title, excerpt, content, meta_description), blog_post_categories(blog_categories(slug, blog_category_translations!inner(name)))",
+        "slug, cover_image_url, published_at, blog_post_translations!inner(language_code, title, excerpt, content, meta_description), blog_post_categories(blog_categories(slug, blog_category_translations!inner(language_code, name)))",
       )
       .eq("status", "published")
       .eq("slug", slug)
-      .eq("blog_post_translations.language_code", language)
-      .eq(
+      .in("blog_post_translations.language_code", languageFilter(language))
+      .in(
         "blog_post_categories.blog_categories.blog_category_translations.language_code",
-        language,
+        languageFilter(language),
       )
       .maybeSingle();
 
@@ -126,7 +130,8 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
     if (!data) return null;
 
     const postRow = data as unknown as BlogPostDetailRow;
-    const translation = postRow.blog_post_translations[0];
+    const translation = pickTranslation(postRow.blog_post_translations, language);
+    if (!translation) return null;
 
     return {
       slug: postRow.slug,
@@ -136,7 +141,7 @@ export class SupabaseBlogContentRepository implements IBlogContentRepository {
       excerpt: translation.excerpt,
       content: translation.content,
       metaDescription: translation.meta_description,
-      categories: mapBlogCategoryLinks(postRow.blog_post_categories),
+      categories: mapBlogCategoryLinks(postRow.blog_post_categories, language),
     };
   }
 }

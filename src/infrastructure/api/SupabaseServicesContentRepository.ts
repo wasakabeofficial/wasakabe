@@ -5,6 +5,7 @@ import type {
   ServicesContent,
 } from "../../core";
 import { supabase } from "./supabaseClient";
+import { languageFilter, pickTranslation } from "./languageFallback";
 
 interface ServicesSectionRow {
   eyebrow: string;
@@ -18,6 +19,7 @@ interface ServiceCardRow {
   position: number;
   icon_url: string | null;
   service_card_translations: {
+    language_code: string;
     title: string;
     description: string;
     cta_label: string;
@@ -43,9 +45,9 @@ export class SupabaseServicesContentRepository
     const { data: cardData, error: cardError } = await supabase
       .from("service_cards")
       .select(
-        "slug, position, icon_url, service_card_translations!inner(title, description, cta_label)",
+        "slug, position, icon_url, service_card_translations!inner(language_code, title, description, cta_label)",
       )
-      .eq("service_card_translations.language_code", language)
+      .in("service_card_translations.language_code", languageFilter(language))
       .order("position");
 
     if (cardError || !cardData) {
@@ -62,16 +64,17 @@ export class SupabaseServicesContentRepository
       titleStart: sectionRow.title_start,
       titleGold: sectionRow.title_gold,
       sub: sectionRow.sub,
-      cards: cardRows.map(
-        (cardRow): ServiceCard => ({
+      cards: cardRows.map((cardRow): ServiceCard => {
+        const translation = pickTranslation(cardRow.service_card_translations, language);
+        return {
           slug: cardRow.slug,
           position: cardRow.position,
           iconUrl: cardRow.icon_url,
-          title: cardRow.service_card_translations[0].title,
-          description: cardRow.service_card_translations[0].description,
-          ctaLabel: cardRow.service_card_translations[0].cta_label,
-        }),
-      ),
+          title: translation?.title ?? "",
+          description: translation?.description ?? "",
+          ctaLabel: translation?.cta_label ?? "",
+        };
+      }),
     };
   }
 }

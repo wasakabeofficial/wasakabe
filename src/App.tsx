@@ -1,17 +1,12 @@
+import { lazy, Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import Navbar from "./presentation/components/layout/Navbar";
-import Hero from "./presentation/sections/Hero/Hero";
-import About from "./presentation/sections/About/About";
-import Services from "./presentation/sections/Services/Services";
-import Experience from "./presentation/sections/Experience/Experience";
-import Canal from "./presentation/sections/Canal/Canal";
-import Blog from "./presentation/sections/Blog/Blog";
-import Contact from "./presentation/sections/Contact/Contact";
-import Footer from "./presentation/sections/Footer/Footer";
-import TerminosPage from "./presentation/pages/TerminosPage";
-import PrivacidadPage from "./presentation/pages/PrivacidadPage";
-import ServiceDetailPage from "./presentation/pages/ServiceDetailPage";
+
+const HomePage = lazy(() => import("./presentation/pages/HomePage"));
+const TerminosPage = lazy(() => import("./presentation/pages/TerminosPage"));
+const PrivacidadPage = lazy(() => import("./presentation/pages/PrivacidadPage"));
+const ServiceDetailPage = lazy(() => import("./presentation/pages/ServiceDetailPage"));
+const BlogPostPage = lazy(() => import("./presentation/pages/BlogPostPage"));
 
 export default function App() {
   const path = window.location.pathname;
@@ -19,7 +14,9 @@ export default function App() {
   if (path === "/terminos-y-condiciones") {
     return (
       <>
-        <TerminosPage />
+        <Suspense fallback={null}>
+          <TerminosPage />
+        </Suspense>
         <Analytics />
         <SpeedInsights />
       </>
@@ -29,7 +26,9 @@ export default function App() {
   if (path === "/aviso-de-privacidad") {
     return (
       <>
-        <PrivacidadPage />
+        <Suspense fallback={null}>
+          <PrivacidadPage />
+        </Suspense>
         <Analytics />
         <SpeedInsights />
       </>
@@ -40,7 +39,22 @@ export default function App() {
     const slug = path.replace("/servicios/", "").replace(/\/$/, "");
     return (
       <>
-        <ServiceDetailPage slug={slug} />
+        <Suspense fallback={null}>
+          <ServiceDetailPage slug={slug} />
+        </Suspense>
+        <Analytics />
+        <SpeedInsights />
+      </>
+    );
+  }
+
+  if (path.startsWith("/blog/")) {
+    const slug = path.replace("/blog/", "").replace(/\/$/, "");
+    return (
+      <>
+        <Suspense fallback={null}>
+          <BlogPostPage slug={slug} />
+        </Suspense>
         <Analytics />
         <SpeedInsights />
       </>
@@ -49,15 +63,9 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Services />
-      <About />
-      <Experience />
-      <Canal />
-      <Blog />
-      <Contact />
-      <Footer />
+      <Suspense fallback={null}>
+        <HomePage />
+      </Suspense>
       <Analytics />
       <SpeedInsights />
     </>
