@@ -16,6 +16,60 @@
   padding: 0 80px;
 }
 
+/* ─── Página de detalle (legal / servicio / post de blog) ───
+   El max-width de cada *-layout se define en el CSS de esa página. */
+.legal-page,
+.service-page,
+.blog-post-page {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+  background-color: var(--color-bg-page);
+  color: var(--color-cream-300);
+}
+
+.legal-layout,
+.service-page-layout,
+.blog-post-layout {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.legal-back,
+.service-page-back,
+.blog-post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-gold-400);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: opacity 0.2s ease;
+}
+
+.legal-back:hover,
+.service-page-back:hover,
+.blog-post-back:hover {
+  opacity: 0.8;
+}
+
+/* ─── Pill dorado (etiqueta / categoría) ─── */
+.blog-post-category,
+.service-page-stack-item,
+.explorer-window-period {
+  border-radius: var(--radius-pill);
+  background-color: var(--color-gold-950);
+  color: var(--color-gold-400);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
 /* ─── Padding raíz de sección ─── */
 .services,
 .experience,
@@ -31,7 +85,8 @@
 .experience-eyebrow,
 .canal-eyebrow,
 .blog-eyebrow,
-.contact-eyebrow {
+.contact-eyebrow,
+.service-page-eyebrow {
   display: inline-block;
   margin-bottom: 20px;
   color: var(--color-gold-400);

@@ -1,35 +1,5 @@
-.service-page {
-  min-height: 100vh;
-  padding: 120px 0 80px;
-  background-color: var(--color-bg-page);
-  color: var(--color-cream-300);
-}
-
 .service-page-layout {
-  position: relative;
-  width: 100%;
   max-width: 760px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.service-page-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 48px;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-gold-400);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: opacity 0.2s ease;
-}
-
-.service-page-back:hover {
-  opacity: 0.8;
 }
 
 /* ─── Banner ilustrado ─── */
@@ -166,14 +136,7 @@
 }
 
 .service-page-eyebrow {
-  display: inline-block;
   margin-bottom: 16px;
-  color: var(--color-gold-400);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
 }
 
 .service-page-title {
@@ -300,12 +263,7 @@
 
 .service-page-stack-item {
   padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-gold-950);
-  color: var(--color-gold-400);
-  font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 600;
   border: 1px solid var(--color-border);
 }
 

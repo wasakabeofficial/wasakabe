@@ -16,30 +16,27 @@ function hexPoints(cx: number, cy: number, r: number): string {
 }
 
 function HexagonalArchitectureCover() {
+  const center = { x: 200, y: 100 };
   const satellites = [
     { angle: -90, r: 96 },
     { angle: -18, r: 96 },
     { angle: 54, r: 90 },
     { angle: 126, r: 90 },
     { angle: 198, r: 96 },
-  ];
-  const center = { x: 200, y: 100 };
+  ].map(({ angle, r }) => {
+    const rad = (angle * Math.PI) / 180;
+    return { x: center.x + r * Math.cos(rad), y: center.y + r * Math.sin(rad) };
+  });
 
   return (
     <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
       <rect x="0" y="0" width="400" height="200" className="bca-bg" />
-      {satellites.map((s, i) => {
-        const rad = (s.angle * Math.PI) / 180;
-        const x = center.x + s.r * Math.cos(rad);
-        const y = center.y + s.r * Math.sin(rad);
-        return <line key={i} x1={center.x} y1={center.y} x2={x} y2={y} className="bca-line" />;
-      })}
-      {satellites.map((s, i) => {
-        const rad = (s.angle * Math.PI) / 180;
-        const x = center.x + s.r * Math.cos(rad);
-        const y = center.y + s.r * Math.sin(rad);
-        return <polygon key={i} points={hexPoints(x, y, 20)} className="bca-hex-satellite" />;
-      })}
+      {satellites.map((s, i) => (
+        <line key={i} x1={center.x} y1={center.y} x2={s.x} y2={s.y} className="bca-line" />
+      ))}
+      {satellites.map((s, i) => (
+        <polygon key={i} points={hexPoints(s.x, s.y, 20)} className="bca-hex-satellite" />
+      ))}
       <polygon points={hexPoints(center.x, center.y, 42)} className="bca-hex-core" />
     </svg>
   );

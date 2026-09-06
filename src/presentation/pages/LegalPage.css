@@ -1,34 +1,5 @@
-.legal-page {
-  min-height: 100vh;
-  padding: 120px 0 80px;
-  background-color: var(--color-bg-page);
-  color: var(--color-cream-300);
-}
-
 .legal-layout {
-  width: 100%;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.legal-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 48px;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-gold-400);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: opacity 0.2s ease;
-}
-
-.legal-back:hover {
-  opacity: 0.8;
 }
 
 .legal-title {

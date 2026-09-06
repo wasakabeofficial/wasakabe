@@ -1,9 +1,35 @@
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode } from "react";
 
 /**
  * Ilustraciones abstractas por servicio — trazos geométricos, no fotografías,
  * para no comprometer la privacidad de clientes reales.
  */
+
+function WindowChrome() {
+  return (
+    <g className="si-window-bar">
+      <rect x="24" y="20" width="352" height="28" rx="10" className="si-window-titlebar" />
+      <rect x="24" y="38" width="352" height="10" className="si-window-titlebar" />
+      <circle cx="44" cy="34" r="5" className="si-dot-red" />
+      <circle cx="60" cy="34" r="5" className="si-dot-amber" />
+      <circle cx="76" cy="34" r="5" className="si-dot-green" />
+    </g>
+  );
+}
+
+/** Fondo + marco de "ventana de app" compartido por todas las ilustraciones. */
+function IllustrationFrame({ children }: { children: ReactNode }) {
+  return (
+    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="400" height="220" className="si-bg" />
+
+      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
+      <WindowChrome />
+
+      {children}
+    </svg>
+  );
+}
 
 function SoftwareIllustration() {
   const lines: { indent: number; width: number; variant: "kw" | "str" | "fn" | "txt" }[] = [
@@ -18,12 +44,7 @@ function SoftwareIllustration() {
   ];
 
   return (
-    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="400" height="220" className="si-bg" />
-
-      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
-      <WindowChrome />
-
+    <IllustrationFrame>
       <g className="si-code">
         {lines.map((line, i) => (
           <rect
@@ -38,31 +59,14 @@ function SoftwareIllustration() {
         ))}
         <rect x={40} y={64 + lines.length * 16} width="7" height="10" className="si-cursor" />
       </g>
-    </svg>
-  );
-}
-
-function WindowChrome() {
-  return (
-    <g className="si-window-bar">
-      <rect x="24" y="20" width="352" height="28" rx="10" className="si-window-titlebar" />
-      <rect x="24" y="38" width="352" height="10" className="si-window-titlebar" />
-      <circle cx="44" cy="34" r="5" className="si-dot-red" />
-      <circle cx="60" cy="34" r="5" className="si-dot-amber" />
-      <circle cx="76" cy="34" r="5" className="si-dot-green" />
-    </g>
+    </IllustrationFrame>
   );
 }
 
 function CreativeIllustration() {
   const swatches = ["kw", "fn", "str", "txt", "kw"] as const;
   return (
-    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="400" height="220" className="si-bg" />
-
-      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
-      <WindowChrome />
-
+    <IllustrationFrame>
       <g className="si-moodboard">
         <rect x="40" y="64" width="110" height="70" rx="6" className="si-tile-a" />
         <rect x="158" y="64" width="80" height="44" rx="6" className="si-tile-b" />
@@ -78,7 +82,7 @@ function CreativeIllustration() {
         ))}
       </g>
       <text x="200" y="185" textAnchor="middle" className="si-caption">CONCEPTO · NARRATIVA · DIRECCIÓN</text>
-    </svg>
+    </IllustrationFrame>
   );
 }
 
@@ -93,12 +97,7 @@ function AudiovisualIllustration() {
   let cursor = 40;
 
   return (
-    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="400" height="220" className="si-bg" />
-
-      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
-      <WindowChrome />
-
+    <IllustrationFrame>
       <rect x="40" y="64" width="320" height="70" rx="6" className="si-preview" />
       <circle cx="200" cy="99" r="20" className="si-outline" />
       <path d="M193 88 L215 99 L193 110 Z" className="si-play" />
@@ -114,19 +113,14 @@ function AudiovisualIllustration() {
         })}
         <rect x="150" y="146" width="2" height="28" className="si-cursor" />
       </g>
-    </svg>
+    </IllustrationFrame>
   );
 }
 
 function MentorshipIllustration() {
   const checklist = [true, true, false];
   return (
-    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="400" height="220" className="si-bg" />
-
-      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
-      <WindowChrome />
-
+    <IllustrationFrame>
       <g className="si-call">
         <rect x="40" y="64" width="140" height="80" rx="8" className="si-tile-b" />
         <circle cx="110" cy="94" r="16" className="si-outline" />
@@ -146,7 +140,7 @@ function MentorshipIllustration() {
           </g>
         ))}
       </g>
-    </svg>
+    </IllustrationFrame>
   );
 }
 
@@ -164,12 +158,7 @@ function CybersecurityIllustration() {
   ] as const;
 
   return (
-    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="400" height="220" className="si-bg" />
-
-      <rect x="24" y="20" width="352" height="180" rx="10" className="si-frame" />
-      <WindowChrome />
-
+    <IllustrationFrame>
       <g className="si-network">
         {hosts.map((h, i) => (
           <line key={i} x1="110" y1="100" x2={h.cx} y2={h.cy} className="si-outline" />
@@ -189,7 +178,7 @@ function CybersecurityIllustration() {
           </g>
         ))}
       </g>
-    </svg>
+    </IllustrationFrame>
   );
 }
 
