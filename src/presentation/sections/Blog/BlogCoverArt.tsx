@@ -31,11 +31,11 @@ function HexagonalArchitectureCover() {
   return (
     <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
       <rect x="0" y="0" width="400" height="200" className="bca-bg" />
-      {satellites.map((s, i) => (
-        <line key={i} x1={center.x} y1={center.y} x2={s.x} y2={s.y} className="bca-line" />
+      {satellites.map((s) => (
+        <line key={s.x} x1={center.x} y1={center.y} x2={s.x} y2={s.y} className="bca-line" />
       ))}
-      {satellites.map((s, i) => (
-        <polygon key={i} points={hexPoints(s.x, s.y, 20)} className="bca-hex-satellite" />
+      {satellites.map((s) => (
+        <polygon key={s.x} points={hexPoints(s.x, s.y, 20)} className="bca-hex-satellite" />
       ))}
       <polygon points={hexPoints(center.x, center.y, 42)} className="bca-hex-core" />
     </svg>
@@ -55,11 +55,11 @@ function AiAgentsCover() {
   return (
     <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
       <rect x="0" y="0" width="400" height="200" className="bca-bg" />
-      {nodes.map((n, i) => (
-        <line key={i} x1={bubbleCenter.x} y1={bubbleCenter.y} x2={n.x} y2={n.y} className="bca-line" />
+      {nodes.map((n) => (
+        <line key={`${n.x}-${n.y}`} x1={bubbleCenter.x} y1={bubbleCenter.y} x2={n.x} y2={n.y} className="bca-line" />
       ))}
-      {nodes.map((n, i) => (
-        <circle key={i} cx={n.x} cy={n.y} r="10" className={`bca-node-${n.variant}`} />
+      {nodes.map((n) => (
+        <circle key={`${n.x}-${n.y}`} cx={n.x} cy={n.y} r="10" className={`bca-node-${n.variant}`} />
       ))}
       <rect
         x={bubble.x}
@@ -84,7 +84,7 @@ function CreativeCrossoverCover() {
       <rect x="0" y="0" width="400" height="200" className="bca-bg" />
       <g className="bca-wave">
         {bars.map((h, i) => (
-          <rect key={i} x={36 + i * 20} y={100 - h} width="9" height={h * 2} rx="3" />
+          <rect key={h} x={36 + i * 20} y={100 - h} width="9" height={h * 2} rx="3" />
         ))}
       </g>
       <text x="316" y="112" textAnchor="middle" className="bca-glyph">{"</>"}</text>
@@ -100,7 +100,7 @@ function DefaultCover() {
       <text x="60" y="86" className="bca-quote">"</text>
       <g className="bca-default-lines">
         {lines.map((w, i) => (
-          <rect key={i} x="60" y={104 + i * 16} width={w} height="7" rx="3.5" />
+          <rect key={w} x="60" y={104 + i * 16} width={w} height="7" rx="3.5" />
         ))}
       </g>
     </svg>

@@ -48,7 +48,7 @@ function SoftwareIllustration() {
       <g className="si-code">
         {lines.map((line, i) => (
           <rect
-            key={i}
+            key={line.width}
             x={40 + line.indent * 18}
             y={64 + i * 16}
             width={line.width}
@@ -78,7 +78,7 @@ function CreativeIllustration() {
 
       <g className="si-swatches">
         {swatches.map((v, i) => (
-          <circle key={i} cx={52 + i * 22} cy={158} r="8" className={`si-code-${v}`} />
+          <circle key={`${v}-${i}`} cx={52 + i * 22} cy={158} r="8" className={`si-code-${v}`} />
         ))}
       </g>
       <text x="200" y="185" textAnchor="middle" className="si-caption">CONCEPTO · NARRATIVA · DIRECCIÓN</text>
@@ -104,11 +104,11 @@ function AudiovisualIllustration() {
 
       <g className="si-timeline">
         <rect x="40" y="150" width="320" height="20" rx="4" className="si-timeline-track" />
-        {clips.map((clip, i) => {
+        {clips.map((clip) => {
           const x = cursor;
           cursor += clip.width + 6;
           return (
-            <rect key={i} x={x} y="153" width={clip.width} height="14" rx="3" className={`si-code-${clip.variant}`} />
+            <rect key={clip.width} x={x} y="153" width={clip.width} height="14" rx="3" className={`si-code-${clip.variant}`} />
           );
         })}
         <rect x="150" y="146" width="2" height="28" className="si-cursor" />
@@ -133,7 +133,7 @@ function MentorshipIllustration() {
 
       <g className="si-checklist">
         {checklist.map((done, i) => (
-          <g key={i} transform={`translate(40, ${160 + i * 14})`}>
+          <g key={`${done}-${i}`} transform={`translate(40, ${160 + i * 14})`}>
             <circle cx="6" cy="0" r="6" className={done ? "si-code-kw" : "si-code-txt"} />
             {done && <path d="M3 0 L5.5 2.5 L9.5 -3" className="si-check-mark" />}
             <rect x="20" y="-3.5" width={110 - i * 20} height="6" rx="3" className="si-code-txt" />
@@ -160,19 +160,19 @@ function CybersecurityIllustration() {
   return (
     <IllustrationFrame>
       <g className="si-network">
-        {hosts.map((h, i) => (
-          <line key={i} x1="110" y1="100" x2={h.cx} y2={h.cy} className="si-outline" />
+        {hosts.map((h) => (
+          <line key={h.cx} x1="110" y1="100" x2={h.cx} y2={h.cy} className="si-outline" />
         ))}
         <circle cx="110" cy="100" r="20" className="si-code-kw" />
         <path d="M103 100 L108 105 L118 92" className="si-check-mark" />
-        {hosts.map((h, i) => (
-          <circle key={i} cx={h.cx} cy={h.cy} r="9" className={h.status} />
+        {hosts.map((h) => (
+          <circle key={h.cx} cx={h.cx} cy={h.cy} r="9" className={h.status} />
         ))}
       </g>
 
       <g className="si-scanrows">
         {scanRows.map((row, i) => (
-          <g key={i} transform={`translate(40, ${152 + i * 14})`}>
+          <g key={`${row.variant}-${i}`} transform={`translate(40, ${152 + i * 14})`}>
             <rect x="0" y="-4" width={row.width} height="8" rx="3" className={`si-code-${row.variant}`} />
             <rect x="34" y="-4" width={80 - i * 12} height="8" rx="3" className="si-code-txt" />
           </g>
