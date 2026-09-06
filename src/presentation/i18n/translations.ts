@@ -2,16 +2,11 @@
    WASAKA BE — Traducciones completas (6 idiomas)
    ================================================================== */
 
-export type LanguageCode = "es" | "en" | "zh" | "ko" | "ru" | "ja";
+import type { LanguageCode } from "../../core";
+import { LANGUAGE_ORDER } from "../../core";
 
-export const LANGUAGE_ORDER: LanguageCode[] = [
-  "es",
-  "en",
-  "zh",
-  "ko",
-  "ru",
-  "ja",
-];
+export type { LanguageCode };
+export { LANGUAGE_ORDER };
 
 export interface TranslationSet {
   common: {
@@ -33,6 +28,8 @@ export interface TranslationSet {
     btnSecondary: string;
     statProjects: string;
     statYears: string;
+    availableBadge: string;
+    scrollCue: string;
   };
   about: {
     eyebrow: string;
@@ -48,6 +45,8 @@ export interface TranslationSet {
     brand: string;
     badgesTech: string[];
     badgesCreative: string[];
+    skillGroupTech: string;
+    skillGroupCreative: string;
   };
   services: {
     eyebrow: string;
@@ -60,6 +59,24 @@ export interface TranslationSet {
       desc: string;
       cta: string;
     }[];
+  };
+  serviceDetail: {
+    back: string;
+    serviceLabel: string;
+    notFoundTitle: string;
+    notFoundDesc: string;
+    includesHeading: string;
+    stackHeading: string;
+    processHeading: string;
+    goalHeading: string;
+    ctaContact: string;
+    ctaAllServices: string;
+  };
+  blogPost: {
+    back: string;
+    notFoundTitle: string;
+    notFoundDesc: string;
+    relatedHeading: string;
   };
   experience: {
     eyebrow: string;
@@ -78,12 +95,22 @@ export interface TranslationSet {
     titleStart: string;
     titleGold: string;
     sub: string;
+    liveLabel: string;
+    prevLabel: string;
+    nextLabel: string;
     channels: {
       handle: string;
       description: string;
       stats: string[];
       label: string;
     }[];
+  };
+  blog: {
+    eyebrow: string;
+    titleStart: string;
+    titleGold: string;
+    sub: string;
+    empty: string;
   };
   contact: {
     eyebrow: string;
@@ -131,9 +158,11 @@ const es: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "Inicio", href: "#" },
+      { label: "Sobre mí", href: "#about" },
       { label: "Servicios", href: "#services" },
-      { label: "Experiencia", href: "#experience" },
+      { label: "Trayectoria", href: "#experience" },
       { label: "Canal", href: "#canal" },
+      { label: "Blog", href: "#blog" },
     ],
     cta: "CONTACTO",
   },
@@ -148,6 +177,8 @@ const es: TranslationSet = {
     btnSecondary: "EXPLORAR TRABAJO",
     statProjects: "Proyectos",
     statYears: "Años",
+    availableBadge: "Disponible para nuevos proyectos",
+    scrollCue: "Descubre más",
   },
   about: {
     eyebrow: "SOBRE MÍ",
@@ -163,6 +194,8 @@ const es: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI Agents", "Fullstack", "DevOps", "LLMs", "Mobile"],
     badgesCreative: ["Film", "Beatmaker", "Photography", "Direction"],
+    skillGroupTech: "Técnico",
+    skillGroupCreative: "Creativo",
   },
   services: {
     eyebrow: "SERVICIOS",
@@ -195,6 +228,24 @@ const es: TranslationSet = {
         cta: "Saber más →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← Volver a servicios",
+    serviceLabel: "Servicio",
+    notFoundTitle: "Servicio no encontrado",
+    notFoundDesc: "No encontramos el servicio que buscas. Vuelve al sitio principal para ver todos los servicios disponibles.",
+    includesHeading: "Qué incluye",
+    stackHeading: "Herramientas y stack",
+    processHeading: "Cómo trabajo",
+    goalHeading: "Objetivo",
+    ctaContact: "Hablemos de tu proyecto",
+    ctaAllServices: "Ver todos los servicios",
+  },
+  blogPost: {
+    back: "← Volver al blog",
+    notFoundTitle: "Publicación no encontrada",
+    notFoundDesc: "No encontramos la publicación que buscas. Vuelve al blog para ver todas las publicaciones disponibles.",
+    relatedHeading: "Más publicaciones",
   },
   experience: {
     eyebrow: "TRAYECTORIA",
@@ -249,6 +300,9 @@ const es: TranslationSet = {
     titleStart: "MIRA MI",
     titleGold: "CONTENIDO",
     sub: "Sígueme en YouTube, Facebook, Instagram y LinkedIn para contenido semanal sobre IA, desarrollo, música y tecnología.",
+    liveLabel: "EN VIVO",
+    prevLabel: "Canal anterior",
+    nextLabel: "Canal siguiente",
     channels: [
       {
         handle: "Canal WasakaBe",
@@ -275,6 +329,13 @@ const es: TranslationSet = {
         label: "CONECTAR",
       },
     ],
+  },
+  blog: {
+    eyebrow: "BLOG",
+    titleStart: "Ideas &",
+    titleGold: "reflexiones",
+    sub: "Notas sobre ingeniería de IA, arquitectura de software y producción creativa.",
+    empty: "Muy pronto — nuevas publicaciones en camino.",
   },
   contact: {
     eyebrow: "CONTACTO",
@@ -320,6 +381,8 @@ const es: TranslationSet = {
       { label: "Inicio", href: "#" },
       { label: "Servicios", href: "#services" },
       { label: "Experiencia", href: "#experience" },
+      { label: "Canal", href: "#canal" },
+      { label: "Blog", href: "#blog" },
       { label: "Contacto", href: "#contact" },
       { label: "Términos", href: "/terminos-y-condiciones" },
       { label: "Privacidad", href: "/aviso-de-privacidad" },
@@ -335,9 +398,11 @@ const en: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "Home", href: "#" },
+      { label: "About", href: "#about" },
       { label: "Services", href: "#services" },
       { label: "Experience", href: "#experience" },
       { label: "Channel", href: "#canal" },
+      { label: "Blog", href: "#blog" },
     ],
     cta: "CONTACT",
   },
@@ -352,6 +417,8 @@ const en: TranslationSet = {
     btnSecondary: "EXPLORE WORK",
     statProjects: "Projects",
     statYears: "Years",
+    availableBadge: "Available for new projects",
+    scrollCue: "Discover more",
   },
   about: {
     eyebrow: "ABOUT ME",
@@ -367,6 +434,8 @@ const en: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI Agents", "Fullstack", "DevOps", "LLMs", "Mobile"],
     badgesCreative: ["Film", "Beatmaker", "Photography", "Direction"],
+    skillGroupTech: "Technical",
+    skillGroupCreative: "Creative",
   },
   services: {
     eyebrow: "SERVICES",
@@ -399,6 +468,24 @@ const en: TranslationSet = {
         cta: "Learn more →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← Back to services",
+    serviceLabel: "Service",
+    notFoundTitle: "Service not found",
+    notFoundDesc: "We couldn't find the service you're looking for. Head back to the main site to see all available services.",
+    includesHeading: "What's included",
+    stackHeading: "Tools & stack",
+    processHeading: "How I work",
+    goalHeading: "Goal",
+    ctaContact: "Let's talk about your project",
+    ctaAllServices: "See all services",
+  },
+  blogPost: {
+    back: "← Back to blog",
+    notFoundTitle: "Post not found",
+    notFoundDesc: "We couldn't find the post you're looking for. Head back to the blog to see all available posts.",
+    relatedHeading: "More posts",
   },
   experience: {
     eyebrow: "EXPERIENCE",
@@ -453,6 +540,9 @@ const en: TranslationSet = {
     titleStart: "VIEW MY",
     titleGold: "CONTENT",
     sub: "Follow me on YouTube, Facebook, Instagram and LinkedIn for weekly content on AI, development, music and technology.",
+    liveLabel: "LIVE",
+    prevLabel: "Previous channel",
+    nextLabel: "Next channel",
     channels: [
       {
         handle: "WasakaBe Channel",
@@ -479,6 +569,13 @@ const en: TranslationSet = {
         label: "CONNECT",
       },
     ],
+  },
+  blog: {
+    eyebrow: "BLOG",
+    titleStart: "Ideas &",
+    titleGold: "reflections",
+    sub: "Notes on AI engineering, software architecture and creative production.",
+    empty: "Coming soon — new posts on the way.",
   },
   contact: {
     eyebrow: "CONTACT",
@@ -524,6 +621,8 @@ const en: TranslationSet = {
       { label: "Home", href: "#" },
       { label: "Services", href: "#services" },
       { label: "Experience", href: "#experience" },
+      { label: "Channel", href: "#canal" },
+      { label: "Blog", href: "#blog" },
       { label: "Contact", href: "#contact" },
       { label: "Terms", href: "/terminos-y-condiciones" },
       { label: "Privacy", href: "/aviso-de-privacidad" },
@@ -539,9 +638,11 @@ const zh: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "首页", href: "#" },
+      { label: "关于我", href: "#about" },
       { label: "服务", href: "#services" },
       { label: "经验", href: "#experience" },
       { label: "频道", href: "#canal" },
+      { label: "博客", href: "#blog" },
     ],
     cta: "联系我",
   },
@@ -556,6 +657,8 @@ const zh: TranslationSet = {
     btnSecondary: "探索作品",
     statProjects: "项目",
     statYears: "年",
+    availableBadge: "可接新项目",
+    scrollCue: "了解更多",
   },
   about: {
     eyebrow: "关于我",
@@ -571,6 +674,8 @@ const zh: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI智能体", "全栈", "DevOps", "大语言模型", "移动开发"],
     badgesCreative: ["电影", "音乐制作", "摄影", "导演"],
+    skillGroupTech: "技术",
+    skillGroupCreative: "创意",
   },
   services: {
     eyebrow: "服务",
@@ -603,6 +708,24 @@ const zh: TranslationSet = {
         cta: "了解更多 →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← 返回服务",
+    serviceLabel: "服务",
+    notFoundTitle: "未找到服务",
+    notFoundDesc: "我们找不到您要查找的服务。请返回主站查看所有可用服务。",
+    includesHeading: "包含内容",
+    stackHeading: "工具与技术栈",
+    processHeading: "工作方式",
+    goalHeading: "目标",
+    ctaContact: "聊聊你的项目",
+    ctaAllServices: "查看所有服务",
+  },
+  blogPost: {
+    back: "← 返回博客",
+    notFoundTitle: "未找到文章",
+    notFoundDesc: "我们找不到您要查找的文章。请返回博客查看所有可用文章。",
+    relatedHeading: "更多文章",
   },
   experience: {
     eyebrow: "工作经历",
@@ -657,6 +780,9 @@ const zh: TranslationSet = {
     titleStart: "观看我的",
     titleGold: "内容",
     sub: "在YouTube、Facebook、Instagram和LinkedIn上关注我，获取关于AI、开发、音乐和技术的每周内容。",
+    liveLabel: "直播中",
+    prevLabel: "上一个频道",
+    nextLabel: "下一个频道",
     channels: [
       {
         handle: "WasakaBe频道",
@@ -683,6 +809,13 @@ const zh: TranslationSet = {
         label: "连接",
       },
     ],
+  },
+  blog: {
+    eyebrow: "博客",
+    titleStart: "想法与",
+    titleGold: "感悟",
+    sub: "关于AI工程、软件架构与创意制作的笔记。",
+    empty: "敬请期待——新文章即将上线。",
   },
   contact: {
     eyebrow: "联系",
@@ -728,6 +861,8 @@ const zh: TranslationSet = {
       { label: "首页", href: "#" },
       { label: "服务", href: "#services" },
       { label: "经验", href: "#experience" },
+      { label: "频道", href: "#canal" },
+      { label: "博客", href: "#blog" },
       { label: "联系", href: "#contact" },
       { label: "条款", href: "/terminos-y-condiciones" },
       { label: "隐私", href: "/aviso-de-privacidad" },
@@ -743,9 +878,11 @@ const ko: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "홈", href: "#" },
+      { label: "소개", href: "#about" },
       { label: "서비스", href: "#services" },
       { label: "경력", href: "#experience" },
       { label: "채널", href: "#canal" },
+      { label: "블로그", href: "#blog" },
     ],
     cta: "연락처",
   },
@@ -760,6 +897,8 @@ const ko: TranslationSet = {
     btnSecondary: "작업 살펴보기",
     statProjects: "프로젝트",
     statYears: "년",
+    availableBadge: "신규 프로젝트 가능",
+    scrollCue: "더 알아보기",
   },
   about: {
     eyebrow: "소개",
@@ -775,6 +914,8 @@ const ko: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AI 에이전트", "풀스택", "DevOps", "LLMs", "모바일"],
     badgesCreative: ["영화", "비트메이킹", "사진", "디렉션"],
+    skillGroupTech: "기술",
+    skillGroupCreative: "창작",
   },
   services: {
     eyebrow: "서비스",
@@ -807,6 +948,24 @@ const ko: TranslationSet = {
         cta: "더 알아보기 →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← 서비스로 돌아가기",
+    serviceLabel: "서비스",
+    notFoundTitle: "서비스를 찾을 수 없습니다",
+    notFoundDesc: "찾으시는 서비스를 찾을 수 없습니다. 메인 사이트로 돌아가 이용 가능한 모든 서비스를 확인하세요.",
+    includesHeading: "포함 사항",
+    stackHeading: "도구 및 스택",
+    processHeading: "작업 방식",
+    goalHeading: "목표",
+    ctaContact: "프로젝트에 대해 이야기해요",
+    ctaAllServices: "모든 서비스 보기",
+  },
+  blogPost: {
+    back: "← 블로그로 돌아가기",
+    notFoundTitle: "게시물을 찾을 수 없습니다",
+    notFoundDesc: "찾으시는 게시물을 찾을 수 없습니다. 블로그로 돌아가 이용 가능한 모든 게시물을 확인하세요.",
+    relatedHeading: "다른 게시물",
   },
   experience: {
     eyebrow: "경력",
@@ -861,6 +1020,9 @@ const ko: TranslationSet = {
     titleStart: "내",
     titleGold: "콘텐츠 보기",
     sub: "YouTube, Facebook, Instagram 및 LinkedIn에서 AI, 개발, 음악 및 기술에 대한 주간 콘텐츠를 팔로우하세요.",
+    liveLabel: "라이브",
+    prevLabel: "이전 채널",
+    nextLabel: "다음 채널",
     channels: [
       {
         handle: "WasakaBe 채널",
@@ -887,6 +1049,13 @@ const ko: TranslationSet = {
         label: "연결",
       },
     ],
+  },
+  blog: {
+    eyebrow: "블로그",
+    titleStart: "아이디어와",
+    titleGold: "생각",
+    sub: "AI 엔지니어링, 소프트웨어 아키텍처, 크리에이티브 제작에 관한 노트.",
+    empty: "곧 공개됩니다 — 새로운 글이 준비 중입니다.",
   },
   contact: {
     eyebrow: "연락처",
@@ -932,6 +1101,8 @@ const ko: TranslationSet = {
       { label: "홈", href: "#" },
       { label: "서비스", href: "#services" },
       { label: "경력", href: "#experience" },
+      { label: "채널", href: "#canal" },
+      { label: "블로그", href: "#blog" },
       { label: "연락처", href: "#contact" },
       { label: "약관", href: "/terminos-y-condiciones" },
       { label: "개인정보", href: "/aviso-de-privacidad" },
@@ -947,9 +1118,11 @@ const ru: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "Главная", href: "#" },
+      { label: "Обо мне", href: "#about" },
       { label: "Услуги", href: "#services" },
       { label: "Опыт", href: "#experience" },
       { label: "Канал", href: "#canal" },
+      { label: "Блог", href: "#blog" },
     ],
     cta: "КОНТАКТЫ",
   },
@@ -964,6 +1137,8 @@ const ru: TranslationSet = {
     btnSecondary: "ИЗУЧИТЬ РАБОТЫ",
     statProjects: "Проектов",
     statYears: "Лет",
+    availableBadge: "Открыт для новых проектов",
+    scrollCue: "Узнать больше",
   },
   about: {
     eyebrow: "ОБО МНЕ",
@@ -979,6 +1154,8 @@ const ru: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["ИИ-агенты", "Фулстак", "DevOps", "LLM", "Мобайл"],
     badgesCreative: ["Кино", "Битмейкер", "Фотография", "Режиссура"],
+    skillGroupTech: "Технические",
+    skillGroupCreative: "Творческие",
   },
   services: {
     eyebrow: "УСЛУГИ",
@@ -1011,6 +1188,24 @@ const ru: TranslationSet = {
         cta: "Узнать больше →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← Назад к услугам",
+    serviceLabel: "Услуга",
+    notFoundTitle: "Услуга не найдена",
+    notFoundDesc: "Мы не нашли услугу, которую вы ищете. Вернитесь на главный сайт, чтобы увидеть все доступные услуги.",
+    includesHeading: "Что входит",
+    stackHeading: "Инструменты и стек",
+    processHeading: "Как я работаю",
+    goalHeading: "Цель",
+    ctaContact: "Обсудим твой проект",
+    ctaAllServices: "Смотреть все услуги",
+  },
+  blogPost: {
+    back: "← Назад к блогу",
+    notFoundTitle: "Публикация не найдена",
+    notFoundDesc: "Мы не нашли публикацию, которую вы ищете. Вернитесь в блог, чтобы увидеть все доступные публикации.",
+    relatedHeading: "Другие публикации",
   },
   experience: {
     eyebrow: "ОПЫТ",
@@ -1065,6 +1260,9 @@ const ru: TranslationSet = {
     titleStart: "СМОТРИ МОЙ",
     titleGold: "КОНТЕНТ",
     sub: "Следи за мной на YouTube, Facebook, Instagram и LinkedIn для еженедельного контента об ИИ, разработке, музыке и технологиях.",
+    liveLabel: "В ЭФИРЕ",
+    prevLabel: "Предыдущий канал",
+    nextLabel: "Следующий канал",
     channels: [
       {
         handle: "Канал WasakaBe",
@@ -1091,6 +1289,13 @@ const ru: TranslationSet = {
         label: "ПОДКЛЮЧИТЬСЯ",
       },
     ],
+  },
+  blog: {
+    eyebrow: "БЛОГ",
+    titleStart: "Идеи и",
+    titleGold: "размышления",
+    sub: "Заметки об инженерии ИИ, архитектуре ПО и креативном производстве.",
+    empty: "Скоро — новые публикации в пути.",
   },
   contact: {
     eyebrow: "КОНТАКТЫ",
@@ -1136,6 +1341,8 @@ const ru: TranslationSet = {
       { label: "Главная", href: "#" },
       { label: "Услуги", href: "#services" },
       { label: "Опыт", href: "#experience" },
+      { label: "Канал", href: "#canal" },
+      { label: "Блог", href: "#blog" },
       { label: "Контакты", href: "#contact" },
       { label: "Условия", href: "/terminos-y-condiciones" },
       { label: "Конфиденциальность", href: "/aviso-de-privacidad" },
@@ -1151,9 +1358,11 @@ const ja: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "ホーム", href: "#" },
+      { label: "私について", href: "#about" },
       { label: "サービス", href: "#services" },
       { label: "経験", href: "#experience" },
       { label: "チャンネル", href: "#canal" },
+      { label: "ブログ", href: "#blog" },
     ],
     cta: "お問い合わせ",
   },
@@ -1168,6 +1377,8 @@ const ja: TranslationSet = {
     btnSecondary: "作品を見る",
     statProjects: "プロジェクト",
     statYears: "年",
+    availableBadge: "新規案件受付中",
+    scrollCue: "もっと見る",
   },
   about: {
     eyebrow: "私について",
@@ -1183,6 +1394,8 @@ const ja: TranslationSet = {
     brand: "WasakaBe",
     badgesTech: ["AIエージェント", "フルスタック", "DevOps", "LLMs", "モバイル"],
     badgesCreative: ["映画", "ビートメイキング", "写真", "ディレクション"],
+    skillGroupTech: "技術",
+    skillGroupCreative: "クリエイティブ",
   },
   services: {
     eyebrow: "サービス",
@@ -1215,6 +1428,24 @@ const ja: TranslationSet = {
         cta: "詳細を見る →",
       },
     ],
+  },
+  serviceDetail: {
+    back: "← サービス一覧に戻る",
+    serviceLabel: "サービス",
+    notFoundTitle: "サービスが見つかりません",
+    notFoundDesc: "お探しのサービスが見つかりませんでした。メインサイトに戻って、利用可能なすべてのサービスをご覧ください。",
+    includesHeading: "含まれる内容",
+    stackHeading: "ツールとスタック",
+    processHeading: "働き方",
+    goalHeading: "目標",
+    ctaContact: "プロジェクトについて話しましょう",
+    ctaAllServices: "すべてのサービスを見る",
+  },
+  blogPost: {
+    back: "← ブログに戻る",
+    notFoundTitle: "投稿が見つかりません",
+    notFoundDesc: "お探しの投稿が見つかりませんでした。ブログに戻って、利用可能なすべての投稿をご覧ください。",
+    relatedHeading: "他の投稿",
   },
   experience: {
     eyebrow: "経歴",
@@ -1269,6 +1500,9 @@ const ja: TranslationSet = {
     titleStart: "私の",
     titleGold: "コンテンツを見る",
     sub: "YouTube、Facebook、Instagram、LinkedInで、AI、開発、音楽、テクノロジーに関する毎週のコンテンツをフォローしてください。",
+    liveLabel: "ライブ",
+    prevLabel: "前のチャンネル",
+    nextLabel: "次のチャンネル",
     channels: [
       {
         handle: "WasakaBe チャンネル",
@@ -1295,6 +1529,13 @@ const ja: TranslationSet = {
         label: "接続",
       },
     ],
+  },
+  blog: {
+    eyebrow: "ブログ",
+    titleStart: "アイデアと",
+    titleGold: "考察",
+    sub: "AIエンジニアリング、ソフトウェアアーキテクチャ、クリエイティブ制作に関するノート。",
+    empty: "近日公開 — 新しい記事を準備中です。",
   },
   contact: {
     eyebrow: "お問い合わせ",
@@ -1340,6 +1581,8 @@ const ja: TranslationSet = {
       { label: "ホーム", href: "#" },
       { label: "サービス", href: "#services" },
       { label: "経験", href: "#experience" },
+      { label: "チャンネル", href: "#canal" },
+      { label: "ブログ", href: "#blog" },
       { label: "お問い合わせ", href: "#contact" },
       { label: "利用規約", href: "/terminos-y-condiciones" },
       { label: "プライバシー", href: "/aviso-de-privacidad" },

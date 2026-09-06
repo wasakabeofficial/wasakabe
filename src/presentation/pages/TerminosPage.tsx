@@ -40,8 +40,10 @@ export default function TerminosPage() {
           <p>
             El Sitio es un portafolio profesional que presenta: trayectoria profesional y formación
             académica del titular, servicios ofrecidos en desarrollo web, inteligencia artificial y
-            creación de contenido, galería de proyectos, formulario de contacto para consultas y
-            cotizaciones, y enlaces a redes sociales y canales de contenido.
+            creación de contenido, servicios de ciberseguridad y monitoreo de infraestructura
+            (incluyendo herramientas como <strong>Zabbix</strong> y similares), galería de proyectos,
+            formulario de contacto para consultas y cotizaciones, y enlaces a redes sociales y
+            canales de contenido.
           </p>
         </section>
 
@@ -93,7 +95,34 @@ export default function TerminosPage() {
         </section>
 
         <section className="legal-section">
-          <h2>7. Enlaces a Terceros</h2>
+          <h2>7. Confidencialidad de la Relación Comercial</h2>
+          <p>
+            <strong>Wasaka Be</strong> respeta la confidencialidad de sus clientes por sobre la
+            promoción del propio portafolio.
+          </p>
+          <ul>
+            <li>
+              Si un cliente solicita, por las razones que considere pertinentes, que no se haga
+              público que trabajó con <strong>Wasaka Be</strong> (por ejemplo, en el portafolio del
+              Sitio, casos de estudio, redes sociales o cualquier material promocional), dicha
+              solicitud será atendida y respetada en todo momento.
+            </li>
+            <li>
+              Salvo autorización expresa y por escrito del cliente, <strong>Wasaka Be</strong> no
+              publicará el nombre, marca, logotipo, capturas de pantalla ni ningún otro dato que
+              permita identificar al cliente o al proyecto realizado.
+            </li>
+            <li>
+              Esta confidencialidad aplica también a la información técnica, de infraestructura o
+              de negocio a la que se tenga acceso durante la prestación de servicios (por ejemplo,
+              en trabajos de ciberseguridad o monitoreo de infraestructura), la cual no se comparte
+              con terceros ni se divulga sin consentimiento.
+            </li>
+          </ul>
+        </section>
+
+        <section className="legal-section">
+          <h2>8. Enlaces a Terceros</h2>
           <p>
             El Sitio puede contener enlaces a sitios web de terceros (redes sociales, plataformas de
             contenido, servicios externos). <strong>Wasaka Be</strong> no asume responsabilidad alguna
@@ -103,7 +132,7 @@ export default function TerminosPage() {
         </section>
 
         <section className="legal-section">
-          <h2>8. Limitación de Responsabilidad</h2>
+          <h2>9. Limitación de Responsabilidad</h2>
           <p>
             El Sitio se proporciona "tal cual" y "según disponibilidad", sin garantías de ningún tipo,
             ya sean expresas o implícitas. <strong>Wasaka Be</strong> no garantiza que el Sitio esté
@@ -117,7 +146,7 @@ export default function TerminosPage() {
         </section>
 
         <section className="legal-section">
-          <h2>9. Modificaciones</h2>
+          <h2>10. Modificaciones</h2>
           <p>
             <strong>Wasaka Be</strong> se reserva el derecho de modificar estos Términos y Condiciones
             en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación
@@ -126,7 +155,7 @@ export default function TerminosPage() {
         </section>
 
         <section className="legal-section">
-          <h2>10. Legislación Aplicable</h2>
+          <h2>11. Legislación Aplicable</h2>
           <p>
             Estos Términos y Condiciones se rigen por las leyes de los <strong>Estados Unidos Mexicanos</strong>.
             Cualquier controversia relacionada con el Sitio será sometida a la jurisdicción de los
@@ -135,7 +164,7 @@ export default function TerminosPage() {
         </section>
 
         <section className="legal-section">
-          <h2>11. Contacto</h2>
+          <h2>12. Contacto</h2>
           <p>
             Para cualquier duda o aclaración: <strong>wasakabeofficial@gmail.com</strong>
           </p>

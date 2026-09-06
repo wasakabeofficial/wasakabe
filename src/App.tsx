@@ -1,15 +1,12 @@
+import { lazy, Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import Navbar from "./presentation/components/layout/Navbar";
-import Hero from "./presentation/sections/Hero/Hero";
-import About from "./presentation/sections/About/About";
-import Services from "./presentation/sections/Services/Services";
-import Experience from "./presentation/sections/Experience/Experience";
-import Canal from "./presentation/sections/Canal/Canal";
-import Contact from "./presentation/sections/Contact/Contact";
-import Footer from "./presentation/sections/Footer/Footer";
-import TerminosPage from "./presentation/pages/TerminosPage";
-import PrivacidadPage from "./presentation/pages/PrivacidadPage";
+
+const HomePage = lazy(() => import("./presentation/pages/HomePage"));
+const TerminosPage = lazy(() => import("./presentation/pages/TerminosPage"));
+const PrivacidadPage = lazy(() => import("./presentation/pages/PrivacidadPage"));
+const ServiceDetailPage = lazy(() => import("./presentation/pages/ServiceDetailPage"));
+const BlogPostPage = lazy(() => import("./presentation/pages/BlogPostPage"));
 
 export default function App() {
   const path = window.location.pathname;
@@ -17,9 +14,11 @@ export default function App() {
   if (path === "/terminos-y-condiciones") {
     return (
       <>
-        <TerminosPage />
-        <Analytics />
-        <SpeedInsights />
+        <Suspense fallback={null}>
+          <TerminosPage />
+        </Suspense>
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
       </>
     );
   }
@@ -27,25 +26,48 @@ export default function App() {
   if (path === "/aviso-de-privacidad") {
     return (
       <>
-        <PrivacidadPage />
-        <Analytics />
-        <SpeedInsights />
+        <Suspense fallback={null}>
+          <PrivacidadPage />
+        </Suspense>
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
+      </>
+    );
+  }
+
+  if (path.startsWith("/servicios/")) {
+    const slug = path.replace("/servicios/", "").replace(/\/$/, "");
+    return (
+      <>
+        <Suspense fallback={null}>
+          <ServiceDetailPage slug={slug} />
+        </Suspense>
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
+      </>
+    );
+  }
+
+  if (path.startsWith("/blog/")) {
+    const slug = path.replace("/blog/", "").replace(/\/$/, "");
+    return (
+      <>
+        <Suspense fallback={null}>
+          <BlogPostPage slug={slug} />
+        </Suspense>
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
       </>
     );
   }
 
   return (
     <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Experience />
-      <Canal />
-      <Contact />
-      <Footer />
-      <Analytics />
-      <SpeedInsights />
+      <Suspense fallback={null}>
+        <HomePage />
+      </Suspense>
+      <Analytics debug={false} />
+      <SpeedInsights debug={false} />
     </>
   );
 }

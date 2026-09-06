@@ -36,12 +36,13 @@
 .contact-input {
   width: 100%;
   padding: 14px 16px;
+  border-radius: var(--radius-sm);
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
   color: var(--color-cream-300);
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  transition: all 0.2s ease;
+  transition: all 0.25s var(--ease-soft);
   outline: none;
 }
 
@@ -130,6 +131,7 @@
   vertical-align: middle;
   width: 32px;
   height: 32px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-card);
   color: var(--color-gold-400);
@@ -140,7 +142,7 @@
 
 .contact-dest-btn:hover {
   border-color: var(--color-gold-400);
-  background-color: rgba(200, 164, 110, 0.1);
+  background-color: rgba(47, 95, 168, 0.1);
 }
 
 .contact-dest-btn:active {
@@ -183,7 +185,7 @@
 
 .contact-select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%236E7278'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%238890A0'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 40px;
@@ -205,6 +207,7 @@
   align-items: center;
   gap: 10px;
   padding: 16px 36px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -214,13 +217,13 @@
   background-color: var(--color-gold-400);
   color: var(--color-bg-page);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s var(--ease-premium);
+  box-shadow: 0 8px 24px -8px rgba(47, 95, 168, 0.5);
 }
 
 .contact-btn:hover:not(:disabled) {
-  background-color: #d4b07a;
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(200, 164, 110, 0.3);
+  box-shadow: 0 12px 32px -6px rgba(47, 95, 168, 0.55);
 }
 
 .contact-btn:disabled {
@@ -243,13 +246,14 @@
   gap: 10px;
   margin-top: 20px;
   padding: 14px 20px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 500;
 }
 
 .contact-feedback--ok {
-  background-color: rgba(200, 164, 110, 0.1);
+  background-color: rgba(47, 95, 168, 0.1);
   border: 1px solid var(--color-gold-400);
   color: var(--color-gold-400);
 }

@@ -1,23 +1,39 @@
-import { FaYoutube, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { useState, type CSSProperties } from "react";
+import { MdPlayArrow } from "react-icons/md";
+import { useCanalContent } from "../../hooks/useCanalContent";
+import { useRevealOnScroll } from "../../hooks/useRevealOnScroll";
 import { useI18n } from "../../i18n/I18nContext";
+import { iconByPlatform, nameByPlatform } from "../../utils/socialPlatforms";
 import "./Canal.css";
 
-const youtubeId = import.meta.env.VITE_YOUTUBE_ID as string;
-const facebookPageId = import.meta.env.VITE_FACEBOOK_PAGE_ID as string;
+const ACCENTS = [
+  "var(--color-gold-400)",
+  "var(--color-crim-400)",
+  "var(--color-gold-400)",
+  "var(--color-crim-400)",
+];
 
-const iconMap = [FaYoutube, FaFacebook, FaInstagram, FaLinkedin] as const;
-const colorMap = ["#FF0000", "#1877F2", "#E4405F", "#0A66C2"] as const;
-const nameMap = ["YouTube", "Facebook", "Instagram", "LinkedIn"] as const;
-const urlMap = [
-  `https://youtube.com/channel/${youtubeId}`,
-  `https://facebook.com/${facebookPageId}`,
-  `https://instagram.com/wasakabeofficial`,
-  "https://linkedin.com/company/wasakabeofficial",
-] as const;
+function accentForIndex(index: number): string {
+  return ACCENTS[index % ACCENTS.length];
+}
 
 export default function Canal() {
+  const { data: canal, loading } = useCanalContent();
   const { t } = useI18n();
-  const canal = t.canal;
+  const { elementRef, isVisible } = useRevealOnScroll<HTMLDivElement>();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (loading || !canal || canal.channels.length === 0) return null;
+
+  const channels = canal.channels;
+  const safeIndex = activeIndex < channels.length ? activeIndex : 0;
+  const active = channels[safeIndex];
+  const Icon = iconByPlatform[active.platform];
+  const accent = accentForIndex(safeIndex);
+
+  const goPrev = () =>
+    setActiveIndex((i) => (i - 1 + channels.length) % channels.length);
+  const goNext = () => setActiveIndex((i) => (i + 1) % channels.length);
 
   return (
     <section id="canal" className="canal">
@@ -25,51 +41,111 @@ export default function Canal() {
         <div className="canal-header">
           <span className="canal-eyebrow">{canal.eyebrow}</span>
           <h2 className="canal-title">
-            {canal.titleStart} <span className="canal-title-gold">{canal.titleGold}</span>
+            {canal.titleStart}{" "}
+            <span className="canal-title-gold">{canal.titleGold}</span>
           </h2>
           <p className="canal-sub">{canal.sub}</p>
         </div>
 
-        <div className="canal-grid">
-          {canal.channels.map((ch, i) => {
-            const Icon = iconMap[i];
-            const color = colorMap[i];
-            const name = nameMap[i];
-            const url = urlMap[i];
-            return (
-              <article key={name} className="canal-card">
-                <div className="canal-card-top">
-                  <Icon
-                    className="canal-card-icon"
-                    style={{ color }}
-                    aria-hidden="true"
-                  />
-                  <span className="canal-card-name">{name}</span>
-                </div>
+        <div
+          ref={elementRef}
+          className={`canal-tv reveal ${isVisible ? "is-visible" : ""}`}
+          style={{ "--tv-accent": accent } as CSSProperties}
+        >
+          <div className="tv-set">
+            <div className="tv-screen">
+              <div className="tv-screen-vignette" aria-hidden="true" />
+              <div className="tv-scanlines" aria-hidden="true" />
 
-                <span className="canal-card-handle">{ch.handle}</span>
+              <div className="tv-hud">
+                <span className="tv-hud-live">
+                  <span className="tv-hud-dot" />
+                  {t.canal.liveLabel}
+                </span>
+                <span className="tv-hud-channel">
+                  CH {String(safeIndex + 1).padStart(2, "0")}
+                </span>
+              </div>
 
-                <p className="canal-card-desc">{ch.description}</p>
+              <div key={active.platform} className="tv-content">
+                {Icon && <Icon className="tv-content-icon" aria-hidden={true} />}
+                <h3 className="tv-content-name">
+                  {nameByPlatform[active.platform] ?? active.platform}
+                </h3>
+                <span className="tv-content-handle">{active.handle}</span>
+                <p className="tv-content-desc">{active.description}</p>
 
-                <div className="canal-card-stats">
-                  {ch.stats.map((stat) => (
-                    <span key={stat} className="canal-card-stat">
+                <div className="tv-content-stats">
+                  {active.stats.map((stat) => (
+                    <span key={stat} className="tv-content-stat">
                       {stat}
                     </span>
                   ))}
                 </div>
 
                 <a
-                  href={url}
+                  href={active.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="canal-card-btn"
+                  className="tv-content-cta"
                 >
-                  {ch.label} →
+                  <MdPlayArrow aria-hidden="true" />
+                  {active.label}
                 </a>
-              </article>
-            );
-          })}
+              </div>
+            </div>
+
+            <div className="tv-stand" aria-hidden="true" />
+          </div>
+
+          <div className="tv-remote">
+            <div className="tv-remote-brand">
+              <span className="tv-remote-power" aria-hidden="true" />
+              WASAKABE·TV
+            </div>
+
+            <div className="tv-remote-pad" role="tablist" aria-label={canal.eyebrow}>
+              {channels.map((channel, index) => {
+                const ChannelIcon = iconByPlatform[channel.platform];
+                return (
+                  <button
+                    key={channel.platform}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === safeIndex}
+                    aria-label={nameByPlatform[channel.platform] ?? channel.platform}
+                    className={`tv-remote-btn ${index === safeIndex ? "is-active" : ""}`}
+                    style={{ "--btn-accent": accentForIndex(index) } as CSSProperties}
+                    onClick={() => setActiveIndex(index)}
+                  >
+                    {ChannelIcon && <ChannelIcon aria-hidden="true" />}
+                    <span className="tv-remote-btn-num">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="tv-remote-nav">
+              <button
+                type="button"
+                className="tv-remote-nav-btn"
+                onClick={goPrev}
+                aria-label={t.canal.prevLabel}
+              >
+                CH −
+              </button>
+              <button
+                type="button"
+                className="tv-remote-nav-btn"
+                onClick={goNext}
+                aria-label={t.canal.nextLabel}
+              >
+                CH +
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

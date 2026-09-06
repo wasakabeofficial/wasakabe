@@ -1,5 +1,10 @@
 # Aviso de Privacidad
 
+
+
+
+
+
 **Wasaka Be** — Titular: Ing. Alan de Jesús Martínez Hernández  
 Última actualización: 25 de mayo de 2026
 
@@ -86,7 +91,19 @@ Usted o su representante legal pueden ejercer los derechos ARCO en cualquier mom
 
 ---
 
-## 6. Limitación del Uso y Divulgación de Datos
+## 6. Confidencialidad en la Relación con Clientes de Servicios Profesionales
+
+Además de los datos personales de los visitantes del Sitio, **Wasaka Be** puede tener acceso a información confidencial de clientes en el marco de proyectos de ingeniería de software, ciberseguridad, monitoreo de infraestructura (incluyendo herramientas como **Zabbix** y similares), dirección creativa, producción audiovisual o mentoría.
+
+Dicha información se trata bajo estrictas medidas de confidencialidad:
+
+- No se divulga el nombre, marca ni detalles del proyecto de un cliente sin su autorización expresa y por escrito.
+- Si el cliente solicita, por las razones que considere pertinentes, que no se haga público que trabajó con **Wasaka Be** (por ejemplo, en el portafolio del Sitio, casos de estudio o redes sociales), dicha solicitud será respetada en todo momento.
+- El acceso a sistemas, credenciales o plataformas de monitoreo del cliente (Zabbix u otras) se limita estrictamente al personal necesario para la prestación del servicio contratado y no se comparte con terceros.
+
+---
+
+## 7. Limitación del Uso y Divulgación de Datos
 
 **Wasaka Be** implementa medidas de seguridad administrativas, técnicas y físicas para proteger sus datos personales contra daño, pérdida, alteración, destrucción o uso no autorizado. Estas medidas incluyen:
 
@@ -96,7 +113,7 @@ Usted o su representante legal pueden ejercer los derechos ARCO en cualquier mom
 
 ---
 
-## 7. Cookies y Tecnologías de Seguimiento
+## 8. Cookies y Tecnologías de Seguimiento
 
 El Sitio utiliza **cookies técnicas** necesarias para el funcionamiento básico, así como **cookies de analytics** proporcionadas por Vercel Web Analytics. Estas últimas recopilan datos anónimos de navegación.
 
@@ -104,25 +121,25 @@ Usted puede configurar su navegador para rechazar todas las cookies o para indic
 
 ---
 
-## 8. Consentimiento
+## 9. Consentimiento
 
 Al proporcionar sus datos personales a través del formulario de contacto, usted otorga su consentimiento expreso para que dichos datos sean tratados conforme a este Aviso de Privacidad.
 
 ---
 
-## 9. Cambios al Aviso de Privacidad
+## 10. Cambios al Aviso de Privacidad
 
 **Wasaka Be** se reserva el derecho de modificar el presente Aviso de Privacidad en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación en el Sitio. Se recomienda al usuario revisar esta página periódicamente.
 
 ---
 
-## 10. Legislación Aplicable
+## 11. Legislación Aplicable
 
 Este Aviso de Privacidad se rige por la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)** de los Estados Unidos Mexicanos y su Reglamento.
 
 ---
 
-## 11. Contacto
+## 12. Contacto
 
 Para cualquier duda, aclaración o solicitud relacionada con el tratamiento de sus datos personales:
 
