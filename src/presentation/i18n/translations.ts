@@ -152,6 +152,7 @@ const es: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "Inicio", href: "#" },
+      { label: "Sobre mí", href: "#about" },
       { label: "Servicios", href: "#services" },
       { label: "Trayectoria", href: "#experience" },
       { label: "Canal", href: "#canal" },
@@ -385,6 +386,7 @@ const en: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "Home", href: "#" },
+      { label: "About", href: "#about" },
       { label: "Services", href: "#services" },
       { label: "Experience", href: "#experience" },
       { label: "Channel", href: "#canal" },
@@ -618,6 +620,7 @@ const zh: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "首页", href: "#" },
+      { label: "关于我", href: "#about" },
       { label: "服务", href: "#services" },
       { label: "经验", href: "#experience" },
       { label: "频道", href: "#canal" },
@@ -851,6 +854,7 @@ const ko: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "홈", href: "#" },
+      { label: "소개", href: "#about" },
       { label: "서비스", href: "#services" },
       { label: "경력", href: "#experience" },
       { label: "채널", href: "#canal" },
@@ -1084,6 +1088,7 @@ const ru: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "Главная", href: "#" },
+      { label: "Обо мне", href: "#about" },
       { label: "Услуги", href: "#services" },
       { label: "Опыт", href: "#experience" },
       { label: "Канал", href: "#canal" },
@@ -1317,6 +1322,7 @@ const ja: TranslationSet = {
     logoFull: "WASAKABE",
     links: [
       { label: "ホーム", href: "#" },
+      { label: "私について", href: "#about" },
       { label: "サービス", href: "#services" },
       { label: "経験", href: "#experience" },
       { label: "チャンネル", href: "#canal" },
