@@ -27,6 +27,7 @@ El Sitio es un portafolio profesional que presenta:
 
 - Trayectoria profesional y formación académica del titular.
 - Servicios ofrecidos en desarrollo web, inteligencia artificial y creación de contenido.
+- Servicios de ciberseguridad y monitoreo de infraestructura, incluyendo herramientas como **Zabbix** y similares.
 - Galería de proyectos y casos de estudio.
 - Formulario de contacto para consultas y cotizaciones.
 - Enlaces a redes sociales y canales de contenido.
@@ -70,13 +71,23 @@ Al utilizar el formulario de contacto, el usuario proporciona voluntariamente da
 
 ---
 
-## 7. Enlaces a Terceros
+## 7. Confidencialidad de la Relación Comercial
+
+**Wasaka Be** respeta la confidencialidad de sus clientes por sobre la promoción del propio portafolio.
+
+- Si un cliente solicita, por las razones que considere pertinentes, que no se haga público que trabajó con **Wasaka Be** (por ejemplo, en el portafolio del Sitio, casos de estudio, redes sociales o cualquier material promocional), dicha solicitud será atendida y respetada en todo momento.
+- Salvo autorización expresa y por escrito del cliente, **Wasaka Be** no publicará el nombre, marca, logotipo, capturas de pantalla ni ningún otro dato que permita identificar al cliente o al proyecto realizado.
+- Esta confidencialidad aplica también a la información técnica, de infraestructura o de negocio a la que se tenga acceso durante la prestación de servicios (por ejemplo, en trabajos de ciberseguridad o monitoreo de infraestructura), la cual no se comparte con terceros ni se divulga sin consentimiento.
+
+---
+
+## 8. Enlaces a Terceros
 
 El Sitio puede contener enlaces a sitios web de terceros (redes sociales, plataformas de contenido, servicios externos). **Wasaka Be** no asume responsabilidad alguna por el contenido, políticas de privacidad o prácticas de dichos sitios. El usuario accede a ellos bajo su propio riesgo.
 
 ---
 
-## 8. Limitación de Responsabilidad
+## 9. Limitación de Responsabilidad
 
 El Sitio se proporciona **"tal cual"** y **"según disponibilidad"**, sin garantías de ningún tipo, ya sean expresas o implícitas. **Wasaka Be** no garantiza que:
 
@@ -88,19 +99,19 @@ En ningún caso **Wasaka Be** será responsable por daños directos, indirectos,
 
 ---
 
-## 9. Modificaciones
+## 10. Modificaciones
 
 **Wasaka Be** se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el Sitio. Se recomienda al usuario revisar esta página periódicamente.
 
 ---
 
-## 10. Legislación Aplicable
+## 11. Legislación Aplicable
 
 Estos Términos y Condiciones se rigen por las leyes de los **Estados Unidos Mexicanos**. Cualquier controversia relacionada con el Sitio será sometida a la jurisdicción de los tribunales competentes en el estado de Hidalgo, México.
 
 ---
 
-## 11. Contacto
+## 12. Contacto
 
 Para cualquier duda, aclaración o solicitud relacionada con estos Términos y Condiciones, puede contactarnos:
 
