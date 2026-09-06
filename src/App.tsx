@@ -17,8 +17,8 @@ export default function App() {
         <Suspense fallback={null}>
           <TerminosPage />
         </Suspense>
-        <Analytics />
-        <SpeedInsights />
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
       </>
     );
   }
@@ -29,8 +29,8 @@ export default function App() {
         <Suspense fallback={null}>
           <PrivacidadPage />
         </Suspense>
-        <Analytics />
-        <SpeedInsights />
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
       </>
     );
   }
@@ -42,8 +42,8 @@ export default function App() {
         <Suspense fallback={null}>
           <ServiceDetailPage slug={slug} />
         </Suspense>
-        <Analytics />
-        <SpeedInsights />
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
       </>
     );
   }
@@ -55,8 +55,8 @@ export default function App() {
         <Suspense fallback={null}>
           <BlogPostPage slug={slug} />
         </Suspense>
-        <Analytics />
-        <SpeedInsights />
+        <Analytics debug={false} />
+        <SpeedInsights debug={false} />
       </>
     );
   }
@@ -66,8 +66,8 @@ export default function App() {
       <Suspense fallback={null}>
         <HomePage />
       </Suspense>
-      <Analytics />
-      <SpeedInsights />
+      <Analytics debug={false} />
+      <SpeedInsights debug={false} />
     </>
   );
 }
