@@ -52,37 +52,47 @@
   fill: var(--color-bg-section);
 }
 
-.si-grid line {
-  stroke: var(--color-border);
-  stroke-width: 1;
+.si-window-titlebar {
+  fill: var(--color-bg-section);
 }
 
-.si-nodes circle {
+.si-dot-red {
+  fill: var(--color-crim-400);
+}
+
+.si-dot-amber {
   fill: var(--color-gold-400);
 }
 
-.si-lines {
-  stroke: var(--color-gold-400);
-  stroke-width: 1.5;
-  opacity: 0.5;
+.si-dot-green {
+  fill: var(--color-steel-500);
 }
 
-.si-glyph {
-  font-family: var(--font-mono);
-  font-size: 2.5rem;
-  font-weight: 700;
+.si-code-kw {
+  fill: var(--color-gold-400);
+}
+
+.si-code-fn {
+  fill: var(--color-crim-400);
+}
+
+.si-code-str {
+  fill: var(--color-steel-500);
+  opacity: 0.7;
+}
+
+.si-code-txt {
   fill: var(--color-border);
+}
+
+.si-cursor {
+  fill: var(--color-gold-400);
+  opacity: 0.8;
 }
 
 .si-frame {
   fill: var(--color-bg-card);
   stroke: var(--color-gold-400);
-  stroke-width: 1.5;
-}
-
-.si-frame-alt {
-  fill: var(--color-gold-950);
-  stroke: var(--color-border);
   stroke-width: 1.5;
 }
 
@@ -92,10 +102,6 @@
   fill: none;
 }
 
-.si-dot {
-  fill: var(--color-crim-400);
-}
-
 .si-caption {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -103,32 +109,45 @@
   fill: var(--color-steel-500);
 }
 
-.si-wave rect {
-  fill: var(--color-gold-400);
-  opacity: 0.65;
-}
-
 .si-play {
   fill: var(--color-gold-400);
 }
 
-.si-path {
-  stroke: var(--color-border);
-  stroke-width: 2;
-  stroke-dasharray: 6 6;
-  fill: none;
-}
-
-.si-dot-final {
-  fill: var(--color-gold-400);
-}
-
-.si-arrow {
+.si-tile-a {
+  fill: var(--color-gold-950);
   stroke: var(--color-gold-400);
-  stroke-width: 2;
-  fill: none;
+  stroke-width: 1.5;
+}
+
+.si-tile-b {
+  fill: var(--color-gold-950);
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+}
+
+.si-tile-c {
+  fill: var(--color-border);
+  opacity: 0.5;
+}
+
+.si-preview {
+  fill: var(--color-gold-950);
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+}
+
+.si-timeline-track {
+  fill: var(--color-bg-section);
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.si-check-mark {
+  stroke: var(--color-bg-card);
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  fill: none;
 }
 
 /* ─── Hero ─── */
