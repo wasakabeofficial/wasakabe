@@ -1,0 +1,38 @@
+.form-field {
+  position: relative;
+}
+
+.form-field-label {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: color-mix(in srgb, var(--color-lightpurple) 60%, transparent);
+  pointer-events: none;
+  transition: all 0.25s var(--ease-out-expo);
+}
+
+/* La etiqueta sube cuando el campo tiene foco o contenido */
+.form-field-control:focus ~ .form-field-label,
+.form-field-control:not(:placeholder-shown) ~ .form-field-label {
+  top: -6px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-lavender);
+}
+
+.form-field-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-lavender);
+  transition: width 0.35s var(--ease-out-expo);
+}
+
+.form-field-control:focus ~ .form-field-line {
+  width: 100%;
+}

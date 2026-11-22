@@ -1,0 +1,91 @@
+.accordion-row {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Relleno ultravioleta que entra de izquierda a derecha */
+.accordion-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--color-ultraviolet);
+  transform: translateX(-100%);
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.accordion-row:hover::before,
+.accordion-row.is-open::before {
+  transform: translateX(0);
+}
+
+.accordion-header,
+.accordion-drawer {
+  position: relative;
+  z-index: 1;
+}
+
+.accordion-header {
+  display: block;
+  width: 100%;
+  padding: 2rem 1rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.accordion-shift {
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.accordion-row:hover .accordion-shift,
+.accordion-row.is-open .accordion-shift {
+  transform: translateX(14px);
+}
+
+.accordion-arrow {
+  transition:
+    transform 0.45s var(--ease-out-expo),
+    color 0.3s ease;
+}
+
+.accordion-row:hover .accordion-arrow,
+.accordion-row.is-open .accordion-arrow {
+  transform: translate(5px, -5px);
+  color: #fff;
+}
+
+/* Cajón que se despliega animando la altura de la fila */
+.accordion-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  padding-inline: 1rem;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.5s var(--ease-out-expo),
+    opacity 0.4s ease;
+}
+
+.accordion-row.is-open .accordion-drawer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .accordion-header {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .accordion-drawer {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-row:hover .accordion-shift,
+  .accordion-row.is-open .accordion-shift {
+    transform: none;
+  }
+}

@@ -1,0 +1,12 @@
+.image-slot {
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+  color: var(--color-lightpurple);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background:
+    repeating-linear-gradient(135deg, rgb(159 151 221 / 0.16) 0 1px, transparent 1px 16px),
+    var(--color-ultraviolet);
+}

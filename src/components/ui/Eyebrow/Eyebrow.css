@@ -1,0 +1,10 @@
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  margin-right: 12px;
+  vertical-align: middle;
+  background-color: currentColor;
+  opacity: 0.85;
+}
