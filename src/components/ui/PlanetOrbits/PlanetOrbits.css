@@ -1,0 +1,108 @@
+/* La figura no se mueve: solo tiene un resplandor con los colores de la paleta */
+.orbit-figure {
+  pointer-events: none;
+  filter: drop-shadow(0 0 3px rgb(191 195 235 / 0.4)) drop-shadow(0 0 22px rgb(125 108 187 / 0.4));
+}
+
+/* Órbitas */
+.orbit-group {
+  transition: opacity 0.4s ease;
+}
+
+.orbit-ring {
+  fill: none;
+  stroke: var(--ring-color);
+  stroke-opacity: 0.6;
+  stroke-width: 1.8;
+  transition:
+    stroke-opacity 0.3s ease,
+    stroke-width 0.3s ease;
+}
+
+/* Al señalar un planeta, esa órbita se ilumina y el resto se atenúa */
+.orbit-system[data-active] .orbit-group {
+  opacity: 0.22;
+}
+
+.orbit-system[data-active] .orbit-group.is-active {
+  opacity: 1;
+}
+
+.orbit-group.is-active .orbit-ring {
+  stroke-opacity: 1;
+  stroke-width: 2.4;
+}
+
+/* Planetas */
+.planet-link {
+  cursor: pointer;
+  outline: none;
+}
+
+.planet-hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.planet-scale {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.planet-link:hover .planet-scale,
+.planet-link:focus-visible .planet-scale,
+.orbit-group.is-active .planet-scale {
+  transform: scale(1.25);
+}
+
+.planet-body {
+  stroke: var(--color-lightpurple);
+  stroke-opacity: 0.55;
+  stroke-width: 1;
+  filter: drop-shadow(0 0 6px var(--ring-color));
+  transition: stroke-opacity 0.3s ease;
+}
+
+.planet-link:focus-visible .planet-body {
+  stroke: #fff;
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+.orbit-group.is-active .planet-body {
+  stroke-opacity: 1;
+}
+
+/* Planetitas decorativas */
+.mini-planet {
+  pointer-events: none;
+}
+
+.mini-body {
+  stroke: var(--color-lightpurple);
+  stroke-opacity: 0.4;
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 4px var(--ring-color));
+}
+
+.mini-ring {
+  fill: none;
+  stroke: var(--color-lightpurple);
+  stroke-opacity: 0.75;
+  stroke-width: 1.2;
+}
+
+.mini-moon {
+  fill: var(--color-lightpurple);
+}
+
+/* Símbolo del servicio sobre el planeta */
+.planet-glyph .glyph {
+  stroke: #fff;
+  stroke-width: 1.9;
+}
+
+.planet-glyph .glyph-fill {
+  fill: #fff;
+}

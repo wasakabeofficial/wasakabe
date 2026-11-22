@@ -1,0 +1,105 @@
+/* Resplandor de la figura con los colores de la paleta */
+.silhouette-figure {
+  filter: drop-shadow(0 0 3px rgb(191 195 235 / 0.45)) drop-shadow(0 0 22px rgb(125 108 187 / 0.45));
+}
+
+/* Capas: una línea fina y una luz que la recorre */
+.ring {
+  transition: opacity 0.4s ease;
+}
+
+.ring-line {
+  fill: none;
+  stroke: var(--ring-color);
+  stroke-opacity: 0.4;
+  stroke-width: 1.6;
+  transition:
+    stroke-opacity 0.3s ease,
+    stroke-width 0.3s ease;
+}
+
+.ring-run {
+  fill: none;
+  stroke: var(--ring-color);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-dasharray: 6 94;
+  filter: drop-shadow(0 0 5px var(--ring-color));
+  animation: ring-run linear infinite;
+}
+
+@keyframes ring-run {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Al señalar un nodo, esa capa se ilumina y el resto se atenúa y se detiene */
+.ring-stage[data-active] .ring {
+  opacity: 0.22;
+}
+
+.ring-stage[data-active] .ring.is-active {
+  opacity: 1;
+}
+
+.ring.is-active .ring-line {
+  stroke-opacity: 1;
+  stroke-width: 2.4;
+}
+
+.ring-stage[data-active] .ring-run {
+  animation-play-state: paused;
+}
+
+/* Nodos con el símbolo de cada servicio */
+.ring-node {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.4s ease;
+}
+
+.ring-stage[data-active] .ring-node:not(.is-active) {
+  opacity: 0.25;
+}
+
+.ring-node-hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.ring-node-scale {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.ring-node:hover .ring-node-scale,
+.ring-node:focus-visible .ring-node-scale,
+.ring-node.is-active .ring-node-scale {
+  transform: scale(1.3);
+}
+
+.ring-node-disc {
+  fill: var(--color-deep);
+  stroke: var(--color-lavender);
+  stroke-width: 1.4;
+  transition: fill 0.3s ease;
+}
+
+.ring-node:focus-visible .ring-node-disc {
+  stroke: #fff;
+  stroke-width: 2.4;
+}
+
+.ring-node.is-active .ring-node-disc {
+  fill: var(--color-lavender);
+}
+
+.ring-node.is-active .glyph {
+  stroke: var(--color-deep);
+}
+
+.ring-node.is-active .glyph-fill {
+  fill: var(--color-deep);
+}

@@ -49,3 +49,19 @@ export interface InquiryData {
   subject: string
   message: string
 }
+
+export type GlyphKey = 'software' | 'ai' | 'networks' | 'creative' | 'planning'
+
+export interface OrbitItem {
+  /** Id del servicio al que representa (ver data/services). */
+  serviceId: string
+  glyph: GlyphKey
+  /** Texto corto que aparece al señalar el nodo. */
+  caption: string
+  /** Radio de la órbita en el lienzo del SVG. */
+  radius: number
+  /** Segundos que tarda en dar una vuelta. */
+  duration: number
+  /** Ángulo inicial en grados. */
+  start: number
+}

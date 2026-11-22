@@ -1,10 +1,9 @@
-import { useEffect, useRef, type CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 import SectionTransition from '../../components/motion/SectionTransition'
+import Accent from '../../components/ui/Accent'
 import Button from '../../components/ui/Button'
 import Eyebrow from '../../components/ui/Eyebrow'
-import ImageSlot from '../../components/ui/ImageSlot'
-import Accent from '../../components/ui/Accent'
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import PlanetOrbits from '../../components/ui/PlanetOrbits'
 import './Hero.css'
 
 interface HeroProps {
@@ -15,29 +14,6 @@ interface HeroProps {
 const delay = (ms: number) => ({ '--d': `${ms}ms` }) as CSSProperties
 
 export default function Hero({ ready }: HeroProps) {
-  const frameRef = useRef<HTMLDivElement>(null)
-  const reduced = usePrefersReducedMotion()
-
-  // La imagen sigue al cursor como un "eye tracker": se inclina hasta 6°.
-  useEffect(() => {
-    const frame = frameRef.current
-    if (!frame || reduced) return
-
-    const onMove = (event: MouseEvent) => {
-      const box = frame.getBoundingClientRect()
-      const dx = (event.clientX - (box.left + box.width / 2)) / (window.innerWidth / 2)
-      const dy = (event.clientY - (box.top + box.height / 2)) / (window.innerHeight / 2)
-
-      frame.style.transform = `perspective(900px) rotateX(${(-dy * 6).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg)`
-    }
-
-    window.addEventListener('mousemove', onMove)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      frame.style.transform = ''
-    }
-  }, [reduced])
-
   return (
     <SectionTransition
       id="home"
@@ -88,31 +64,10 @@ export default function Hero({ ready }: HeroProps) {
           </div>
 
           <div className="relative flex w-full items-center justify-center lg:col-span-5">
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className="absolute h-[390px] w-[390px] animate-pulse rounded-full border border-lavender/15" />
-              <div className="absolute h-[280px] w-[280px] rounded-full border border-lavender/15" />
-              <div className="absolute h-[180px] w-[180px] rounded-full border border-lavender/15" />
-            </div>
-
-            <div
-              ref={frameRef}
-              className="relative aspect-[4/5] w-full max-w-md cursor-crosshair overflow-hidden border border-lavender/25 bg-deep shadow-2xl transition-transform duration-100 ease-out"
-            >
-              <div className="hero-image h-full w-full">
-                <ImageSlot
-                  name="server-corridor"
-                  fallbacks={['wk-logo']}
-                  alt="WASAKABE infrastructure"
-                  eager
-                  className="pointer-events-none select-none contrast-125 mix-blend-luminosity"
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-0 bg-ultraviolet opacity-60 mix-blend-multiply" />
-              <div className="pointer-events-none absolute inset-0 bg-deep opacity-50 mix-blend-color" />
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-deep/90 via-transparent to-transparent" />
-              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between text-[10px] uppercase tracking-widest text-lightpurple/80">
-                <span>System architecture</span>
-                <span>WASAKABE</span>
+            {/* La figura está quieta: solo se mueven los planetas */}
+            <div className="relative w-full max-w-xl">
+              <div className="hero-image">
+                <PlanetOrbits />
               </div>
             </div>
           </div>
