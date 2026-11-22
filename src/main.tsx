@@ -1,17 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import './presentation/shared.css'
-import { I18nProvider } from './presentation/i18n/I18nContext'
-import { DependenciesProvider } from './presentation/context/DependenciesContext'
 import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <I18nProvider>
-      <DependenciesProvider>
-        <App />
-      </DependenciesProvider>
-    </I18nProvider>
+    <App />
   </StrictMode>,
 )
