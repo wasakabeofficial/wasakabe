@@ -31,7 +31,8 @@ export default function WhoWeServe() {
     <SectionTransition
       id="who-we-serve"
       from="var(--color-lightpurple)"
-      className="overflow-hidden bg-ultraviolet text-white"
+      tone="var(--color-ultraviolet)"
+      className="overflow-x-clip bg-ultraviolet text-white"
       innerClassName="px-6 py-28 md:px-12 md:py-36 lg:px-20"
     >
       <div className="mx-auto flex max-w-7xl flex-col">

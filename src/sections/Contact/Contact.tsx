@@ -62,7 +62,8 @@ export default function Contact() {
     <SectionTransition
       id="contact"
       from="var(--color-ultraviolet)"
-      className="overflow-hidden bg-deep text-white"
+      tone="var(--color-deep)"
+      className="overflow-x-clip bg-deep text-white"
       innerClassName="px-6 py-28 md:px-12 md:py-36 lg:px-20"
       exit={false}
     >

@@ -9,18 +9,37 @@ interface SectionTransitionProps {
   className?: string
   /** Clases del contenedor interno (espaciado, layout). */
   innerClassName?: string
-  /** Color de la sección anterior (CSS), para suavizar el borde superior. */
+  /** Color de la sección anterior (CSS). Junto con `tone` activa la mezcla suave del borde superior. */
   from?: string
+  /** Color de fondo de esta sección (CSS); es el color al que llega la mezcla. */
+  tone?: string
   /** Si es false, el contenido no se atenúa al salir (útil en la última sección). */
   exit?: boolean
 }
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value))
 
+/** Altura de la mezcla: cabe en el relleno inferior de la sección anterior (7rem en móvil, 9rem desde md). */
+const BLEND_HEIGHT = '9rem'
+
+/**
+ * Degradado de `from` a `tone` con curva suave (smoothstep) e interpolación en OKLab.
+ * Un degradado lineal en sRGB entre un morado oscuro y uno claro pasa por grises
+ * apagados y se nota el inicio y el final; con la curva y OKLab se mantiene el tono.
+ */
+function blendBackground(from: string, tone: string): string {
+  const stops = Array.from({ length: 11 }, (_, index) => {
+    const t = index / 10
+    const mix = Math.round((3 * t * t - 2 * t * t * t) * 100)
+    return `color-mix(in oklab, ${tone} ${mix}%, ${from}) ${index * 10}%`
+  })
+  return `linear-gradient(in oklab to bottom, ${stops.join(', ')})`
+}
+
 /*
  * Envoltorio de cada sección con transición en ambos sentidos del scroll:
- *  - Degradado superior desde el color de la sección anterior (sin corte brusco).
- *  - Línea fina que se dibuja en el borde al cruzar la pantalla.
+ *  - Mezcla de color en el borde: el degradado vive en el relleno vacío al final de la
+ *    sección anterior y termina exactamente en el color de esta, sin costura.
  *  - Al salir por arriba, el contenido se atenúa, sube y se reduce un poco;
  *    al volver, se revierte exactamente.
  */
@@ -30,11 +49,11 @@ export default function SectionTransition({
   className = '',
   innerClassName = '',
   from,
+  tone,
   exit = true,
 }: SectionTransitionProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const edgeRef = useRef<HTMLSpanElement>(null)
   const reduced = usePrefersReducedMotion()
 
   useScrollEffect(() => {
@@ -43,11 +62,6 @@ export default function SectionTransition({
 
     const viewport = window.innerHeight
     const box = section.getBoundingClientRect()
-
-    const edge = edgeRef.current
-    if (edge) {
-      edge.style.transform = `scaleX(${clamp((viewport * 0.9 - box.top) / (viewport * 0.5))})`
-    }
 
     const content = contentRef.current
     if (content && exit) {
@@ -67,20 +81,16 @@ export default function SectionTransition({
 
   return (
     <section id={id} ref={sectionRef} className={`relative w-full ${className}`}>
-      {from && (
-        <>
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 z-0 h-28"
-            style={{ background: `linear-gradient(to bottom, ${from}, transparent)` }}
-          />
-          <span
-            ref={edgeRef}
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px origin-left bg-lavender/60"
-            style={{ transform: reduced ? 'scaleX(1)' : 'scaleX(0)' }}
-          />
-        </>
+      {from && tone && from !== tone && (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 z-0"
+          style={{
+            top: `calc(${BLEND_HEIGHT} * -1)`,
+            height: BLEND_HEIGHT,
+            background: blendBackground(from, tone),
+          }}
+        />
       )}
       <div ref={contentRef} className={`relative z-10 ${innerClassName}`}>
         {children}

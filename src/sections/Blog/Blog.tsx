@@ -28,6 +28,7 @@ export default function Blog() {
     <SectionTransition
       id="blog"
       from="var(--color-deep)"
+      tone="var(--color-ultraviolet)"
       className="bg-ultraviolet text-white"
       innerClassName="px-6 py-28 md:px-12 md:py-36 lg:px-20"
     >

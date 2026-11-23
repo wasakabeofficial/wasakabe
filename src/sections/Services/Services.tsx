@@ -12,6 +12,7 @@ export default function Services() {
     <SectionTransition
       id="services"
       from="var(--color-deep)"
+      tone="var(--color-deep)"
       className="bg-deep"
       innerClassName="px-6 py-28 md:px-12 md:py-36 lg:px-20"
     >

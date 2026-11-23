@@ -16,6 +16,7 @@ export default function About() {
     <SectionTransition
       id="about"
       from="var(--color-deep)"
+      tone="var(--color-lightpurple)"
       className="bg-lightpurple text-deep"
       innerClassName="px-6 py-28 md:px-12 md:py-36 lg:px-20"
     >
