@@ -48,12 +48,7 @@ export default function Services() {
             renderPanel={(service) => (
               <div className="grid grid-cols-1 items-center gap-6 border-t border-lightpurple/15 pt-6 md:grid-cols-12">
                 <div className="relative h-36 overflow-hidden border border-lavender/30 bg-deep md:col-span-4">
-                  <ImageSlot
-                    name={service.image}
-                    alt={service.imageAlt}
-                    className="contrast-125 mix-blend-luminosity"
-                  />
-                  <div className="absolute inset-0 bg-ultraviolet/50 mix-blend-multiply" />
+                  <ImageSlot name={service.image} alt={service.imageAlt} />
                 </div>
                 <ul className="flex flex-col gap-2 text-xs text-lightpurple/90 md:col-span-8 md:text-sm">
                   {service.items.map((item) => (

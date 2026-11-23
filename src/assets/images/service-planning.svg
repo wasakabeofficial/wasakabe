@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300">
+  <title>Project roadmap with tasks, dependencies and milestones</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3f2f6f" />
+      <stop offset="1" stop-color="#241a45" />
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#9f97dd" stop-opacity="0.26" />
+      <stop offset="1" stop-color="#9f97dd" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#9f97dd" stroke-opacity="0.09" />
+    </pattern>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7d6cbb" />
+      <stop offset="1" stop-color="#543f86" />
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b" />
+      <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="300" fill="url(#bg)" />
+  <rect width="800" height="300" fill="url(#grid)" />
+  <ellipse cx="400" cy="150" rx="420" ry="190" fill="url(#aura)" />
+<rect x="40" y="34" width="720" height="232" rx="12" fill="#1b1236" fill-opacity="0.86" stroke="#9f97dd" stroke-opacity="0.38" />
+  <line x1="190" y1="64" x2="190" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="208.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="244" y1="64" x2="244" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="262.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="298" y1="64" x2="298" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="316.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="352" y1="64" x2="352" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="370.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="406" y1="64" x2="406" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="424.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="460" y1="64" x2="460" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="478.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="514" y1="64" x2="514" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="532.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="568" y1="64" x2="568" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="586.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="622" y1="64" x2="622" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="640.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="676" y1="64" x2="676" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="694.0" y="48" width="18" height="5" rx="2.5" fill="#9f97dd" fill-opacity="0.5" />
+  <line x1="730" y1="64" x2="730" y2="252" stroke="#9f97dd" stroke-opacity="0.13" />
+  <rect x="64" y="89" width="70" height="7" rx="3.5" fill="#9f97dd" fill-opacity="0.55" />
+  <rect x="194" y="81" width="154" height="20" rx="8" fill="#7d6cbb" fill-opacity="0.45" stroke="#9f97dd" stroke-opacity="0.6" />
+  <rect x="194" y="81" width="154.0" height="20" rx="8" fill="#bfc3eb" fill-opacity="0.9" />
+  <rect x="64" y="123" width="90" height="7" rx="3.5" fill="#9f97dd" fill-opacity="0.55" />
+  <rect x="302" y="115" width="208" height="20" rx="8" fill="#7d6cbb" fill-opacity="0.45" stroke="#9f97dd" stroke-opacity="0.6" />
+  <rect x="302" y="115" width="156.0" height="20" rx="8" fill="#bfc3eb" fill-opacity="0.9" />
+  <rect x="64" y="157" width="60" height="7" rx="3.5" fill="#9f97dd" fill-opacity="0.55" />
+  <rect x="383.0" y="149" width="154" height="20" rx="8" fill="#7d6cbb" fill-opacity="0.45" stroke="#9f97dd" stroke-opacity="0.6" />
+  <rect x="383.0" y="149" width="61.6" height="20" rx="8" fill="#bfc3eb" fill-opacity="0.9" />
+  <rect x="64" y="191" width="84" height="7" rx="3.5" fill="#9f97dd" fill-opacity="0.55" />
+  <rect x="491.0" y="183" width="127.0" height="20" rx="8" fill="none" stroke="#9f97dd" stroke-opacity="0.7" stroke-dasharray="4 4" />
+  <rect x="64" y="225" width="66" height="7" rx="3.5" fill="#9f97dd" fill-opacity="0.55" />
+  <rect x="599.0" y="217" width="127.0" height="20" rx="8" fill="none" stroke="#9f97dd" stroke-opacity="0.7" stroke-dasharray="4 4" />
+  <path d="M348.0 91 H360.0 V125 H296.0" fill="none" stroke="#bfc3eb" stroke-opacity="0.55" stroke-width="1.6" />
+  <path d="M296.0 121 L302.0 125 L296.0 129 Z" fill="#bfc3eb" fill-opacity="0.8" />
+  <path d="M510.0 125 H522.0 V159 H377.0" fill="none" stroke="#bfc3eb" stroke-opacity="0.55" stroke-width="1.6" />
+  <path d="M377.0 155 L383.0 159 L377.0 163 Z" fill="#bfc3eb" fill-opacity="0.8" />
+  <path d="M537.0 159 H549.0 V193 H485.0" fill="none" stroke="#bfc3eb" stroke-opacity="0.55" stroke-width="1.6" />
+  <path d="M485.0 189 L491.0 193 L485.0 197 Z" fill="#bfc3eb" fill-opacity="0.8" />
+  <path d="M618.0 193 H630.0 V227 H593.0" fill="none" stroke="#bfc3eb" stroke-opacity="0.55" stroke-width="1.6" />
+  <path d="M593.0 223 L599.0 227 L593.0 231 Z" fill="#bfc3eb" fill-opacity="0.8" />
+  <path d="M551.0 150 l9 9 l-9 9 l-9 -9 Z" fill="#bfc3eb" filter="url(#glow)" />
+  <path d="M740.0 218 l9 9 l-9 9 l-9 -9 Z" fill="#bfc3eb" filter="url(#glow)" />
+  <line x1="427.6" y1="60" x2="427.6" y2="254" stroke="#fff" stroke-opacity="0.85" stroke-dasharray="4 4" />
+  <rect x="407.6" y="44" width="40" height="16" rx="5" fill="#bfc3eb" filter="url(#glow)" /><rect x="415.6" y="50" width="24" height="4" rx="2" fill="#1b1236" fill-opacity="0.7" />
+</svg>

@@ -12,8 +12,8 @@ export const SERVICES: readonly Service[] = [
       'Mobile & desktop applications',
       'Databases, QA & systematic testing',
     ],
-    image: 'circuit-macro',
-    imageAlt: 'Macro of code on a screen',
+    image: 'service-software',
+    imageAlt: 'Code editor next to a checklist of passing tests',
   },
   {
     id: 'ai',
@@ -26,8 +26,8 @@ export const SERVICES: readonly Service[] = [
       'AI implementation in ERP and CRM systems',
       'Workflow automation with n8n',
     ],
-    image: 'circuit-macro',
-    imageAlt: 'Abstract node and connector workflow',
+    image: 'service-ai',
+    imageAlt: 'AI agent connected to a workflow of apps',
   },
   {
     id: 'networks',
@@ -40,8 +40,8 @@ export const SERVICES: readonly Service[] = [
       'Network scanning with Nmap',
       'Traffic analysis with Wireshark',
     ],
-    image: 'server-corridor',
-    imageAlt: 'Server corridor and network monitoring',
+    image: 'service-networks',
+    imageAlt: 'Network topology, latency chart and packet capture',
   },
   {
     id: 'creative',
@@ -53,8 +53,8 @@ export const SERVICES: readonly Service[] = [
       'Beats & music production',
       'Simple indie video games',
     ],
-    image: 'architecture',
-    imageAlt: 'Film and music production',
+    image: 'service-creative',
+    imageAlt: 'Video and music editing timeline',
   },
   {
     id: 'planning',
@@ -67,7 +67,7 @@ export const SERVICES: readonly Service[] = [
       'Mentoring for engineering teams and individuals',
       'Strategic technology advisory',
     ],
-    image: 'architecture',
-    imageAlt: 'Planning timeline',
+    image: 'service-planning',
+    imageAlt: 'Project roadmap with tasks, dependencies and milestones',
   },
 ]
