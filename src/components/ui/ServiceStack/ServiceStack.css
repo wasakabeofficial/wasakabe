@@ -1,0 +1,181 @@
+/* Separación entre placas: la pila se abre al pasar el cursor */
+.stack-stage {
+  --gap: 66px;
+}
+
+.stack-stage:hover {
+  --gap: 94px;
+}
+
+/* Posición de cada placa; --i es su índice (0 = arriba). La pila se abre desde su centro (y = 300). */
+.plate-pos {
+  transform: translate(170px, calc(300px + (var(--i, 0) - 2) * var(--gap)));
+  transition:
+    transform 0.8s var(--ease-out-expo),
+    opacity 0.4s ease;
+}
+
+/* Flotación suave, desfasada entre placas */
+.plate-float {
+  animation: plate-float 6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i, 0) * -1.3s);
+}
+
+@keyframes plate-float {
+  from {
+    transform: translateY(-3px);
+  }
+
+  to {
+    transform: translateY(3px);
+  }
+}
+
+/* La placa señalada se eleva; las demás se atenúan */
+.plate-lift {
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.plate-lift.is-active {
+  transform: translateY(-18px);
+}
+
+.stack-stage[data-active] .plate-pos:not(.is-active) {
+  opacity: 0.3;
+}
+
+.plate-link {
+  cursor: pointer;
+  outline: none;
+}
+
+/* Caras de la placa */
+.plate-top {
+  fill: url(#plate-fill);
+  stroke: var(--color-lavender);
+  stroke-opacity: 0.55;
+  stroke-width: 1;
+  transition:
+    fill 0.3s ease,
+    stroke-opacity 0.3s ease;
+}
+
+.plate-left {
+  fill: var(--color-deep);
+  stroke: var(--color-lavender);
+  stroke-opacity: 0.3;
+  stroke-width: 1;
+  transition: fill 0.3s ease;
+}
+
+.plate-right {
+  fill: var(--color-ultraviolet);
+  fill-opacity: 0.85;
+  stroke: var(--color-lavender);
+  stroke-opacity: 0.3;
+  stroke-width: 1;
+  transition: fill 0.3s ease;
+}
+
+.plate-pos.is-active .plate-top {
+  fill: var(--color-lavender);
+  stroke-opacity: 1;
+}
+
+.plate-pos.is-active .plate-left {
+  fill: var(--color-ultraviolet);
+}
+
+.plate-pos.is-active .plate-right {
+  fill: var(--color-amethyst);
+  fill-opacity: 1;
+}
+
+/* Símbolo grabado sobre la cara superior */
+.plate-glyph .glyph {
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.plate-pos.is-active .plate-glyph .glyph {
+  stroke: var(--color-deep);
+}
+
+.plate-pos.is-active .plate-glyph .glyph-fill {
+  fill: var(--color-deep);
+}
+
+/* Etiquetas */
+.plate-label-hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.plate-leader {
+  stroke: var(--color-lavender);
+  stroke-opacity: 0.35;
+  stroke-width: 1;
+  transition: stroke-opacity 0.3s ease;
+}
+
+.plate-num {
+  fill: var(--color-lavender);
+  fill-opacity: 0.7;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  transition: fill-opacity 0.3s ease;
+}
+
+.plate-title {
+  fill: var(--color-lightpurple);
+  font-family: var(--font-serif);
+  font-size: 21px;
+  transition: fill 0.3s ease;
+}
+
+.plate-pos.is-active .plate-leader {
+  stroke-opacity: 1;
+}
+
+.plate-pos.is-active .plate-num {
+  fill-opacity: 1;
+}
+
+.plate-pos.is-active .plate-title,
+.plate-link:focus-visible .plate-title {
+  fill: #fff;
+}
+
+.plate-link:focus-visible .plate-title {
+  text-decoration: underline;
+}
+
+/* Eje del sistema y señal que lo recorre */
+.stack-axis {
+  stroke: var(--color-lavender);
+  stroke-opacity: 0.25;
+  stroke-dasharray: 2 6;
+}
+
+.stack-signal {
+  fill: var(--color-lavender);
+  animation: stack-signal 5s ease-in-out infinite;
+}
+
+@keyframes stack-signal {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  10%,
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(560px);
+    opacity: 0;
+  }
+}

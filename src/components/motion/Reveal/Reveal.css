@@ -1,0 +1,28 @@
+.reveal {
+  transition:
+    opacity 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+/* Salida más rápida que la entrada */
+.reveal[data-state='below'],
+.reveal[data-state='above'] {
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-delay: 0ms;
+}
+
+.reveal[data-state='below'] {
+  transform: translateY(28px);
+}
+
+.reveal[data-state='above'] {
+  transform: translateY(-28px);
+}
+
+.reveal[data-state='shown'] {
+  opacity: 1;
+  transform: none;
+}

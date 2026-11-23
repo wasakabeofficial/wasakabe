@@ -1,0 +1,75 @@
+/* Cada línea del titular sube desde detrás de una máscara */
+.hero-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-line {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 1s var(--ease-out-expo);
+  transition-delay: var(--d, 0ms);
+}
+
+.hero[data-ready='true'] .hero-line {
+  transform: translateY(0);
+}
+
+/* Resto del contenido: aparece con un desplazamiento corto */
+.hero-fade {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--d, 0ms);
+}
+
+.hero[data-ready='true'] .hero-fade {
+  opacity: 1;
+  transform: none;
+}
+
+/* La imagen entra con un fundido y se asienta de 1.06 a 1.0 */
+.hero-image {
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 1.4s var(--ease-out-expo) 0.2s,
+    transform 2.2s var(--ease-out-expo) 0.2s;
+}
+
+.hero[data-ready='true'] .hero-image {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scroll-cue-pulse {
+  animation: scroll-pulse 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scroll-pulse {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  80%,
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-fade,
+  .hero-image {
+    opacity: 1;
+    transform: none;
+  }
+}
