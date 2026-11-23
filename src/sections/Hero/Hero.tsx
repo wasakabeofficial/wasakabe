@@ -64,8 +64,12 @@ export default function Hero({ ready }: HeroProps) {
           </div>
 
           <div className="relative flex w-full items-center justify-center lg:col-span-5">
-            {/* La figura está quieta: solo se mueven los planetas */}
-            <div className="relative w-full max-w-xl">
+            {/*
+              La figura está quieta: solo se mueven los planetas. En pantallas anchas se agranda con
+              una escala visual (no cambia el diseño, así que el texto no se mueve) anclada a la
+              izquierda para que crezca hacia el lado derecho, que es donde hay espacio.
+            */}
+            <div className="relative w-full max-w-xl origin-[25%_50%] xl:scale-[1.12] 2xl:scale-[1.24]">
               <div className="hero-image">
                 <PlanetOrbits />
               </div>

@@ -17,6 +17,11 @@
   height: 1.2em;
 }
 
+/* La letra que entra al pasar el cursor; el color se puede cambiar con --rolling-hover */
+.rolling-char > span:last-child {
+  color: var(--rolling-hover, var(--color-lavender));
+}
+
 .rolling-host:hover .rolling-char,
 .rolling-host:focus-visible .rolling-char {
   transform: translateY(-50%);

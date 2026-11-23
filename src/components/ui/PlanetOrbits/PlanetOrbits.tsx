@@ -14,7 +14,9 @@ import './PlanetOrbits.css'
 const FIGURE = 'hero-figure'
 
 /* Sistema planetario alrededor del cuello de la figura. Medidas en píxeles de la imagen original. */
-const CENTER_Y = 0.553 // altura del centro, como fracción de la altura de la imagen (el cuello)
+const REFERENCE_WIDTH = 512 // ancho, en unidades, al que se refieren todas las medidas de abajo
+const DEFAULT_HEIGHT = 648 // alto por defecto (mientras se lee el tamaño real de la imagen)
+const CENTER_Y = 0.51 // altura del centro, como fracción de la altura de la imagen (la base del cuello)
 const TILT = -14 // inclinación de las órbitas, en grados
 const FLATNESS = 0.3 // semieje menor / semieje mayor
 const AXES = [215, 255, 295, 335, 375] // semieje mayor de cada órbita, de la más cercana a la más lejana
@@ -192,8 +194,10 @@ export default function PlanetOrbits() {
 
   if (!url) return <ServiceStack />
 
-  const width = size?.width ?? 512
-  const height = size?.height ?? 808
+  // La geometría del sistema está en unidades de una imagen de 512 px de ancho; una imagen de
+  // mayor resolución se escala a esas unidades para que las órbitas conserven sus proporciones.
+  const width = REFERENCE_WIDTH
+  const height = size ? Math.round((size.height * REFERENCE_WIDTH) / size.width) : DEFAULT_HEIGHT
   const cx = width / 2
   const cy = height * CENTER_Y
   const padX = Math.max(0, AXES[AXES.length - 1] - width / 2) + 40
